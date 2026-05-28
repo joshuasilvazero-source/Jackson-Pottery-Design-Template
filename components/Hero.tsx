@@ -28,30 +28,43 @@ export default function Hero() {
         className="relative min-h-screen flex flex-col overflow-hidden"
       >
         {/* Background — mobile video */}
-        <video
+        <motion.video
           autoPlay
           loop
           muted
           playsInline
-          className="lg:hidden absolute inset-0 w-full h-full object-cover"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.4, ease: 'easeInOut' }}
+          className="lg:hidden absolute inset-0 w-full h-full object-cover object-center"
         >
           <source src="/hero-mobile.mp4" type="video/mp4" />
-        </video>
+        </motion.video>
 
         {/* Background — desktop video */}
-        <video
+        <motion.video
           autoPlay
           loop
           muted
           playsInline
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.4, ease: 'easeInOut' }}
           className="hidden lg:block absolute inset-0 w-full h-full object-cover"
+          style={{ objectPosition: 'center 30%' }}
         >
           <source src="/hero-desktop.mp4" type="video/mp4" />
-        </video>
+        </motion.video>
 
-        {/* Gradient overlays for text legibility */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/35 to-black/75 pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/20 pointer-events-none" />
+        {/* Lighter gradient overlay — lets video breathe */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/20 to-black/60 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/15 pointer-events-none" />
+
+        {/* Vignette — dark edges, open centre */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: 'radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0,0,0,0.55) 100%)' }}
+        />
 
         {/* Warm ambient glow */}
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[55vw] h-[35vh] bg-gold/8 blur-[90px] rounded-full pointer-events-none" />
