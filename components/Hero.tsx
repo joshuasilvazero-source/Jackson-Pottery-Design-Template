@@ -132,16 +132,6 @@ export default function Hero() {
             </Link>
           </motion.div>
 
-          {/* Price anchor */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
-            className="mt-5 font-sans text-white/40 text-[0.72rem] tracking-[0.18em]"
-          >
-            Planters from <span className="text-gold/65">$295</span>
-          </motion.p>
-
           {/* Stats strip */}
           <motion.div
             initial={{ opacity: 0 }}
