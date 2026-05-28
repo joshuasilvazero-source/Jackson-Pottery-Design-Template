@@ -58,42 +58,14 @@ export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [scrolled, setScrolled] = useState(false)
-  const [darkSection, setDarkSection] = useState(true)
   const [searchOpen, setSearchOpen] = useState(false)
   const dropdownTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
-    const detectSection = () => {
-      const y = window.scrollY
-      setScrolled(y > 40)
-
-      // elementFromPoint uses viewport coords — nav sits at the top, so sample just below it
-      const sampleY = 72
-      const sampleX = window.innerWidth / 2
-      const el = document.elementFromPoint(sampleX, sampleY)
-
-      if (el) {
-        let node: Element | null = el
-        while (node && node !== document.documentElement) {
-          const bg = window.getComputedStyle(node).backgroundColor
-          const isTransparent = bg === 'rgba(0, 0, 0, 0)' || bg === 'transparent'
-          const match = !isTransparent && bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/)
-          if (match) {
-            const [, r, g, b] = match.map(Number)
-            const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
-            setDarkSection(luminance < 0.55)
-            return
-          }
-          node = node.parentElement
-        }
-      }
-      // Fallback: hero fills first viewport, treat as dark
-      setDarkSection(y < window.innerHeight * 0.9)
-    }
-
-    detectSection()
-    window.addEventListener('scroll', detectSection, { passive: true })
-    return () => window.removeEventListener('scroll', detectSection)
+    const onScroll = () => setScrolled(window.scrollY > 40)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   useEffect(() => {
@@ -102,8 +74,8 @@ export default function Navigation() {
   }, [mobileOpen])
 
   const t = scrolled
-  // When nav is transparent, use darkSection to pick logo/text color
-  const light = t ? false : darkSection
+  // Transparent nav = top of page = dark hero video behind it → white logo
+  const light = !t
 
   return (
     <>
