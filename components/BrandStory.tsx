@@ -52,11 +52,16 @@ export default function BrandStory() {
           >
             <Image
               src="/about-us.png"
-              alt="Jackson Pottery — Designed to Define Space"
+              alt="Forrest Jackson, Chief Executive Officer of Jackson Pottery"
               fill
               className="object-cover object-top"
               sizes="(max-width: 1024px) 100vw, 380px"
             />
+            {/* Name overlay */}
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent pt-10 pb-5 px-5">
+              <p className="font-serif font-bold text-white text-lg leading-tight">Forrest Jackson</p>
+              <p className="font-sans text-[0.6rem] tracking-[0.28em] uppercase text-gold/80 mt-1">Chief Executive Officer</p>
+            </div>
           </motion.div>
 
           {/* Column 3: Mission + Vision */}
