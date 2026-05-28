@@ -100,32 +100,44 @@ export default function Navigation() {
           </div>
         </div>
 
-        {/* ── Brand row — logo + mobile controls ───────────────── */}
+        {/* ── Brand row ────────────────────────────────────────── */}
         <div className={`transition-colors duration-500 ${t ? 'border-b border-border' : 'border-b border-white/[0.08]'}`}>
-          <div className="max-w-[1440px] mx-auto px-4 lg:px-8 h-[4.2rem] relative flex items-center">
+          <div className="max-w-[1440px] mx-auto px-4 lg:px-8 h-[4.2rem] flex items-center">
 
-            {/* Mobile left — burger */}
-            <div className="flex items-center gap-4 flex-1 lg:hidden">
+            {/* ── Mobile: logo left · hamburger right ── */}
+            <div className="flex lg:hidden items-center justify-between w-full">
+              <Link href="/" className="flex items-center group">
+                <span className={`font-serif font-bold text-[1.05rem] tracking-[0.2em] uppercase transition-colors duration-500 ${t ? 'text-ink group-hover:text-gold' : 'text-white group-hover:text-gold'}`}>
+                  Jackson
+                </span>
+                <Image
+                  src="/logo.png"
+                  alt="Jackson Pottery"
+                  width={30}
+                  height={30}
+                  className="object-contain flex-shrink-0"
+                  style={{ margin: '0 -1px' }}
+                />
+                <span className={`font-serif font-bold text-[1.05rem] uppercase tracking-[0.2em] transition-colors duration-500 ${t ? 'text-ink group-hover:text-gold' : 'text-white group-hover:text-gold'}`}>
+                  Pottery
+                </span>
+              </Link>
               <button
-                className={`transition-colors duration-300 ${t ? 'text-ink/70 hover:text-ink' : 'text-white/70 hover:text-white'}`}
                 onClick={() => setMobileOpen(true)}
-                aria-label="Menu"
+                aria-label="Open menu"
+                className={`w-11 h-11 flex items-center justify-center rounded-full transition-colors duration-300 ${t ? 'text-ink/70 hover:text-ink' : 'text-white/70 hover:text-white'}`}
               >
-                <Menu size={20} strokeWidth={1.5} />
+                <Menu size={22} strokeWidth={1.5} />
               </button>
             </div>
 
-            {/* Center — logo (absolutely centered) */}
+            {/* ── Desktop: logo absolutely centered ── */}
             <Link
               href="/"
-              className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center leading-none group"
+              className="hidden lg:flex absolute left-1/2 -translate-x-1/2 flex-col items-center leading-none group"
             >
               <div className="flex items-center">
-                <span
-                  className={`font-serif font-bold text-[1.18rem] tracking-[0.2em] uppercase transition-colors duration-500 ${
-                    t ? 'text-ink group-hover:text-gold' : 'text-white group-hover:text-gold'
-                  }`}
-                >
+                <span className={`font-serif font-bold text-[1.18rem] tracking-[0.2em] uppercase transition-colors duration-500 ${t ? 'text-ink group-hover:text-gold' : 'text-white group-hover:text-gold'}`}>
                   Jackson
                 </span>
                 <Image
@@ -136,11 +148,7 @@ export default function Navigation() {
                   className="object-contain flex-shrink-0 transition-transform duration-500 group-hover:scale-105"
                   style={{ margin: '0 -1px' }}
                 />
-                <span
-                  className={`font-serif font-bold text-[1.18rem] uppercase tracking-[0.2em] transition-colors duration-500 ${
-                    t ? 'text-ink group-hover:text-gold' : 'text-white group-hover:text-gold'
-                  }`}
-                >
+                <span className={`font-serif font-bold text-[1.18rem] uppercase tracking-[0.2em] transition-colors duration-500 ${t ? 'text-ink group-hover:text-gold' : 'text-white group-hover:text-gold'}`}>
                   Pottery
                 </span>
               </div>
@@ -153,27 +161,6 @@ export default function Navigation() {
               </div>
             </Link>
 
-            {/* Mobile right — search + cart */}
-            <div className="flex items-center gap-1 flex-1 justify-end lg:hidden">
-              <button
-                className={`w-11 h-11 flex items-center justify-center rounded-full transition-colors duration-300 ${t ? 'text-ink/55 hover:text-ink' : 'text-white/60 hover:text-white'}`}
-                aria-label="Search"
-              >
-                <Search size={18} strokeWidth={1.5} />
-              </button>
-              <Link
-                href="/cart"
-                className={`w-11 h-11 flex items-center justify-center rounded-full transition-colors duration-300 ${t ? 'text-ink/65 hover:text-ink' : 'text-white/65 hover:text-white'}`}
-                aria-label="Cart"
-              >
-                <div className="relative">
-                  <ShoppingCart size={18} strokeWidth={1.5} />
-                  <span className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-gold text-ink text-[0.5rem] flex items-center justify-center font-sans font-medium">
-                    0
-                  </span>
-                </div>
-              </Link>
-            </div>
           </div>
         </div>
 
