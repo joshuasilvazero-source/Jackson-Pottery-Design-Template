@@ -114,8 +114,9 @@ export default function DesignConsultation() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
-                    <label className="block text-[0.6rem] tracking-[0.3em] uppercase font-sans text-stone/60 mb-2">Full Name</label>
+                    <label htmlFor="dc-name" className="block text-[0.6rem] tracking-[0.3em] uppercase font-sans text-stone/60 mb-2">Full Name</label>
                     <input
+                      id="dc-name"
                       type="text"
                       required
                       value={form.name}
@@ -126,8 +127,9 @@ export default function DesignConsultation() {
                   </div>
 
                   <div>
-                    <label className="block text-[0.6rem] tracking-[0.3em] uppercase font-sans text-stone/60 mb-2">Email Address</label>
+                    <label htmlFor="dc-email" className="block text-[0.6rem] tracking-[0.3em] uppercase font-sans text-stone/60 mb-2">Email Address</label>
                     <input
+                      id="dc-email"
                       type="email"
                       required
                       value={form.email}
@@ -138,8 +140,9 @@ export default function DesignConsultation() {
                   </div>
 
                   <div>
-                    <label className="block text-[0.6rem] tracking-[0.3em] uppercase font-sans text-stone/60 mb-2">Project Type</label>
+                    <label htmlFor="dc-type" className="block text-[0.6rem] tracking-[0.3em] uppercase font-sans text-stone/60 mb-2">Project Type</label>
                     <select
+                      id="dc-type"
                       required
                       value={form.type}
                       onChange={e => setForm(f => ({ ...f, type: e.target.value }))}
@@ -156,8 +159,9 @@ export default function DesignConsultation() {
                   </div>
 
                   <div>
-                    <label className="block text-[0.6rem] tracking-[0.3em] uppercase font-sans text-stone/60 mb-2">Tell Us About Your Space</label>
+                    <label htmlFor="dc-message" className="block text-[0.6rem] tracking-[0.3em] uppercase font-sans text-stone/60 mb-2">Tell Us About Your Space</label>
                     <textarea
+                      id="dc-message"
                       rows={4}
                       value={form.message}
                       onChange={e => setForm(f => ({ ...f, message: e.target.value }))}

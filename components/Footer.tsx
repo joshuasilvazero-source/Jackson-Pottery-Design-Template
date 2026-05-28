@@ -131,7 +131,7 @@ export default function Footer() {
             <h4 className="font-sans text-[0.56rem] tracking-[0.38em] uppercase text-gold/60 mb-6">By Space</h4>
             <ul className="space-y-3.5">
               {spaces.map((item) => (
-                <li key={item}><NavLink href="/spaces">{item}</NavLink></li>
+                <li key={item}><NavLink href="/shop">{item}</NavLink></li>
               ))}
             </ul>
           </div>
@@ -141,7 +141,7 @@ export default function Footer() {
             <h4 className="font-sans text-[0.56rem] tracking-[0.38em] uppercase text-gold/60 mb-6">Support</h4>
             <ul className="space-y-3.5">
               {support.map((item) => (
-                <li key={item}><NavLink href="/support">{item}</NavLink></li>
+                <li key={item}><NavLink href="/shop">{item}</NavLink></li>
               ))}
             </ul>
           </div>

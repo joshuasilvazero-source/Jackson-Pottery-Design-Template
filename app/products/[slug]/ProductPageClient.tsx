@@ -40,9 +40,9 @@ export default function ProductPageClient({
       {/* Breadcrumb */}
       <div className="max-w-[1440px] mx-auto px-4 lg:px-8 pt-36 pb-6 border-b border-border">
         <div className="flex items-center gap-2 text-[0.65rem] font-sans text-muted tracking-widest uppercase">
-          <Link href="/" className="hover:text-clay transition-colors">Home</Link>
+          <Link href="/" className="hover:text-gold transition-colors">Home</Link>
           <span>/</span>
-          <Link href="/shop" className="hover:text-clay transition-colors">Shop</Link>
+          <Link href="/shop" className="hover:text-gold transition-colors">Shop</Link>
           <span>/</span>
           <span>{product.category}</span>
           <span>/</span>
@@ -86,7 +86,7 @@ export default function ProductPageClient({
               {/* Badges */}
               <div className="absolute top-4 left-4 flex flex-col gap-2">
                 {product.isNew && (
-                  <span className="bg-clay text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1.5">New</span>
+                  <span className="bg-gold text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1.5">New</span>
                 )}
                 {product.isBestseller && (
                   <span className="bg-ink text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1.5">Bestseller</span>
@@ -105,7 +105,7 @@ export default function ProductPageClient({
                   key={i}
                   onClick={() => setActiveImage(i)}
                   className={`relative aspect-square overflow-hidden border transition-all duration-200 ${
-                    activeImage === i ? 'border-clay' : 'border-border opacity-60 hover:opacity-90'
+                    activeImage === i ? 'border-gold' : 'border-border opacity-60 hover:opacity-90'
                   }`}
                 >
                   <Image src={img} alt={`View ${i + 1}`} fill className="object-cover" sizes="100px" />
@@ -128,7 +128,7 @@ export default function ProductPageClient({
               {/* Rating */}
               <div className="flex items-center gap-3 mb-6">
                 <div className="flex gap-0.5">
-                  {[...Array(5)].map((_, i) => <Star key={i} size={12} className="fill-clay text-clay" strokeWidth={0} />)}
+                  {[...Array(5)].map((_, i) => <Star key={i} size={12} className="fill-gold text-gold" strokeWidth={0} />)}
                 </div>
                 <span className="font-sans text-muted text-xs">4.9 (24 reviews)</span>
               </div>
@@ -175,18 +175,18 @@ export default function ProductPageClient({
                 <button
                   onClick={() => { setAddedToCart(true); setTimeout(() => setAddedToCart(false), 2200) }}
                   className={`flex-1 py-3.5 flex items-center justify-center gap-2 text-[0.68rem] tracking-[0.2em] uppercase font-sans transition-all duration-400 ${
-                    addedToCart ? 'bg-ink text-white' : 'bg-clay text-white hover:bg-clay/90'
+                    addedToCart ? 'bg-ink text-white' : 'bg-gold text-white hover:bg-gold/90'
                   }`}
                 >
                   {addedToCart ? <><Check size={13} strokeWidth={2} /> Added to Cart</> : 'Add to Cart'}
                 </button>
                 <button
                   onClick={() => setWishlisted(!wishlisted)}
-                  className={`w-12 h-12 border flex items-center justify-center transition-all duration-300 ${wishlisted ? 'border-clay bg-clay/8 text-clay' : 'border-border text-muted hover:border-clay hover:text-clay'}`}
+                  className={`w-12 h-12 border flex items-center justify-center transition-all duration-300 ${wishlisted ? 'border-gold bg-gold/8 text-gold' : 'border-border text-muted hover:border-gold hover:text-gold'}`}
                 >
-                  <Heart size={15} strokeWidth={1.5} className={wishlisted ? 'fill-clay' : ''} />
+                  <Heart size={15} strokeWidth={1.5} className={wishlisted ? 'fill-gold' : ''} />
                 </button>
-                <button className="w-12 h-12 border border-border flex items-center justify-center text-muted hover:border-clay hover:text-clay transition-all duration-300">
+                <button className="w-12 h-12 border border-border flex items-center justify-center text-muted hover:border-gold hover:text-gold transition-all duration-300">
                   <Share2 size={14} strokeWidth={1.5} />
                 </button>
               </div>
@@ -195,7 +195,7 @@ export default function ProductPageClient({
               <div className="bg-ash-50 border border-border p-4 mb-7 space-y-2">
                 {['Free shipping on orders over $500', 'White-glove delivery available', '30-day hassle-free returns'].map((item) => (
                   <div key={item} className="flex items-center gap-2.5">
-                    <span className="w-1 h-1 rounded-full bg-clay flex-shrink-0" />
+                    <span className="w-1 h-1 rounded-full bg-gold flex-shrink-0" />
                     <span className="font-sans text-xs text-muted">{item}</span>
                   </div>
                 ))}
@@ -210,7 +210,7 @@ export default function ProductPageClient({
                     onClick={() => setOpenDetail(openDetail === detail.label ? null : detail.label)}
                     className="w-full flex items-center justify-between py-4"
                   >
-                    <span className={`font-sans text-sm transition-colors duration-200 ${openDetail === detail.label ? 'text-clay' : 'text-ink'}`}>
+                    <span className={`font-sans text-sm transition-colors duration-200 ${openDetail === detail.label ? 'text-gold' : 'text-ink'}`}>
                       {detail.label}
                     </span>
                     <span className={`text-muted transition-transform duration-300 ${openDetail === detail.label ? 'rotate-45' : ''}`}>
@@ -241,7 +241,7 @@ export default function ProductPageClient({
           <div className="mt-16 lg:mt-20 pt-12 border-t border-border">
             <div className="flex items-center justify-between mb-10">
               <h2 className="font-serif font-bold text-display-sm text-ink">You May Also Love</h2>
-              <Link href="/shop" className="hidden md:inline-flex items-center gap-2 text-[0.68rem] tracking-[0.2em] uppercase font-sans text-muted hover:text-clay transition-colors group">
+              <Link href="/shop" className="hidden md:inline-flex items-center gap-2 text-[0.68rem] tracking-[0.2em] uppercase font-sans text-muted hover:text-gold transition-colors group">
                 View All <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" strokeWidth={1.5} />
               </Link>
             </div>
@@ -252,7 +252,7 @@ export default function ProductPageClient({
                     <Image src={p.image} alt={p.name} fill className="object-cover" sizes="(max-width: 768px) 50vw, 25vw" />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-400" />
                   </div>
-                  <p className="font-serif font-semibold text-ink group-hover:text-clay transition-colors duration-300 text-sm">{p.name}</p>
+                  <p className="font-serif font-semibold text-ink group-hover:text-gold transition-colors duration-300 text-sm">{p.name}</p>
                   <p className="font-sans text-muted text-xs mt-1">${p.price.toLocaleString()}</p>
                 </Link>
               ))}

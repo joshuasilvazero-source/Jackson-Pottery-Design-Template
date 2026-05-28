@@ -4,42 +4,42 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, Leaf, Zap, ShieldCheck, Truck } from 'lucide-react'
+import { ArrowRight, Leaf, ShieldCheck, Truck } from 'lucide-react'
 
 const materials = [
   {
     id: 'natural-clay',
     label: 'Natural Clay',
     sub: 'Classic beauty with breathable durability.',
-    href: '/materials/natural-clay',
+    href: '/shop',
     image: '/materials/natural-clay.png',
   },
   {
     id: 'metal',
     label: 'Metal',
     sub: 'Sleek, modern, and built to endure.',
-    href: '/materials/metal',
+    href: '/shop',
     image: '/materials/metal.png',
   },
   {
     id: 'glazed',
     label: 'Glazed',
     sub: 'Rich colors and timeless finishes.',
-    href: '/materials/glazed',
+    href: '/shop',
     image: '/materials/glazed.png',
   },
   {
     id: 'cast-stone',
     label: 'Cast Stone',
     sub: 'Timeless elegance and remarkable strength.',
-    href: '/materials/cast-stone',
+    href: '/shop',
     image: '/materials/cast-stone.png',
   },
   {
     id: 'lightweight',
     label: 'Lightweight',
     sub: 'Easy to move. Big impact.',
-    href: '/materials/lightweight',
+    href: '/shop',
     image: '/materials/lightweight.png',
   },
 ]

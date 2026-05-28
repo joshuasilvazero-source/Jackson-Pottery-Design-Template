@@ -53,7 +53,7 @@ export default function FAQ() {
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ delay: 0.28 }}
-              href="/contact"
+              href="#design-consultation"
               className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase font-sans text-gold/70 hover:text-ink transition-colors duration-300"
             >
               Still have questions? →

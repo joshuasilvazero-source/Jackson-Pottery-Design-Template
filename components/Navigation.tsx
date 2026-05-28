@@ -10,7 +10,7 @@ const categories = [
   {
     label: 'Landscape / Designer Planters',
     short: 'Designer Planters',
-    href: '/landscape',
+    href: '/shop',
     sub: ['Tall Planters', 'Urns & Pedestals', 'Column Planters', 'Trough Planters'],
     image: '/collection-designer-planters.png',
     featured: 'Curated for grand outdoor spaces',
@@ -19,7 +19,7 @@ const categories = [
   {
     label: 'Garden / Indoor Planters',
     short: 'Garden & Indoor',
-    href: '/garden',
+    href: '/shop',
     sub: ['Terracotta', 'Glazed Ceramic', 'Cast Stone', 'Lightweight'],
     image: '/collection-indoors.png',
     featured: 'Natural beauty, every setting',
@@ -28,7 +28,7 @@ const categories = [
   {
     label: 'Fountains',
     short: 'Fountains',
-    href: '/fountains',
+    href: '/shop',
     sub: ['Wall Fountains', 'Tiered Fountains', 'Bowl Fountains', 'Pond Kits'],
     image: '/collection-fountains.png',
     featured: 'The sound of serenity',
@@ -37,7 +37,7 @@ const categories = [
   {
     label: 'Accessories',
     short: 'Accessories',
-    href: '/accessories',
+    href: '/shop',
     sub: ['Saucers & Liners', 'Plant Stands', 'Potting Mix', 'Tools'],
     image: '/collection-accessories.png',
     featured: 'The finishing details',
@@ -245,7 +245,7 @@ export default function Navigation() {
                             {cat.sub.map((item) => (
                               <li key={item}>
                                 <Link
-                                  href={`${cat.href}/${item.toLowerCase().replace(/\s+/g, '-')}`}
+                                  href="/shop"
                                   className="group/item flex items-center justify-between py-3.5 border-b border-border/35 last:border-0 transition-colors duration-150"
                                 >
                                   <div className="flex items-center gap-2.5">
@@ -359,7 +359,7 @@ export default function Navigation() {
               </button>
 
               <Link
-                href="/cart"
+                href="#"
                 className={`flex items-center gap-1.5 transition-colors duration-300 ${t ? 'text-ink/65 hover:text-ink' : 'text-white/65 hover:text-white'}`}
                 aria-label="Cart"
               >
@@ -427,7 +427,7 @@ export default function Navigation() {
                     </span>
                     <Image
                       src="/logo.png"
-                      alt=""
+                      alt="Jackson Pottery logo"
                       width={22}
                       height={22}
                       className="object-contain"

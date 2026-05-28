@@ -34,7 +34,7 @@ export default function BrandStory() {
             </motion.p>
             <motion.div {...fade(0.22)}>
               <Link
-                href="/about"
+                href="#"
                 className="inline-flex items-center gap-2 mt-8 text-xs tracking-[0.2em] uppercase font-sans text-ink hover:text-gold transition-colors duration-300 group"
               >
                 Our Story
