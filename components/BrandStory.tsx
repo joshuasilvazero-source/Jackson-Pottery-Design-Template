@@ -48,13 +48,13 @@ export default function BrandStory() {
             initial={{ opacity: 0, scale: 0.97 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="relative aspect-[4/3] lg:aspect-[3/4] overflow-hidden image-zoom"
+            className="relative aspect-square lg:aspect-[3/4] overflow-hidden image-zoom"
           >
             <Image
               src="/about-us.png"
               alt="Jackson Pottery — Designed to Define Space"
               fill
-              className="object-cover object-center"
+              className="object-cover object-top"
               sizes="(max-width: 1024px) 100vw, 380px"
             />
           </motion.div>
