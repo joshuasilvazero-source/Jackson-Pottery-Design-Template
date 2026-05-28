@@ -63,40 +63,37 @@ export default function Navigation() {
   const dropdownTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
-    const onScroll = () => {
+    const detectSection = () => {
       const y = window.scrollY
       setScrolled(y > 40)
 
-      // Detect if the section currently behind the nav has a dark background
-      const navBottom = 80
-      const el = document.elementFromPoint(window.innerWidth / 2, navBottom + y)
+      // elementFromPoint uses viewport coords — nav sits at the top, so sample just below it
+      const sampleY = 72
+      const sampleX = window.innerWidth / 2
+      const el = document.elementFromPoint(sampleX, sampleY)
+
       if (el) {
         let node: Element | null = el
         while (node && node !== document.documentElement) {
           const bg = window.getComputedStyle(node).backgroundColor
-          const match = bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/)
+          const isTransparent = bg === 'rgba(0, 0, 0, 0)' || bg === 'transparent'
+          const match = !isTransparent && bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/)
           if (match) {
             const [, r, g, b] = match.map(Number)
             const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
-            if (luminance < 0.5 && bg !== 'rgba(0, 0, 0, 0)' && bg !== 'transparent') {
-              setDarkSection(true)
-              return
-            }
-            if (luminance >= 0.5 && bg !== 'rgba(0, 0, 0, 0)' && bg !== 'transparent') {
-              setDarkSection(false)
-              return
-            }
+            setDarkSection(luminance < 0.55)
+            return
           }
           node = node.parentElement
         }
       }
-      // Default: treat hero (top of page) as dark
-      setDarkSection(y < window.innerHeight)
+      // Fallback: hero fills first viewport, treat as dark
+      setDarkSection(y < window.innerHeight * 0.9)
     }
 
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    detectSection()
+    window.addEventListener('scroll', detectSection, { passive: true })
+    return () => window.removeEventListener('scroll', detectSection)
   }, [])
 
   useEffect(() => {
