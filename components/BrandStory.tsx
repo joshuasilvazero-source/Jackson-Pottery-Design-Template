@@ -51,8 +51,8 @@ export default function BrandStory() {
             className="relative aspect-[4/3] lg:aspect-[3/4] overflow-hidden image-zoom"
           >
             <Image
-              src="/design-consultation.png"
-              alt="Premium glazed planter in a beautifully styled home interior"
+              src="/about-us.png"
+              alt="Jackson Pottery — Designed to Define Space"
               fill
               className="object-cover object-center"
               sizes="(max-width: 1024px) 100vw, 380px"
