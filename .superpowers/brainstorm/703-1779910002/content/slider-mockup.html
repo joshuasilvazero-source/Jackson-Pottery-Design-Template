@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Before/After Slider Mockup — Jackson Pottery</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #1a1818;
+    color: #e8dcc8;
+    font-family: 'Georgia', serif;
+    min-height: 100vh;
+  }
+
+  /* ---- Section ---- */
+  .section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 32px;
+  }
+
+  /* ---- Header ---- */
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .eyebrow-line { width: 40px; height: 1px; background: rgba(201,169,110,0.6); }
+  .eyebrow-text {
+    color: rgba(201,169,110,0.85);
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    font-weight: 300;
+  }
+  .section-title {
+    font-size: clamp(32px, 5vw, 56px);
+    color: #e8dcc8;
+    line-height: 1.08;
+    margin-bottom: 12px;
+    font-weight: normal;
+  }
+  .section-title em {
+    font-style: normal;
+    background: linear-gradient(135deg, #c9a96e, #e8c47a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .section-sub {
+    font-family: sans-serif;
+    color: #8a8280;
+    font-size: 14px;
+    font-weight: 300;
+    max-width: 380px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+
+  /* ---- Scene Tabs ---- */
+  .tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 32px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .tab {
+    padding: 12px 28px;
+    font-family: sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: #5a5856;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: all 0.3s;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
+  .tab:hover { color: #e8dcc8; }
+  .tab.active {
+    color: #c9a96e;
+    border-bottom-color: #c9a96e;
+  }
+
+  /* ---- Slider ---- */
+  .slider-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    cursor: ew-resize;
+    user-select: none;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .slider-before,
+  .slider-after {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .slider-before {
+    z-index: 1;
+    filter: saturate(0.3) brightness(0.7);
+  }
+  .slider-before::after {
+    content: 'BEFORE';
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    font-family: sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    color: rgba(232,220,200,0.5);
+    background: rgba(26,24,24,0.7);
+    padding: 6px 12px;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .slider-after {
+    z-index: 2;
+    clip-path: inset(0 50% 0 0);
+    transition: none;
+  }
+  .slider-after::after {
+    content: 'AFTER';
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    font-family: sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    color: rgba(232,220,200,0.9);
+    background: rgba(26,24,24,0.7);
+    padding: 6px 12px;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(201,169,110,0.2);
+  }
+
+  /* Gradient on after to blend */
+  .slider-after::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 60%, rgba(26,24,24,0.5) 100%);
+    z-index: 1;
+  }
+
+  /* Drag Handle */
+  .handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: rgba(201,169,110,0.8);
+    z-index: 10;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+  .handle-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(201,169,110,0.15);
+    backdrop-filter: blur(8px);
+    border: 1.5px solid rgba(201,169,110,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: #c9a96e;
+    font-size: 13px;
+    box-shadow: 0 0 20px rgba(201,169,110,0.2);
+  }
+
+  /* Hint text */
+  .hint {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    font-family: sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(232,220,200,0.5);
+    white-space: nowrap;
+    pointer-events: none;
+    transition: opacity 0.4s;
+  }
+  .slider-wrap.dragging .hint { opacity: 0; }
+
+  /* ---- Below Slider ---- */
+  .slider-footer {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: end;
+    margin-top: 28px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .scene-copy h3 {
+    font-size: 22px;
+    color: #e8dcc8;
+    font-weight: normal;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .scene-copy p {
+    font-family: sans-serif;
+    font-size: 13px;
+    color: #6a6460;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 420px;
+  }
+
+  .products-shown {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .product-chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+  }
+  .product-chip:hover { border-color: rgba(201,169,110,0.4); }
+  .product-chip-img {
+    width: 36px;
+    height: 36px;
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0;
+  }
+  .product-chip-info { font-family: sans-serif; }
+  .product-chip-name { font-size: 11px; color: #e8dcc8; margin-bottom: 2px; }
+  .product-chip-price { font-size: 11px; color: #c9a96e; }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    background: #b5673e;
+    color: #e8dcc8;
+    padding: 14px 28px;
+    font-family: sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+    text-decoration: none;
+  }
+  .cta-btn:hover { background: #9a5430; }
+
+  /* Scene data */
+  .scene { display: none; }
+  .scene.active { display: block; }
+
+  /* Feedback note */
+  .feedback-bar {
+    background: rgba(201,169,110,0.08);
+    border: 1px solid rgba(201,169,110,0.2);
+    padding: 16px 24px;
+    margin-top: 40px;
+    font-family: sans-serif;
+    font-size: 12px;
+    color: #8a8280;
+    line-height: 1.6;
+  }
+  .feedback-bar strong { color: #c9a96e; }
+</style>
+</head>
+<body>
+
+<div class="section">
+
+  <!-- Header -->
+  <div class="eyebrow">
+    <div class="eyebrow-line"></div>
+    <span class="eyebrow-text">Transform Your Space</span>
+  </div>
+  <h2 class="section-title">See the <em>Difference</em><br>a Single Piece Makes</h2>
+  <p class="section-sub">Drag the handle to reveal what premium pottery does to an ordinary space.</p>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab active" onclick="setScene('patio', this)">Patio</button>
+    <button class="tab" onclick="setScene('living', this)">Living Room</button>
+  </div>
+
+  <!-- Patio Scene -->
+  <div class="scene active" id="scene-patio">
+    <div class="slider-wrap" id="slider">
+      <div class="slider-before" style="background-image: url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1400&q=85&fit=crop')"></div>
+      <div class="slider-after" id="after-img" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=85&fit=crop')"></div>
+      <div class="handle" id="handle">
+        <div class="handle-circle">&#8592; &#8594;</div>
+      </div>
+      <div class="hint">Drag to reveal transformation</div>
+    </div>
+    <div class="slider-footer">
+      <div class="scene-copy">
+        <h3>From bare garden to curated outdoor sanctuary</h3>
+        <p>One terracotta urn can anchor an entire patio — adding warmth, structure, and life that no furniture alone can achieve.</p>
+        <a class="cta-btn" href="#">Shop This Look &nbsp;→</a>
+      </div>
+      <div>
+        <div class="products-shown">
+          <div class="product-chip">
+            <div class="product-chip-img" style="background-image: url('https://images.unsplash.com/photo-1603204077779-bed963ea7d0e?w=100&q=80&fit=crop')"></div>
+            <div class="product-chip-info">
+              <div class="product-chip-name">Montserrat Vessel</div>
+              <div class="product-chip-price">$485</div>
+            </div>
+          </div>
+          <div class="product-chip">
+            <div class="product-chip-img" style="background-image: url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=100&q=80&fit=crop')"></div>
+            <div class="product-chip-info">
+              <div class="product-chip-name">Villa Urn</div>
+              <div class="product-chip-price">$1,240</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Living Room Scene -->
+  <div class="scene" id="scene-living">
+    <div class="slider-wrap" id="slider-living">
+      <div class="slider-before" style="background-image: url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1400&q=85&fit=crop')"></div>
+      <div class="slider-after" id="after-img-living" style="background-image: url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1400&q=85&fit=crop')"></div>
+      <div class="handle" id="handle-living">
+        <div class="handle-circle">&#8592; &#8594;</div>
+      </div>
+      <div class="hint">Drag to reveal transformation</div>
+    </div>
+    <div class="slider-footer">
+      <div class="scene-copy">
+        <h3>From empty corner to a room with soul</h3>
+        <p>A glazed ceramic planter brings texture, height, and living warmth to spaces that feel unfinished — without renovating a thing.</p>
+        <a class="cta-btn" href="#">Shop This Look &nbsp;→</a>
+      </div>
+      <div>
+        <div class="products-shown">
+          <div class="product-chip">
+            <div class="product-chip-img" style="background-image: url('https://images.unsplash.com/photo-1567016432779-094069958ea5?w=100&q=80&fit=crop')"></div>
+            <div class="product-chip-info">
+              <div class="product-chip-name">Arcadia Planter</div>
+              <div class="product-chip-price">$620</div>
+            </div>
+          </div>
+          <div class="product-chip">
+            <div class="product-chip-img" style="background-image: url('https://images.unsplash.com/photo-1558618047-3c8c76ca4d10?w=100&q=80&fit=crop')"></div>
+            <div class="product-chip-info">
+              <div class="product-chip-name">Solstice Bowl</div>
+              <div class="product-chip-price">$295</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="feedback-bar">
+    <strong>This is the full section mockup.</strong> The slider is interactive — drag it left and right on either scene. Tabs switch between Patio and Living Room. The product chips below link to individual product pages. Let me know what you'd change!
+  </div>
+
+</div>
+
+<script>
+  function makeSlider(sliderEl, afterEl, handleEl) {
+    let dragging = false;
+    function setPos(x) {
+      const rect = sliderEl.getBoundingClientRect();
+      let pct = (x - rect.left) / rect.width;
+      pct = Math.max(0.03, Math.min(0.97, pct));
+      const pctPx = pct * 100;
+      afterEl.style.clipPath = `inset(0 ${100 - pctPx}% 0 0)`;
+      handleEl.style.left = pctPx + '%';
+    }
+    sliderEl.addEventListener('mousedown', e => { dragging = true; sliderEl.classList.add('dragging'); setPos(e.clientX); });
+    window.addEventListener('mousemove', e => { if (dragging) setPos(e.clientX); });
+    window.addEventListener('mouseup', () => { dragging = false; sliderEl.classList.remove('dragging'); });
+    sliderEl.addEventListener('touchstart', e => { dragging = true; setPos(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('touchmove', e => { if (dragging) setPos(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('touchend', () => { dragging = false; });
+    // Start at 50%
+    afterEl.style.clipPath = 'inset(0 50% 0 0)';
+  }
+
+  makeSlider(
+    document.getElementById('slider'),
+    document.getElementById('after-img'),
+    document.getElementById('handle')
+  );
+  makeSlider(
+    document.getElementById('slider-living'),
+    document.getElementById('after-img-living'),
+    document.getElementById('handle-living')
+  );
+
+  function setScene(id, btn) {
+    document.querySelectorAll('.scene').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('scene-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
