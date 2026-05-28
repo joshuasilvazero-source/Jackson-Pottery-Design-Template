@@ -61,7 +61,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/15 pointer-events-none" />
 
         {/* Cover bottom-right corner artifact */}
-        <div className="absolute bottom-0 right-0 w-48 h-48 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 100% 100%, rgba(0,0,0,0.85) 0%, transparent 70%)' }} />
+        <div className="absolute bottom-0 right-0 w-96 h-96 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 100% 100%, rgba(0,0,0,0.95) 10%, rgba(0,0,0,0.6) 40%, transparent 70%)' }} />
 
 
 
