@@ -40,7 +40,15 @@ export default function Hero() {
     target: containerRef,
     offset: ['start start', 'end start'],
   })
-  const imageY  = useTransform(scrollYProgress, [0, 1], ['0%', '12%'])
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)')
+    setIsMobile(mq.matches)
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [])
+  const imageY  = useTransform(scrollYProgress, [0, 1], ['0%', isMobile ? '0%' : '12%'])
   const opacity = useTransform(scrollYProgress, [0, 0.55], [1, 0])
 
   const [pairIndex, setPairIndex] = useState(0)
@@ -187,6 +195,31 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
+
+        {/* ── Before / After pill ──────────────────────────────── */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={isAfter ? 'after' : 'before'}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.4 }}
+            className="absolute top-24 sm:top-28 left-5 sm:left-8 z-20 flex items-center gap-2"
+          >
+            <span className={`px-2.5 py-1 text-[9px] tracking-[0.28em] uppercase font-sans rounded-sm ${
+              isAfter
+                ? 'bg-gold text-ink'
+                : 'bg-white/10 backdrop-blur-sm border border-white/15 text-white/60'
+            }`}>
+              {isAfter ? 'After' : 'Before'}
+            </span>
+            {isAfter && (
+              <span className="text-white/40 text-[9px] tracking-[0.2em] uppercase font-sans hidden sm:inline">
+                {current.label}
+              </span>
+            )}
+          </motion.div>
+        </AnimatePresence>
 
         {/* ── Progress dots + scene label ───────────────────────── */}
         <motion.div
