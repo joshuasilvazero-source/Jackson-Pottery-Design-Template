@@ -86,7 +86,7 @@ export default function Navigation() {
         <div className={`overflow-hidden transition-all duration-500 ${t ? 'h-0' : 'bg-black/40 backdrop-blur-sm h-8'}`}>
           <div className="flex items-center h-full">
             <div className="flex animate-marquee whitespace-nowrap will-change-transform">
-              {[...ticker, ...ticker].map((item, i) => (
+              {[...ticker, ...ticker, ...ticker, ...ticker].map((item, i) => (
                 <span
                   key={i}
                   className={`mx-8 text-[0.6rem] tracking-[0.3em] uppercase font-sans ${
