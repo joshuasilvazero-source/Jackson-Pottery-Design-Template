@@ -191,6 +191,16 @@ export default function ProductPageClient({
                 </button>
               </div>
 
+              {/* Testimonial pull-quote */}
+              <div className="border-l-2 border-gold/40 pl-4 mb-6">
+                <p className="font-serif italic text-muted text-sm leading-relaxed mb-2">
+                  &ldquo;The quality is beyond exceptional — these pieces feel like living sculptures.&rdquo;
+                </p>
+                <p className="font-sans text-[0.62rem] tracking-[0.2em] uppercase text-gold/70">
+                  Sarah Mitchell · Principal Landscape Architect, LA
+                </p>
+              </div>
+
               {/* Shipping info */}
               <div className="bg-ash-50 border border-border p-4 mb-7 space-y-2">
                 {['Free shipping on orders over $500', 'White-glove delivery available', '30-day hassle-free returns'].map((item) => (

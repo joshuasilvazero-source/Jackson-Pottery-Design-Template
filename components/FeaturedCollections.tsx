@@ -9,6 +9,13 @@ import { products, type Product } from '@/lib/data'
 
 const categories = ['All', 'Terracotta', 'Glazed', 'Cast Stone', 'Lightweight', 'Metal'] as const
 
+const urgencyTags: Record<string, string> = {
+  'villa-cast-stone-urn':         'Only 3 left',
+  'arcadia-glazed-planter':       'Only 2 left',
+  'montserrat-terracotta-vessel': 'Ships in 3–5 days',
+  'canyon-lightweight-planter':   'Ships in 3–5 days',
+}
+
 export default function FeaturedCollections() {
   const [activeCategory, setActiveCategory] = useState('All')
   const [wishlist, setWishlist] = useState<Set<string>>(new Set())
@@ -241,6 +248,11 @@ function ProductCard({
               ))}
             </div>
           </div>
+          {urgencyTags[product.id] && (
+            <p className="mt-2.5 font-sans text-[0.62rem] tracking-[0.15em] text-gold/70">
+              · {urgencyTags[product.id]}
+            </p>
+          )}
         </div>
       </Link>
     </motion.div>

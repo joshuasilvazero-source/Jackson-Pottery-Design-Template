@@ -7,9 +7,11 @@ import TransformationSlider from '@/components/TransformationSlider'
 import FeaturedCollections from '@/components/FeaturedCollections'
 import Testimonials from '@/components/Testimonials'
 import PressStrip from '@/components/PressStrip'
-import DesignConsultation from '@/components/DesignConsultation'
 import FAQ from '@/components/FAQ'
+import DesignConsultation from '@/components/DesignConsultation'
+import FinalCTA from '@/components/FinalCTA'
 import Footer from '@/components/Footer'
+import StickyShopBar from '@/components/StickyShopBar'
 
 export default function Home() {
   return (
@@ -23,9 +25,11 @@ export default function Home() {
       <FeaturedCollections />
       <Testimonials />
       <PressStrip />
-      <DesignConsultation />
       <FAQ />
+      <DesignConsultation />
+      <FinalCTA />
       <Footer />
+      <StickyShopBar />
     </main>
   )
 }
