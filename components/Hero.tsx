@@ -72,10 +72,21 @@ export default function Hero() {
         ref={containerRef}
         className="relative min-h-screen flex flex-col overflow-hidden"
       >
-        {/* Background images — parallax wrapper */}
+        {/* Background — mobile video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="lg:hidden absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/hero-mobile.mp4" type="video/mp4" />
+        </video>
+
+        {/* Background — desktop image carousel with parallax */}
         <motion.div
           style={{ y: imageY }}
-          className="absolute inset-[-5%] will-change-transform"
+          className="hidden lg:block absolute inset-[-5%] will-change-transform"
         >
           <AnimatePresence>
             <motion.div
@@ -196,7 +207,7 @@ export default function Hero() {
         </motion.div>
 
 
-        {/* ── Before / After pill ──────────────────────────────── */}
+        {/* ── Before / After pill (desktop only) ──────────────── */}
         <AnimatePresence mode="wait">
           <motion.div
             key={isAfter ? 'after' : 'before'}
@@ -204,7 +215,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.4 }}
-            className="absolute top-24 sm:top-28 left-5 sm:left-8 z-20 flex items-center gap-2"
+            className="hidden lg:flex absolute top-28 left-8 z-20 items-center gap-2"
           >
             <span className={`px-2.5 py-1 text-[9px] tracking-[0.28em] uppercase font-sans rounded-sm ${
               isAfter
@@ -221,12 +232,12 @@ export default function Hero() {
           </motion.div>
         </AnimatePresence>
 
-        {/* ── Progress dots + scene label ───────────────────────── */}
+        {/* ── Progress dots + scene label (desktop only) ────────── */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.8 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-3"
+          className="hidden lg:flex absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex-col items-center gap-3"
         >
           <div className="flex items-center gap-3">
             {pairs.map((_, i) => (
