@@ -58,11 +58,43 @@ export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [scrolled, setScrolled] = useState(false)
+  const [darkSection, setDarkSection] = useState(true)
   const [searchOpen, setSearchOpen] = useState(false)
   const dropdownTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
+    const onScroll = () => {
+      const y = window.scrollY
+      setScrolled(y > 40)
+
+      // Detect if the section currently behind the nav has a dark background
+      const navBottom = 80
+      const el = document.elementFromPoint(window.innerWidth / 2, navBottom + y)
+      if (el) {
+        let node: Element | null = el
+        while (node && node !== document.documentElement) {
+          const bg = window.getComputedStyle(node).backgroundColor
+          const match = bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/)
+          if (match) {
+            const [, r, g, b] = match.map(Number)
+            const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
+            if (luminance < 0.5 && bg !== 'rgba(0, 0, 0, 0)' && bg !== 'transparent') {
+              setDarkSection(true)
+              return
+            }
+            if (luminance >= 0.5 && bg !== 'rgba(0, 0, 0, 0)' && bg !== 'transparent') {
+              setDarkSection(false)
+              return
+            }
+          }
+          node = node.parentElement
+        }
+      }
+      // Default: treat hero (top of page) as dark
+      setDarkSection(y < window.innerHeight)
+    }
+
+    onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
@@ -72,7 +104,9 @@ export default function Navigation() {
     return () => { document.body.style.overflow = '' }
   }, [mobileOpen])
 
-  const t = scrolled // shorthand for conditional classes
+  const t = scrolled
+  // When nav is transparent, use darkSection to pick logo/text color
+  const light = t ? false : darkSection
 
   return (
     <>
@@ -101,13 +135,13 @@ export default function Navigation() {
         </div>
 
         {/* ── Brand row ────────────────────────────────────────── */}
-        <div className={`transition-colors duration-500 ${t ? 'border-b border-border' : 'border-b border-white/[0.08]'}`}>
+        <div className={`transition-colors duration-500 ${t ? 'border-b border-border' : light ? 'border-b border-white/[0.08]' : 'border-b border-border/40'}`}>
           <div className="max-w-[1440px] mx-auto px-4 lg:px-8 h-[4.2rem] flex items-center">
 
             {/* ── Mobile: logo left · hamburger right ── */}
             <div className="flex lg:hidden items-center justify-between w-full">
               <Link href="/" className="flex items-center group">
-                <span className={`font-serif font-bold text-[1.05rem] tracking-[0.2em] uppercase transition-colors duration-500 ${t ? 'text-ink group-hover:text-gold' : 'text-white group-hover:text-gold'}`}>
+                <span className={`font-serif font-bold text-[1.05rem] tracking-[0.2em] uppercase transition-colors duration-500 ${light ? 'text-white group-hover:text-gold' : 'text-ink group-hover:text-gold'}`}>
                   Jackson
                 </span>
                 <Image
@@ -115,17 +149,17 @@ export default function Navigation() {
                   alt="Jackson Pottery"
                   width={30}
                   height={30}
-                  className="object-contain flex-shrink-0"
+                  className={`object-contain flex-shrink-0 transition-all duration-500 ${light ? 'brightness-0 invert' : ''}`}
                   style={{ margin: '0 -1px' }}
                 />
-                <span className={`font-serif font-bold text-[1.05rem] uppercase tracking-[0.2em] transition-colors duration-500 ${t ? 'text-ink group-hover:text-gold' : 'text-white group-hover:text-gold'}`}>
+                <span className={`font-serif font-bold text-[1.05rem] uppercase tracking-[0.2em] transition-colors duration-500 ${light ? 'text-white group-hover:text-gold' : 'text-ink group-hover:text-gold'}`}>
                   Pottery
                 </span>
               </Link>
               <button
                 onClick={() => setMobileOpen(true)}
                 aria-label="Open menu"
-                className={`w-11 h-11 flex items-center justify-center rounded-full transition-colors duration-300 ${t ? 'text-ink/70 hover:text-ink' : 'text-white/70 hover:text-white'}`}
+                className={`w-11 h-11 flex items-center justify-center rounded-full transition-colors duration-300 ${light ? 'text-white/70 hover:text-white' : 'text-ink/70 hover:text-ink'}`}
               >
                 <Menu size={22} strokeWidth={1.5} />
               </button>
@@ -137,7 +171,7 @@ export default function Navigation() {
               className="hidden lg:flex absolute left-1/2 -translate-x-1/2 flex-col items-center leading-none group"
             >
               <div className="flex items-center">
-                <span className={`font-serif font-bold text-[1.18rem] tracking-[0.2em] uppercase transition-colors duration-500 ${t ? 'text-ink group-hover:text-gold' : 'text-white group-hover:text-gold'}`}>
+                <span className={`font-serif font-bold text-[1.18rem] tracking-[0.2em] uppercase transition-colors duration-500 ${light ? 'text-white group-hover:text-gold' : 'text-ink group-hover:text-gold'}`}>
                   Jackson
                 </span>
                 <Image
@@ -145,19 +179,19 @@ export default function Navigation() {
                   alt="Jackson Pottery logo"
                   width={36}
                   height={36}
-                  className="object-contain flex-shrink-0 transition-transform duration-500 group-hover:scale-105"
+                  className={`object-contain flex-shrink-0 transition-all duration-500 group-hover:scale-105 ${light ? 'brightness-0 invert' : ''}`}
                   style={{ margin: '0 -1px' }}
                 />
-                <span className={`font-serif font-bold text-[1.18rem] uppercase tracking-[0.2em] transition-colors duration-500 ${t ? 'text-ink group-hover:text-gold' : 'text-white group-hover:text-gold'}`}>
+                <span className={`font-serif font-bold text-[1.18rem] uppercase tracking-[0.2em] transition-colors duration-500 ${light ? 'text-white group-hover:text-gold' : 'text-ink group-hover:text-gold'}`}>
                   Pottery
                 </span>
               </div>
               <div className="flex items-center gap-2 mt-0.5">
-                <div className={`h-px w-4 transition-colors duration-500 ${t ? 'bg-gold/30' : 'bg-gold/25'}`} />
-                <span className={`font-sans text-[0.56rem] tracking-[0.32em] uppercase transition-colors duration-500 ${t ? 'text-muted' : 'text-white/38'}`}>
+                <div className={`h-px w-4 transition-colors duration-500 ${light ? 'bg-gold/25' : 'bg-gold/30'}`} />
+                <span className={`font-sans text-[0.56rem] tracking-[0.32em] uppercase transition-colors duration-500 ${light ? 'text-white/38' : 'text-muted'}`}>
                   Designed to Define Space
                 </span>
-                <div className={`h-px w-4 transition-colors duration-500 ${t ? 'bg-gold/30' : 'bg-gold/25'}`} />
+                <div className={`h-px w-4 transition-colors duration-500 ${light ? 'bg-gold/25' : 'bg-gold/30'}`} />
               </div>
             </Link>
 
@@ -165,15 +199,15 @@ export default function Navigation() {
         </div>
 
         {/* ── Category + actions row (desktop only) ────────────── */}
-        <div className={`hidden lg:block transition-colors duration-500 ${t ? 'border-b border-border' : 'border-b border-white/[0.07]'}`}>
+        <div className={`hidden lg:block transition-colors duration-500 ${t ? 'border-b border-border' : light ? 'border-b border-white/[0.07]' : 'border-b border-border/40'}`}>
           <div className="max-w-[1440px] mx-auto px-4 lg:px-8 h-12 flex items-center justify-between gap-6">
 
             {/* Left — phone */}
-            <div className={`flex items-center gap-2 flex-shrink-0 transition-colors duration-500 ${t ? 'text-muted' : 'text-white/50'}`}>
+            <div className={`flex items-center gap-2 flex-shrink-0 transition-colors duration-500 ${light ? 'text-white/50' : 'text-muted'}`}>
               <Phone size={13} strokeWidth={1.5} />
               <div>
                 <p className="text-[0.55rem] tracking-widest uppercase font-sans leading-tight">Call Us</p>
-                <p className={`text-[0.7rem] font-sans font-medium leading-tight transition-colors duration-500 ${t ? 'text-ink' : 'text-white/85'}`}>
+                <p className={`text-[0.7rem] font-sans font-medium leading-tight transition-colors duration-500 ${light ? 'text-white/85' : 'text-ink'}`}>
                   (877) 533-7687
                 </p>
               </div>
@@ -198,8 +232,8 @@ export default function Navigation() {
                     href={cat.href}
                     className={`flex items-center gap-1.5 px-4 h-12 text-[0.72rem] tracking-[0.14em] uppercase font-sans transition-colors duration-200 ${
                       activeDropdown === cat.label
-                        ? t ? 'text-ink' : 'text-white'
-                        : t ? 'text-ink/60 hover:text-ink' : 'text-white/60 hover:text-white'
+                        ? light ? 'text-white' : 'text-ink'
+                        : light ? 'text-white/60 hover:text-white' : 'text-ink/60 hover:text-ink'
                     }`}
                   >
                     {cat.short}
@@ -321,16 +355,16 @@ export default function Navigation() {
                       className="overflow-hidden"
                     >
                       <div className="relative">
-                        <Search size={13} strokeWidth={1.5} className={`absolute left-3 top-1/2 -translate-y-1/2 ${t ? 'text-muted' : 'text-white/40'}`} />
+                        <Search size={13} strokeWidth={1.5} className={`absolute left-3 top-1/2 -translate-y-1/2 ${light ? 'text-white/40' : 'text-muted'}`} />
                         <input
                           autoFocus
                           type="search"
                           placeholder="Search planters..."
                           onBlur={() => setSearchOpen(false)}
                           className={`w-full pl-8 pr-3 py-1.5 text-xs font-sans border rounded-full focus:outline-none transition-all duration-300 ${
-                            t
-                              ? 'bg-ash-50 border-border text-ink placeholder:text-muted/60 focus:border-gold/40'
-                              : 'bg-white/10 border-white/20 text-white placeholder:text-white/35 focus:border-white/40'
+                            light
+                              ? 'bg-white/10 border-white/20 text-white placeholder:text-white/35 focus:border-white/40'
+                              : 'bg-ash-50 border-border text-ink placeholder:text-muted/60 focus:border-gold/40'
                           }`}
                         />
                       </div>
@@ -342,7 +376,7 @@ export default function Navigation() {
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                       onClick={() => setSearchOpen(true)}
-                      className={`w-9 h-9 flex items-center justify-center rounded-full transition-colors duration-300 ${t ? 'text-ink/55 hover:text-ink' : 'text-white/60 hover:text-white'}`}
+                      className={`w-9 h-9 flex items-center justify-center rounded-full transition-colors duration-300 ${light ? 'text-white/60 hover:text-white' : 'text-ink/55 hover:text-ink'}`}
                       aria-label="Search"
                     >
                       <Search size={17} strokeWidth={1.5} />
@@ -352,7 +386,7 @@ export default function Navigation() {
               </div>
 
               <button
-                className={`w-9 h-9 flex items-center justify-center rounded-full transition-colors duration-300 ${t ? 'text-ink/55 hover:text-ink' : 'text-white/60 hover:text-white'}`}
+                className={`w-9 h-9 flex items-center justify-center rounded-full transition-colors duration-300 ${light ? 'text-white/60 hover:text-white' : 'text-ink/55 hover:text-ink'}`}
                 aria-label="Account"
               >
                 <User size={17} strokeWidth={1.5} />
@@ -360,7 +394,7 @@ export default function Navigation() {
 
               <Link
                 href="#"
-                className={`flex items-center gap-1.5 transition-colors duration-300 ${t ? 'text-ink/65 hover:text-ink' : 'text-white/65 hover:text-white'}`}
+                className={`flex items-center gap-1.5 transition-colors duration-300 ${light ? 'text-white/65 hover:text-white' : 'text-ink/65 hover:text-ink'}`}
                 aria-label="Cart"
               >
                 <div className="relative">
@@ -369,7 +403,7 @@ export default function Navigation() {
                     0
                   </span>
                 </div>
-                <span className={`text-xs font-sans transition-colors duration-300 ${t ? 'text-ink/50' : 'text-white/45'}`}>
+                <span className={`text-xs font-sans transition-colors duration-300 ${light ? 'text-white/45' : 'text-ink/50'}`}>
                   Cart
                 </span>
               </Link>
@@ -377,9 +411,9 @@ export default function Navigation() {
               <Link
                 href="/shop"
                 className={`inline-flex items-center justify-center px-5 py-1.5 rounded-full text-[0.7rem] tracking-[0.14em] uppercase font-sans font-medium transition-all duration-300 ${
-                  t
-                    ? 'bg-ink text-white hover:bg-ink-soft hover:shadow-[0_6px_20px_rgba(0,0,0,0.22)] hover:-translate-y-px'
-                    : 'bg-white/12 text-white border border-white/22 hover:bg-white hover:text-ink'
+                  light
+                    ? 'bg-white/12 text-white border border-white/22 hover:bg-white hover:text-ink'
+                    : 'bg-ink text-white hover:bg-ink-soft hover:shadow-[0_6px_20px_rgba(0,0,0,0.22)] hover:-translate-y-px'
                 }`}
               >
                 Shop Now
