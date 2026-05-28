@@ -60,10 +60,15 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/20 to-black/60 pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/15 pointer-events-none" />
 
-        {/* Cover bottom-right corner artifact */}
-        <div className="absolute bottom-0 right-0 w-96 h-96 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 100% 100%, rgba(0,0,0,0.95) 10%, rgba(0,0,0,0.6) 40%, transparent 70%)' }} />
+        {/* Vignette — dark edges, open centre */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: 'radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0,0,0,0.55) 100%)' }}
+        />
 
-
+        {/* Warm ambient glow */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[55vw] h-[35vh] bg-gold/8 blur-[90px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/3 right-1/4 w-[25vw] h-[25vh] bg-gold/5 blur-[60px] rounded-full pointer-events-none" />
 
         {/* ── Text content ──────────────────────────────────────── */}
         <motion.div

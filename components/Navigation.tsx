@@ -82,8 +82,8 @@ export default function Navigation() {
         }`}
       >
 
-        {/* ── Ticker — collapses on scroll ─────────────────────── */}
-        <div className={`overflow-hidden transition-all duration-500 ${t ? 'h-0' : 'bg-black/40 backdrop-blur-sm h-8'}`}>
+        {/* ── Ticker — always visible ───────────────────────────── */}
+        <div className={`overflow-hidden h-8 transition-colors duration-500 ${t ? 'bg-ink' : 'bg-black/40 backdrop-blur-sm'}`}>
           <div className="flex items-center h-full">
             <div className="flex animate-marquee whitespace-nowrap will-change-transform">
               {[...ticker, ...ticker].map((item, i) => (
