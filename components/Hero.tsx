@@ -66,9 +66,6 @@ export default function Hero() {
           style={{ background: 'radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0,0,0,0.55) 100%)' }}
         />
 
-        {/* Warm ambient glow */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[55vw] h-[35vh] bg-gold/8 blur-[90px] rounded-full pointer-events-none" />
-        <div className="absolute top-1/3 right-1/4 w-[25vw] h-[25vh] bg-gold/5 blur-[60px] rounded-full pointer-events-none" />
 
         {/* ── Text content ──────────────────────────────────────── */}
         <motion.div
