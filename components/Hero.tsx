@@ -154,22 +154,6 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.6, duration: 1 }}
-          className="absolute bottom-8 right-8 z-20 hidden sm:flex flex-col items-center gap-2 pointer-events-none"
-        >
-          <span className="text-white/30 text-[9px] tracking-[0.35em] uppercase font-sans [writing-mode:vertical-rl]">
-            Scroll
-          </span>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-            className="w-px h-10 bg-gradient-to-b from-white/30 to-transparent"
-          />
-        </motion.div>
       </section>
 
       {/* ── Trust Badges Strip ────────────────────────────────── */}
