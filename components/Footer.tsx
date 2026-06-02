@@ -150,11 +150,11 @@ export default function Footer() {
                 className="group flex items-center gap-1.5 font-sans text-gold/55 text-[0.82rem] hover:text-gold transition-colors duration-200 py-1"
               >
                 <span className="text-gold/40 text-xs">✦</span>
-                Wholesale Login
+                Dealer Login
                 <ArrowRight size={10} strokeWidth={1.5} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 flex-shrink-0" />
               </button>
               <p className="font-sans text-ash-400/35 text-[0.7rem] mt-1.5 leading-relaxed">
-                Verified B2B accounts.<br />Sign in for trade pricing.
+                Verified dealer accounts.<br />Sign in for trade pricing.
               </p>
             </div>
           </div>
@@ -212,7 +212,7 @@ export default function Footer() {
               onClick={() => window.dispatchEvent(new CustomEvent('open-wholesale-modal'))}
               className="font-sans text-gold/50 text-[0.78rem] hover:text-gold transition-colors duration-200 text-left"
             >
-              ✦ Wholesale Login
+              ✦ Dealer Login
             </button>
           </div>
         </div>

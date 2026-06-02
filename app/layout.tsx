@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Cormorant_Garamond, Jost } from 'next/font/google'
+import { Cormorant_Garamond, Manrope } from 'next/font/google'
 import './globals.css'
 import SessionProvider from '@/components/SessionProvider'
 
@@ -11,10 +11,10 @@ const cormorant = Cormorant_Garamond({
   display: 'swap',
 })
 
-const jost = Jost({
+const manrope = Manrope({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
-  variable: '--font-jost',
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-manrope',
   display: 'swap',
 })
 
@@ -37,8 +37,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${jost.variable}`}>
-      <body className="bg-[#FDFAF5] text-ink font-sans antialiased">
+    <html lang="en" className={`${cormorant.variable} ${manrope.variable}`}>
+      <body className="bg-soft-white text-ink font-sans antialiased">
         <SessionProvider>{children}</SessionProvider>
       </body>
     </html>

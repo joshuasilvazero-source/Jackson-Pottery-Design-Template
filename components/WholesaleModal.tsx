@@ -139,10 +139,10 @@ function ModalBody({
             Jackson Pottery
           </p>
           <h2 className="font-serif font-semibold text-xl sm:text-[1.4rem] text-ink leading-tight mb-1.5">
-            Trade Account Access
+            Dealer &amp; Distributor Access
           </h2>
           <p className="font-sans text-[0.75rem] sm:text-[0.78rem] text-muted leading-relaxed">
-            Sign in to unlock exclusive wholesale pricing.
+            Sign in to unlock exclusive trade pricing.
           </p>
         </div>
 

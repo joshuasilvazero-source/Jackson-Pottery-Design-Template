@@ -4,13 +4,20 @@
 
 :root {
   --font-cormorant: 'Cormorant Garamond', Georgia, serif;
-  --font-jost: 'Jost', system-ui, sans-serif;
-  --ink: #0C0A08;
-  --ash-50: #FDFAF5;
-  --ash-100: #F4EFE6;
-  --border: #DDD5C6;
-  --clay: #8B5332;
-  --muted: #7A6E66;
+  --font-manrope:   'Manrope', system-ui, sans-serif;
+
+  /* Core palette */
+  --ink:         #2B2B2B;
+  --charcoal:    #2B2B2B;
+  --graphite:    #1F1F1F;
+  --soft-white:  #F7F7F5;
+  --warm-gray:   #D6D3CE;
+  --stone-gray:  #B8B4AE;
+  --muted:       #7A7672;
+  --border:      #D6D3CE;
+
+  /* Accent */
+  --gold:        #B8924A;
 }
 
 * {
@@ -26,48 +33,48 @@ html {
 }
 
 body {
-  background-color: #FDFAF5;
-  color: #0C0A08;
-  font-family: var(--font-jost), system-ui, sans-serif;
+  background-color: var(--soft-white);
+  color: var(--ink);
+  font-family: var(--font-manrope), system-ui, sans-serif;
   overflow-x: hidden;
+  font-size: 15px;
+  line-height: 1.6;
 }
 
-/* Premium scrollbar */
+/* Refined scrollbar */
 ::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #F4EFE6; }
-::-webkit-scrollbar-thumb { background: #DDD5C6; border-radius: 2px; }
-::-webkit-scrollbar-thumb:hover { background: #B8924A; }
+::-webkit-scrollbar-track { background: var(--soft-white); }
+::-webkit-scrollbar-thumb { background: var(--warm-gray); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--stone-gray); }
 
 ::selection {
-  background: rgba(184, 146, 74, 0.15);
-  color: #0C0A08;
+  background: rgba(43, 43, 43, 0.10);
+  color: var(--ink);
 }
 
 @layer utilities {
-  .image-zoom {
-    overflow: hidden;
-  }
+  .image-zoom { overflow: hidden; }
   .image-zoom img {
-    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .image-zoom:hover img {
-    transform: scale(1.05);
-  }
+  .image-zoom:hover img { transform: scale(1.04); }
 
+  /* Core buttons */
   .btn-dark {
-    @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-ink text-white text-[11px] tracking-[0.16em] uppercase font-sans font-medium transition-all duration-300 hover:bg-ink-soft hover:shadow-[0_8px_28px_rgba(0,0,0,0.28)] hover:-translate-y-px;
+    @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-charcoal text-white text-[11px] tracking-[0.16em] uppercase font-sans font-medium transition-all duration-300 hover:bg-graphite hover:shadow-[0_8px_28px_rgba(0,0,0,0.22)] hover:-translate-y-px;
   }
 
   .btn-dark-outline {
-    @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full border border-ink text-ink text-[11px] tracking-[0.16em] uppercase font-sans font-medium transition-all duration-300 hover:bg-ink hover:text-white hover:-translate-y-px;
+    @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full border border-charcoal text-charcoal text-[11px] tracking-[0.16em] uppercase font-sans font-medium transition-all duration-300 hover:bg-charcoal hover:text-white hover:-translate-y-px;
   }
 
   .btn-white-outline {
     @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full border border-white/50 text-white text-[11px] tracking-[0.16em] uppercase font-sans font-medium transition-all duration-300 hover:bg-white/10 hover:border-white/80 hover:-translate-y-px;
   }
 
+  /* Section labels — refined stone gray */
   .section-label {
-    @apply text-[0.65rem] tracking-[0.35em] uppercase font-sans text-gold/70;
+    @apply text-[0.62rem] tracking-[0.32em] uppercase font-sans font-medium text-stone-gray;
   }
 
   .section-heading {
@@ -75,12 +82,12 @@ body {
   }
 
   .nav-item {
-    @apply text-[0.72rem] tracking-[0.14em] uppercase font-sans text-ink/70 hover:text-ink transition-colors duration-200;
+    @apply text-[0.72rem] tracking-[0.14em] uppercase font-sans text-ink/65 hover:text-ink transition-colors duration-200;
   }
 
   .dark-section {
-    background-color: #0C0A08;
-    color: #FDFAF5;
+    background-color: var(--charcoal);
+    color: var(--soft-white);
   }
 }
 
@@ -88,9 +95,7 @@ button { cursor: pointer; border: none; background: none; }
 a { color: inherit; text-decoration: none; }
 img { display: block; }
 
-
-/* ── Dark-theme utilities ─────────────────────────────────────── */
-
+/* Editorial gradient text */
 .text-gradient-gold {
   background: linear-gradient(135deg, #B8924A 0%, #d4a855 50%, #B8924A 100%);
   -webkit-background-clip: text;
@@ -98,12 +103,21 @@ img { display: block; }
   background-clip: text;
 }
 
+/* Charcoal gradient text for headings */
+.text-gradient-charcoal {
+  background: linear-gradient(135deg, #2B2B2B 0%, #4A4A4A 50%, #2B2B2B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* CTA buttons */
 .btn-primary {
-  @apply inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gold text-ink text-[11px] tracking-[0.16em] uppercase font-sans font-medium transition-all duration-300 hover:bg-gold/90 hover:shadow-[0_8px_28px_rgba(184,146,74,0.35)] hover:-translate-y-px;
+  @apply inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-charcoal text-white text-[11px] tracking-[0.16em] uppercase font-sans font-medium transition-all duration-300 hover:bg-graphite hover:shadow-[0_8px_28px_rgba(0,0,0,0.22)] hover:-translate-y-px;
 }
 
 .btn-outline {
-  @apply inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-white/25 text-cream text-[11px] tracking-[0.16em] uppercase font-sans font-medium transition-all duration-300 hover:border-white/50 hover:bg-white/10 hover:-translate-y-px;
+  @apply inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-white/30 text-white text-[11px] tracking-[0.16em] uppercase font-sans font-medium transition-all duration-300 hover:border-white/60 hover:bg-white/[0.08] hover:-translate-y-px;
 }
 
 .glass-card {
@@ -117,12 +131,12 @@ img { display: block; }
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .hover-lift:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.22);
 }
 
 .image-reveal {
-  animation: imageReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: imageReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 @keyframes imageReveal {
   from { clip-path: inset(0 100% 0 0); }

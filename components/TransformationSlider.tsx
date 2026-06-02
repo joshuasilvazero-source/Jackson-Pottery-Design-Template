@@ -14,9 +14,9 @@ const scenes = [
     afterImage: '/patio-after.png',
     beforeAlt: 'Bare garden before styling',
     afterAlt: 'Garden transformed with Jackson Pottery',
-    headline: 'From bare garden to curated outdoor sanctuary',
+    headline: 'A beautiful garden, elevated further',
     copy:
-      'One terracotta urn anchors an entire patio — adding warmth, structure, and life that no furniture alone can achieve.',
+      'One terracotta urn anchors an entire patio — adding warmth, structure, and sculptural presence that transforms a garden into something unforgettable.',
     products: [
       {
         id: 'montserrat-terracotta-vessel',
@@ -39,9 +39,9 @@ const scenes = [
     afterImage: '/living-room-after.png',
     beforeAlt: 'Empty living room before styling',
     afterAlt: 'Living room transformed with ceramic planters',
-    headline: 'From empty corner to a room with soul',
+    headline: 'A living room made whole',
     copy:
-      'A glazed ceramic planter brings texture, height, and living warmth — transforming spaces that feel unfinished without renovating a thing.',
+      'A glazed ceramic planter brings texture, height, and living warmth to a space that was already beautiful — and makes it feel complete.',
     products: [
       {
         id: 'arcadia-glazed-planter',
@@ -64,9 +64,9 @@ const scenes = [
     afterImage: '/balcony-after.png',
     beforeAlt: 'Bare balcony before styling',
     afterAlt: 'Balcony transformed with Jackson Pottery',
-    headline: 'From bare balcony to an open-air retreat',
+    headline: 'A balcony retreat, elevated',
     copy:
-      'Even the smallest outdoor space deserves intention. The right vessel turns a plain balcony into a private sanctuary — lush, layered, and entirely yours.',
+      'Even the most considered outdoor space gains new dimension with the right vessel. A planter turns a private balcony into a sanctuary — lush, layered, and entirely yours.',
     products: [
       {
         id: 'canyon-lightweight-planter',
@@ -293,7 +293,7 @@ function SceneSlider({
             fill
             priority
             className="object-cover object-center"
-            style={{ filter: 'saturate(0.28) brightness(0.65)' }}
+            style={{ filter: 'saturate(0.78) brightness(0.88)' }}
             sizes="(max-width: 1440px) 100vw, 1440px"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-transparent" />
