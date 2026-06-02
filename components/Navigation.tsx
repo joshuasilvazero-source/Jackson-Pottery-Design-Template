@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { Search, ShoppingCart, User, Phone, X, Menu, ArrowUpRight, ChevronDown } from 'lucide-react'
 import Link from 'next/link'
+import { useSession, signOut } from 'next-auth/react'
+import WholesaleModal from './WholesaleModal'
 
 const categories = [
   {
@@ -60,6 +62,9 @@ export default function Navigation() {
   const [scrolled, setScrolled] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const dropdownTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const [wholesaleOpen, setWholesaleOpen] = useState(false)
+  const { data: session } = useSession()
+  const isWholesale = session?.user?.isWholesale === true
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -71,6 +76,12 @@ export default function Navigation() {
     document.body.style.overflow = mobileOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [mobileOpen])
+
+  useEffect(() => {
+    const handler = () => setWholesaleOpen(true)
+    window.addEventListener('open-wholesale-modal', handler)
+    return () => window.removeEventListener('open-wholesale-modal', handler)
+  }, [])
 
   const t = scrolled // shorthand for conditional classes
 
@@ -308,6 +319,28 @@ export default function Navigation() {
 
             {/* Right — search, account, cart, shop now */}
             <div className="flex items-center gap-3 flex-shrink-0">
+              {/* Wholesale pill */}
+              {isWholesale ? (
+                <button
+                  onClick={() => signOut({ redirect: false })}
+                  className="flex items-center gap-1.5 px-3 py-1 rounded-full text-[0.58rem] tracking-[0.14em] uppercase font-sans font-semibold text-ink transition-all duration-300"
+                  style={{ background: 'linear-gradient(135deg, #B8924A 0%, #d4a855 50%, #B8924A 100%)' }}
+                >
+                  ✓ Trade Active · Sign Out
+                </button>
+              ) : (
+                <button
+                  onClick={() => setWholesaleOpen(true)}
+                  className={`flex items-center gap-1 px-3 py-1 rounded-full text-[0.58rem] tracking-[0.14em] uppercase font-sans transition-all duration-300 border ${
+                    t
+                      ? 'border-gold/35 text-gold/80 hover:border-gold/60 hover:text-gold'
+                      : 'border-gold/28 text-gold/70 hover:border-gold/50 hover:text-gold'
+                  }`}
+                >
+                  Wholesale ↗
+                </button>
+              )}
+
               {/* Search */}
               <div className="relative">
                 <AnimatePresence mode="wait">
@@ -481,6 +514,36 @@ export default function Navigation() {
                   </motion.div>
                 ))}
 
+                {/* Wholesale */}
+                <motion.div
+                  initial={{ opacity: 0, x: 28 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  className="border-b border-[rgba(184,146,74,0.1)] bg-[rgba(184,146,74,0.04)]"
+                >
+                  {isWholesale ? (
+                    <button
+                      onClick={() => { setMobileOpen(false); signOut({ redirect: false }) }}
+                      className="flex items-center justify-between w-full px-6 py-4"
+                    >
+                      <span className="font-sans text-sm text-gold/75">✓ Trade Active · Sign Out</span>
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => { setMobileOpen(false); setWholesaleOpen(true) }}
+                      className="group flex items-center justify-between w-full px-6 py-4"
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-gold/50 flex-shrink-0" />
+                        <span className="font-sans text-sm text-gold/65 group-hover:text-gold transition-colors duration-200 tracking-wide">
+                          Wholesale Login
+                        </span>
+                      </div>
+                      <ArrowUpRight size={14} strokeWidth={1.5} className="text-gold/30 group-hover:text-gold flex-shrink-0 ml-4 transition-colors duration-200" />
+                    </button>
+                  )}
+                </motion.div>
+
                 {/* Phone */}
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -532,6 +595,7 @@ export default function Navigation() {
           </>
         )}
       </AnimatePresence>
+      <WholesaleModal open={wholesaleOpen} onClose={() => setWholesaleOpen(false)} />
     </>
   )
 }
