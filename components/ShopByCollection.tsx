@@ -118,7 +118,7 @@ export default function ShopByCollection() {
                     </div>
 
                     {/* Arrow — always visible on mobile, hover-reveal on desktop */}
-                    <div className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center flex-shrink-0 ml-3 sm:opacity-0 sm:translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]">
+                    <div className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center flex-shrink-0 ml-3 sm:opacity-0 sm:translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)]">
                       <ArrowUpRight size={13} strokeWidth={1.5} className="text-white" />
                     </div>
                   </div>

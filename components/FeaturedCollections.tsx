@@ -211,7 +211,7 @@ function ProductCard({
           </div>
 
           {/* Quick Add */}
-          <div className={`absolute bottom-0 left-0 right-0 transition-all duration-400 ease-luxury ${hovered ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-0'}`}>
+          <div className={`absolute bottom-0 left-0 right-0 transition-all duration-[400ms] ease-luxury ${hovered ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-0'}`}>
             <button
               onClick={(e) => {
                 e.preventDefault()

@@ -17,7 +17,7 @@ export default function PressStrip() {
   const isInView = useInView(ref, { once: true, margin: '-8%' })
 
   return (
-    <section ref={ref} className="bg-[#0C0A08] overflow-hidden">
+    <section ref={ref} className="relative bg-[#0C0A08] overflow-hidden">
 
       {/* Ambient glow */}
       <div

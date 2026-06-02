@@ -4,7 +4,7 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, Leaf, ShieldCheck, Truck } from 'lucide-react'
+import { ArrowRight, Leaf, ShieldCheck, Lock, Truck } from 'lucide-react'
 
 const materials = [
   {
@@ -47,7 +47,7 @@ const materials = [
 const featureBadges = [
   { icon: Leaf, label: 'Designer Quality', sub: 'Curated for exceptional spaces' },
   { icon: ShieldCheck, label: 'Weather Resistant', sub: 'Made for every season' },
-  { icon: ShieldCheck, label: 'Secure Shipping', sub: 'Safe and easy checkout' },
+  { icon: Lock,        label: 'Secure Checkout', sub: 'Safe and easy every time' },
   { icon: Truck, label: 'Free Shipping', sub: 'On orders over $499.99' },
 ]
 

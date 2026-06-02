@@ -14,7 +14,6 @@ const trustBadges = [
 
 export default function Hero() {
   const containerRef    = useRef<HTMLDivElement>(null)
-  const mobileVideoRef  = useRef<HTMLVideoElement>(null)
   const desktopVideoRef = useRef<HTMLVideoElement>(null)
 
   const { scrollYProgress } = useScroll({
@@ -40,7 +39,6 @@ export default function Hero() {
 
         {/* Mobile — pure CSS fade, no scale, no will-change, 1× playback (smooth on iOS) */}
         <video
-          ref={mobileVideoRef}
           autoPlay loop muted playsInline
           className="lg:hidden absolute inset-0 w-full h-full object-cover object-center hero-cinematic-mobile"
         >

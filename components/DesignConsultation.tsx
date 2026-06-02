@@ -29,12 +29,10 @@ export default function DesignConsultation() {
   })
 
   return (
-    <section id="design-consultation" className="bg-[#0C0A08] py-20 lg:py-28 overflow-hidden">
+    <section id="design-consultation" className="relative bg-[#0C0A08] py-20 lg:py-28 overflow-hidden">
       <div
-        className="absolute pointer-events-none"
+        className="absolute inset-0 pointer-events-none"
         style={{
-          inset: 0,
-          position: 'absolute',
           backgroundImage: 'radial-gradient(ellipse at 20% 50%, rgba(184,146,74,0.06) 0%, transparent 55%), radial-gradient(ellipse at 80% 30%, rgba(139,83,50,0.04) 0%, transparent 50%)',
         }}
       />

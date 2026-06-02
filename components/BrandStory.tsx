@@ -16,7 +16,7 @@ export default function BrandStory() {
   })
 
   return (
-    <section id="brand-story" className="bg-[#F7F7F5] py-section">
+    <section id="brand-story" className="bg-[#FDFAF5] py-section">
       <div className="max-w-[1440px] mx-auto px-4 lg:px-8">
         <div ref={ref} className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 xl:gap-28 items-center">
 

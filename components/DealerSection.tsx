@@ -115,7 +115,7 @@ export default function DealerSection() {
                 className="w-full flex items-center justify-center gap-2.5 px-7 py-4 rounded-xl font-sans text-[0.72rem] tracking-[0.14em] uppercase font-semibold text-white transition-all duration-300 hover:-translate-y-px hover:shadow-[0_8px_28px_rgba(43,43,43,0.22)] mb-4"
                 style={{ background: '#2B2B2B' }}
               >
-                Sign In to Trade Portal
+                Sign In to Portal
                 <span className="text-white/60">→</span>
               </button>
 
