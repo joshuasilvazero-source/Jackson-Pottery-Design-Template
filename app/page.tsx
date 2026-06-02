@@ -11,8 +11,6 @@ import FAQ from '@/components/FAQ'
 import DesignConsultation from '@/components/DesignConsultation'
 import FinalCTA from '@/components/FinalCTA'
 import Footer from '@/components/Footer'
-import StickyShopBar from '@/components/StickyShopBar'
-
 export default function Home() {
   return (
     <main className="bg-[#FDFAF5]">
@@ -29,7 +27,6 @@ export default function Home() {
       <DesignConsultation />
       <FinalCTA />
       <Footer />
-      <StickyShopBar />
     </main>
   )
 }

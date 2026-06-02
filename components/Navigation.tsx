@@ -527,27 +527,37 @@ export default function Navigation() {
                   initial={{ opacity: 0, x: 28 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                  className="border-b border-[rgba(184,146,74,0.1)] bg-[rgba(184,146,74,0.04)]"
+                  className="border-b border-[rgba(184,146,74,0.18)] bg-[rgba(184,146,74,0.07)] px-6 py-4"
                 >
                   {isWholesale ? (
                     <button
                       onClick={() => { setMobileOpen(false); signOut({ redirect: false }) }}
-                      className="flex items-center justify-between w-full px-6 py-4"
+                      className="flex items-center justify-between w-full"
                     >
-                      <span className="font-sans text-sm text-gold/75">✓ Trade Active · Sign Out</span>
+                      <div className="flex items-center gap-2.5">
+                        <span className="text-gold text-xs">✓</span>
+                        <span className="font-sans text-sm font-medium text-gold">Trade Active</span>
+                      </div>
+                      <span className="font-sans text-[0.65rem] tracking-[0.12em] uppercase text-gold/50">Sign Out</span>
                     </button>
                   ) : (
                     <button
                       onClick={() => { setMobileOpen(false); setWholesaleOpen(true) }}
-                      className="group flex items-center justify-between w-full px-6 py-4"
+                      className="flex items-center justify-between w-full"
                     >
-                      <div className="flex items-center gap-2.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-gold/50 flex-shrink-0" />
-                        <span className="font-sans text-sm text-gold/65 group-hover:text-gold transition-colors duration-200 tracking-wide">
-                          Wholesale Login
-                        </span>
+                      <div className="flex items-center gap-3">
+                        <div
+                          className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+                          style={{ background: 'linear-gradient(135deg, #B8924A 0%, #d4a855 100%)' }}
+                        >
+                          <span className="text-ink text-[0.55rem]">✦</span>
+                        </div>
+                        <div>
+                          <p className="font-sans text-sm font-medium text-white leading-tight">Wholesale Login</p>
+                          <p className="font-sans text-[0.6rem] text-white/35 mt-0.5">Trade account access</p>
+                        </div>
                       </div>
-                      <ArrowUpRight size={14} strokeWidth={1.5} className="text-gold/30 group-hover:text-gold flex-shrink-0 ml-4 transition-colors duration-200" />
+                      <ArrowUpRight size={14} strokeWidth={1.5} className="text-gold flex-shrink-0" />
                     </button>
                   )}
                 </motion.div>

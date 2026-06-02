@@ -137,21 +137,21 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.92, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-center gap-4 mt-6"
+            className="flex flex-col items-center gap-3 mt-5 w-full sm:w-auto"
           >
             {/* Divider */}
-            <div className="flex items-center gap-4 w-full max-w-xs">
+            <div className="flex items-center gap-4 w-full max-w-[280px]">
               <div className="h-px flex-1" style={{ background: 'linear-gradient(90deg, transparent, rgba(184,146,74,0.5))' }} />
-              <span className="font-sans text-[0.56rem] tracking-[0.3em] uppercase text-gold/80 font-medium">
+              <span className="font-sans text-[0.52rem] tracking-[0.28em] uppercase text-gold/80 font-medium whitespace-nowrap">
                 Trade &amp; Wholesale
               </span>
               <div className="h-px flex-1" style={{ background: 'linear-gradient(270deg, transparent, rgba(184,146,74,0.5))' }} />
             </div>
 
-            {/* Button */}
+            {/* Button — full width on mobile */}
             <button
               onClick={() => window.dispatchEvent(new CustomEvent('open-wholesale-modal'))}
-              className="group relative inline-flex items-center gap-3 px-9 py-3.5 rounded-full overflow-hidden font-sans text-[0.68rem] tracking-[0.2em] uppercase font-medium transition-all duration-500 hover:-translate-y-px"
+              className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-3.5 rounded-full overflow-hidden font-sans text-[0.68rem] tracking-[0.18em] uppercase font-medium transition-all duration-500 hover:-translate-y-px"
               style={{
                 border: '1px solid rgba(184,146,74,0.8)',
                 color: '#d4a855',
@@ -160,7 +160,6 @@ export default function Hero() {
                 boxShadow: '0 6px 32px rgba(184,146,74,0.22), inset 0 1px 0 rgba(255,255,255,0.08)',
               }}
             >
-              {/* Gold fill on hover */}
               <span
                 aria-hidden="true"
                 className="absolute inset-0 rounded-full origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
@@ -174,7 +173,7 @@ export default function Hero() {
             </button>
 
             {/* Sub-label */}
-            <p className="font-sans text-[0.55rem] tracking-[0.16em] text-white/50">
+            <p className="font-sans text-[0.52rem] tracking-[0.14em] text-white/45 text-center">
               Verified trade accounts · Exclusive wholesale pricing
             </p>
           </motion.div>
