@@ -71,7 +71,7 @@ export default function Navigation() {
   const isDealer                          = session?.user?.isWholesale === true
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 48)
+    const onScroll = () => setScrolled(window.scrollY > 5)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
@@ -92,10 +92,10 @@ export default function Navigation() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           t
-            ? 'bg-[#F7F7F5]/98 backdrop-blur-xl shadow-[0_1px_0_rgba(0,0,0,0.08)]'
-            : 'bg-[#2B2B2B]/88 backdrop-blur-sm'
+            ? 'bg-[#F7F7F5] shadow-[0_1px_0_rgba(0,0,0,0.08)]'
+            : 'bg-[#2B2B2B]'
         }`}
       >
         {/* ── Ticker — collapses on scroll ── */}

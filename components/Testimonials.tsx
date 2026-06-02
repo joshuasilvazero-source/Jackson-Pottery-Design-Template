@@ -118,32 +118,6 @@ export default function Testimonials() {
           })}
         </div>
 
-        {/* ── Stats row ────────────────────────────────────────── */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.6, duration: 0.7 }}
-          className="mt-16 lg:mt-20 pt-12 border-t border-border/60"
-        >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { value: 'Free Shipping',       sub: 'On orders over $500' },
-              { value: 'White Glove',         sub: 'Delivery on large pieces' },
-              { value: '30-Day Returns',      sub: 'Hassle-free guarantee' },
-              { value: 'Lifetime Warranty',   sub: 'On craftsmanship' },
-            ].map((item, i) => (
-              <motion.div
-                key={item.value}
-                initial={{ opacity: 0, y: 10 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.65 + i * 0.06, duration: 0.6 }}
-              >
-                <p className="font-serif text-ink text-[1.05rem] mb-1">{item.value}</p>
-                <p className="font-sans text-muted/60 text-[0.7rem] tracking-[0.06em]">{item.sub}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   )

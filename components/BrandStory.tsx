@@ -5,12 +5,6 @@ import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 
-const stats = [
-  { value: '200+', label: 'Designs'       },
-  { value: '15+',  label: 'Years'         },
-  { value: '4.9★', label: 'Client Rating' },
-]
-
 export default function BrandStory() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-8%' })
@@ -57,10 +51,9 @@ export default function BrandStory() {
             </motion.div>
           </div>
 
-          {/* Right — vision + stats */}
+          {/* Right — vision statement */}
           <div className="flex flex-col gap-8 lg:pt-4">
 
-            {/* Vision */}
             <motion.div {...fade(0.15)}>
               <div className="flex items-center gap-3 mb-4">
                 <div className="h-px w-6 bg-stone-gray/60" />
@@ -71,18 +64,16 @@ export default function BrandStory() {
               </p>
             </motion.div>
 
-            {/* Divider */}
             <motion.div {...fade(0.22)} className="w-full h-px bg-[#D6D3CE]" />
 
-            {/* Stats */}
-            <motion.div {...fade(0.28)} className="grid grid-cols-3 gap-4">
-              {stats.map((stat) => (
-                <div key={stat.label} className="bg-white border border-[#D6D3CE] rounded-xl py-5 text-center shadow-[0_1px_4px_rgba(0,0,0,0.04)]">
-                  <div className="font-serif font-bold text-2xl text-charcoal">{stat.value}</div>
-                  <div className="text-[0.6rem] text-muted tracking-[0.22em] uppercase font-sans mt-1.5">{stat.label}</div>
-                </div>
-              ))}
-            </motion.div>
+            <motion.blockquote {...fade(0.28)} className="border-l-2 border-[#D6D3CE] pl-6">
+              <p className="font-serif italic text-charcoal/70 text-lg leading-relaxed mb-3">
+                &ldquo;Jackson Pottery has quietly become the definitive name in designer planters for anyone serious about their outdoor spaces.&rdquo;
+              </p>
+              <footer className="font-sans text-[0.62rem] tracking-[0.28em] uppercase text-stone-gray">
+                Architectural Digest
+              </footer>
+            </motion.blockquote>
           </div>
         </div>
       </div>
