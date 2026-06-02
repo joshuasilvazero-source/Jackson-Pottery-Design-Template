@@ -77,13 +77,14 @@ export default function DealerSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.12 + i * 0.09, ease: [0.16, 1, 0.3, 1] }}
-                className="group bg-white/[0.045] border border-white/[0.07] rounded-xl p-6 hover:bg-white/[0.07] hover:border-white/[0.12] transition-all duration-300"
+                className="group bg-white/[0.07] border border-white/[0.12] rounded-xl p-6 hover:bg-white/[0.11] hover:border-white/[0.20] transition-all duration-300"
               >
-                <div className="w-10 h-10 rounded-full bg-white/[0.07] flex items-center justify-center mb-5 group-hover:bg-white/[0.1] transition-colors duration-300">
-                  <b.icon size={17} strokeWidth={1.5} className="text-white/55" />
+                <div className="w-10 h-10 rounded-full flex items-center justify-center mb-5 transition-colors duration-300"
+                  style={{ background: 'rgba(212,168,85,0.15)', border: '1px solid rgba(212,168,85,0.25)' }}>
+                  <b.icon size={17} strokeWidth={1.5} style={{ color: '#d4a855' }} />
                 </div>
-                <p className="font-sans text-[0.82rem] font-semibold text-white/85 leading-tight mb-2">{b.label}</p>
-                <p className="font-sans text-[0.72rem] text-white/38 leading-relaxed">{b.sub}</p>
+                <p className="font-sans text-[0.84rem] font-semibold text-white leading-tight mb-2">{b.label}</p>
+                <p className="font-sans text-[0.74rem] text-white/65 leading-relaxed">{b.sub}</p>
               </motion.div>
             ))}
           </div>
