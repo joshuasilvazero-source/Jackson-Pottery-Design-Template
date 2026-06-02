@@ -2,7 +2,6 @@ import Navigation from '@/components/Navigation'
 import Hero from '@/components/Hero'
 import DealerSection from '@/components/DealerSection'
 import BrandStory from '@/components/BrandStory'
-import StickyShopBar from '@/components/StickyShopBar'
 import ShopByCollection from '@/components/ShopByCollection'
 import ShopByMaterial from '@/components/ShopByMaterial'
 import TransformationSlider from '@/components/TransformationSlider'
@@ -30,7 +29,6 @@ export default function Home() {
       <DesignConsultation />
       <FinalCTA />
       <Footer />
-      <StickyShopBar />
     </main>
   )
 }
