@@ -49,6 +49,7 @@ export default function ShopPage() {
               <PriceDisplay
                 price={product.price}
                 wholesalePrice={product.wholesalePrice}
+                originalPrice={product.originalPrice}
                 priceClassName="font-sans font-medium text-ink"
               />
             </Link>

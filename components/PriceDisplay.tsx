@@ -5,19 +5,30 @@ import { useSession } from 'next-auth/react'
 interface PriceDisplayProps {
   price: number
   wholesalePrice: number
+  originalPrice?: number
   priceClassName?: string
 }
 
 export default function PriceDisplay({
   price,
   wholesalePrice,
+  originalPrice,
   priceClassName = 'font-sans font-medium text-ink',
 }: PriceDisplayProps) {
   const { data: session } = useSession()
   const isWholesale = session?.user?.isWholesale === true
 
   if (!isWholesale) {
-    return <span className={priceClassName}>${price.toLocaleString()}</span>
+    return (
+      <div className="flex items-center gap-3">
+        <span className={priceClassName}>${price.toLocaleString()}</span>
+        {originalPrice && (
+          <span className="font-sans text-muted text-sm line-through">
+            ${originalPrice.toLocaleString()}
+          </span>
+        )}
+      </div>
+    )
   }
 
   const savings = price - wholesalePrice

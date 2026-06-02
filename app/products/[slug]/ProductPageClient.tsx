@@ -139,6 +139,7 @@ export default function ProductPageClient({
                 <PriceDisplay
                   price={product.price}
                   wholesalePrice={product.wholesalePrice}
+                  originalPrice={product.originalPrice}
                   priceClassName="font-serif font-bold text-3xl text-ink"
                 />
               </div>
