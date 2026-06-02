@@ -323,25 +323,29 @@ export default function Navigation() {
 
             {/* Right — search, account, cart, shop now */}
             <div className="flex items-center gap-3 flex-shrink-0">
-              {/* Wholesale pill */}
+              {/* Wholesale button */}
               {isWholesale ? (
                 <button
                   onClick={() => signOut({ redirect: false })}
-                  className="flex items-center gap-1.5 px-3 py-1 rounded-full text-[0.58rem] tracking-[0.14em] uppercase font-sans font-semibold text-ink transition-all duration-300"
+                  className="inline-flex items-center gap-2 px-5 py-1.5 rounded-full font-sans text-[0.7rem] tracking-[0.14em] uppercase font-semibold text-ink transition-all duration-300 hover:-translate-y-px hover:shadow-[0_6px_20px_rgba(184,146,74,0.35)]"
                   style={{ background: 'linear-gradient(135deg, #B8924A 0%, #d4a855 50%, #B8924A 100%)' }}
                 >
-                  ✓ Trade Active · Sign Out
+                  <span className="text-[0.6rem]">✓</span>
+                  Trade Active
+                  <span className="opacity-60 text-[0.62rem]">· Sign Out</span>
                 </button>
               ) : (
                 <button
                   onClick={() => setWholesaleOpen(true)}
-                  className={`flex items-center gap-1 px-3 py-1 rounded-full text-[0.58rem] tracking-[0.14em] uppercase font-sans transition-all duration-300 border ${
-                    t
-                      ? 'border-gold/35 text-gold/80 hover:border-gold/60 hover:text-gold'
-                      : 'border-gold/28 text-gold/70 hover:border-gold/50 hover:text-gold'
-                  }`}
+                  className="inline-flex items-center gap-2 px-5 py-1.5 rounded-full font-sans text-[0.7rem] tracking-[0.14em] uppercase font-semibold transition-all duration-300 hover:-translate-y-px"
+                  style={{
+                    background: 'linear-gradient(135deg, #B8924A 0%, #d4a855 50%, #B8924A 100%)',
+                    color: '#0C0A08',
+                    boxShadow: '0 3px 16px rgba(184,146,74,0.38)',
+                  }}
                 >
-                  Wholesale ↗
+                  <span className="text-[0.55rem]">✦</span>
+                  Wholesale
                 </button>
               )}
 
