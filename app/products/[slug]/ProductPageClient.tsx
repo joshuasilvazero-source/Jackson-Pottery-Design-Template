@@ -37,7 +37,7 @@ export default function ProductPageClient({
   ]
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#FDFAF5]">
       {/* Breadcrumb */}
       <div className="max-w-[1440px] mx-auto px-4 lg:px-8 pt-36 pb-6 border-b border-border">
         <div className="flex items-center gap-2 text-[0.65rem] font-sans text-muted tracking-widest uppercase">
@@ -140,7 +140,7 @@ export default function ProductPageClient({
                   price={product.price}
                   wholesalePrice={product.wholesalePrice}
                   originalPrice={product.originalPrice}
-                  priceClassName="font-serif font-bold text-3xl text-ink"
+                  priceClassName="font-sans font-bold text-3xl text-ink"
                 />
               </div>
 
@@ -152,7 +152,7 @@ export default function ProductPageClient({
                   { label: 'Finish', value: product.finish },
                   { label: 'Usage', value: product.usage },
                 ].map((spec) => (
-                  <div key={spec.label} className="bg-ash-50 border border-border px-4 py-3">
+                  <div key={spec.label} className="bg-white border border-border px-4 py-3">
                     <p className="font-sans text-[0.6rem] text-muted tracking-[0.25em] uppercase mb-1">{spec.label}</p>
                     <p className="font-sans text-ink text-xs">{spec.value}</p>
                   </div>
@@ -205,7 +205,7 @@ export default function ProductPageClient({
               </div>
 
               {/* Shipping info */}
-              <div className="bg-ash-50 border border-border p-4 mb-7 space-y-2">
+              <div className="bg-white border border-border p-4 mb-7 space-y-2">
                 {['Free shipping on orders over $500', 'White-glove delivery available', '30-day hassle-free returns'].map((item) => (
                   <div key={item} className="flex items-center gap-2.5">
                     <span className="w-1 h-1 rounded-full bg-gold flex-shrink-0" />
@@ -223,7 +223,7 @@ export default function ProductPageClient({
                     onClick={() => setOpenDetail(openDetail === detail.label ? null : detail.label)}
                     className="w-full flex items-center justify-between py-4"
                   >
-                    <span className={`font-sans text-sm transition-colors duration-200 ${openDetail === detail.label ? 'text-gold' : 'text-ink'}`}>
+                    <span className={`font-sans text-[0.72rem] tracking-[0.14em] uppercase font-semibold transition-colors duration-200 ${openDetail === detail.label ? 'text-gold' : 'text-ink'}`}>
                       {detail.label}
                     </span>
                     <span className={`text-muted transition-transform duration-300 ${openDetail === detail.label ? 'rotate-45' : ''}`}>
@@ -265,8 +265,8 @@ export default function ProductPageClient({
                     <Image src={p.image} alt={p.name} fill className="object-cover" sizes="(max-width: 768px) 50vw, 25vw" />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-400" />
                   </div>
-                  <p className="font-serif font-semibold text-ink group-hover:text-gold transition-colors duration-300 text-sm">{p.name}</p>
-                  <p className="font-sans text-muted text-xs mt-1">${p.price.toLocaleString()}</p>
+                  <p className="font-serif font-bold text-ink text-base group-hover:text-gold transition-colors duration-300 mb-0.5">{p.name}</p>
+                  <p className="font-sans text-muted text-sm mt-1">${p.price.toLocaleString()}</p>
                 </Link>
               ))}
             </div>
