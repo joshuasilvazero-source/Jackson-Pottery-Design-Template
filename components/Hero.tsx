@@ -132,6 +132,49 @@ export default function Hero() {
             </Link>
           </motion.div>
 
+          {/* Wholesale Trade CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.92, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col items-center gap-3 mt-4"
+          >
+            <div className="flex items-center gap-3">
+              <div className="h-px w-10" style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.12))' }} />
+              <span className="font-sans text-[0.5rem] tracking-[0.32em] uppercase text-white/30">
+                Trade &amp; Wholesale
+              </span>
+              <div className="h-px w-10" style={{ background: 'linear-gradient(270deg, transparent, rgba(255,255,255,0.12))' }} />
+            </div>
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent('open-wholesale-modal'))}
+              className="group inline-flex items-center gap-2.5 px-7 py-2.5 rounded-full font-sans text-[0.62rem] tracking-[0.22em] uppercase transition-all duration-400"
+              style={{
+                border: '1px solid rgba(184,146,74,0.38)',
+                color: 'rgba(184,146,74,0.8)',
+                background: 'rgba(184,146,74,0.05)',
+              }}
+              onMouseEnter={e => {
+                const el = e.currentTarget
+                el.style.border = '1px solid rgba(184,146,74,0.75)'
+                el.style.color = '#d4a855'
+                el.style.background = 'rgba(184,146,74,0.1)'
+                el.style.boxShadow = '0 4px 24px rgba(184,146,74,0.18)'
+              }}
+              onMouseLeave={e => {
+                const el = e.currentTarget
+                el.style.border = '1px solid rgba(184,146,74,0.38)'
+                el.style.color = 'rgba(184,146,74,0.8)'
+                el.style.background = 'rgba(184,146,74,0.05)'
+                el.style.boxShadow = 'none'
+              }}
+            >
+              <span style={{ color: 'rgba(184,146,74,0.5)', fontSize: '0.5rem' }}>✦</span>
+              Wholesale Login
+              <span className="opacity-60 group-hover:opacity-100 transition-opacity duration-300 translate-x-0 group-hover:translate-x-0.5">→</span>
+            </button>
+          </motion.div>
+
           {/* Stats strip */}
           <motion.div
             initial={{ opacity: 0 }}
