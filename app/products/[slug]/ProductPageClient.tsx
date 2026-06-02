@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Heart, Star, Share2, ZoomIn, Minus, Plus, Check, ArrowRight } from 'lucide-react'
 import type { Product } from '@/lib/data'
+import PriceDisplay from '@/components/PriceDisplay'
 
 const detailImages = (product: Product) => [
   product.image,
@@ -134,11 +135,12 @@ export default function ProductPageClient({
               </div>
 
               {/* Price */}
-              <div className="flex items-center gap-4 pb-6 border-b border-border mb-6">
-                <span className="font-serif font-bold text-3xl text-ink">${product.price.toLocaleString()}</span>
-                {product.originalPrice && (
-                  <span className="font-sans text-muted text-lg line-through">${product.originalPrice.toLocaleString()}</span>
-                )}
+              <div className="pb-6 border-b border-border mb-6">
+                <PriceDisplay
+                  price={product.price}
+                  wholesalePrice={product.wholesalePrice}
+                  priceClassName="font-serif font-bold text-3xl text-ink"
+                />
               </div>
 
               {/* Quick Specs */}
