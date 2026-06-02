@@ -3,6 +3,7 @@ import Footer from '@/components/Footer'
 import { products } from '@/lib/data'
 import Image from 'next/image'
 import Link from 'next/link'
+import PriceDisplay from '@/components/PriceDisplay'
 
 export const metadata = { title: 'Shop All Planters — Jackson Pottery' }
 
@@ -45,12 +46,11 @@ export default function ShopPage() {
                 {product.name}
               </h3>
               <p className="font-serif italic text-muted text-sm mb-2">{product.subtitle}</p>
-              <div className="flex items-center gap-3">
-                <span className="font-sans font-medium text-ink">${product.price.toLocaleString()}</span>
-                {product.originalPrice && (
-                  <span className="font-sans text-muted text-sm line-through">${product.originalPrice.toLocaleString()}</span>
-                )}
-              </div>
+              <PriceDisplay
+                price={product.price}
+                wholesalePrice={product.wholesalePrice}
+                priceClassName="font-sans font-medium text-ink"
+              />
             </Link>
           ))}
         </div>
