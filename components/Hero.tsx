@@ -24,16 +24,13 @@ export default function Hero() {
 
   const opacity  = useTransform(scrollYProgress, [0, 0.65], [1, 0])
 
-  // Cinematic slow playback — 0.75× avoids decode stutter, still visibly slow
+  // Slow playback on desktop only — iOS Safari stutters at non-1x on autoplay videos
   useEffect(() => {
-    const setRate = (el: HTMLVideoElement | null) => {
-      if (!el) return
-      const apply = () => { el.playbackRate = 0.75 }
-      apply()
-      el.addEventListener('loadedmetadata', apply, { once: true })
-    }
-    setRate(mobileVideoRef.current)
-    setRate(desktopVideoRef.current)
+    const el = desktopVideoRef.current
+    if (!el) return
+    const apply = () => { el.playbackRate = 0.75 }
+    apply()
+    el.addEventListener('loadedmetadata', apply, { once: true })
   }, [])
 
   return (
@@ -41,30 +38,24 @@ export default function Hero() {
       {/* ── Full-bleed Hero ── */}
       <section ref={containerRef} className="relative min-h-screen flex flex-col overflow-hidden">
 
-        {/* Mobile video — opacity via Framer Motion, Ken Burns via CSS (compositor thread) */}
-        <motion.video
+        {/* Mobile — pure CSS fade, no scale, no will-change, 1× playback (smooth on iOS) */}
+        <video
           ref={mobileVideoRef}
           autoPlay loop muted playsInline
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 2.8, ease: 'easeInOut' }}
-          className="lg:hidden absolute inset-0 w-full h-full object-cover object-center hero-cinematic"
+          className="lg:hidden absolute inset-0 w-full h-full object-cover object-center hero-cinematic-mobile"
         >
           <source src="/hero-mobile.mp4" type="video/mp4" />
-        </motion.video>
+        </video>
 
-        {/* Desktop video — opacity via Framer Motion, Ken Burns via CSS (compositor thread) */}
-        <motion.video
+        {/* Desktop — CSS Ken Burns + 0.75× playback rate for cinematic feel */}
+        <video
           ref={desktopVideoRef}
           autoPlay loop muted playsInline
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 2.8, ease: 'easeInOut' }}
-          className="hidden lg:block absolute inset-0 w-full h-full object-cover hero-cinematic"
+          className="hidden lg:block absolute inset-0 w-full h-full object-cover hero-cinematic-desktop"
           style={{ objectPosition: 'center 30%' }}
         >
           <source src="/hero-desktop.mp4" type="video/mp4" />
-        </motion.video>
+        </video>
 
         {/* Overlays */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#2B2B2B]/55 via-[#2B2B2B]/15 to-[#2B2B2B]/60 pointer-events-none" />
