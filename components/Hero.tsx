@@ -137,42 +137,53 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.92, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-center gap-3 mt-4"
+            className="flex flex-col items-center gap-3 mt-5"
           >
+            {/* Label row */}
             <div className="flex items-center gap-3">
-              <div className="h-px w-10" style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.12))' }} />
-              <span className="font-sans text-[0.5rem] tracking-[0.32em] uppercase text-white/30">
+              <div className="h-px w-12" style={{ background: 'linear-gradient(90deg, transparent, rgba(184,146,74,0.35))' }} />
+              <span className="font-sans text-[0.48rem] tracking-[0.36em] uppercase text-gold/50">
                 Trade &amp; Wholesale
               </span>
-              <div className="h-px w-10" style={{ background: 'linear-gradient(270deg, transparent, rgba(255,255,255,0.12))' }} />
+              <div className="h-px w-12" style={{ background: 'linear-gradient(270deg, transparent, rgba(184,146,74,0.35))' }} />
             </div>
+
+            {/* Button — dark glass with gold fill on hover */}
             <button
               onClick={() => window.dispatchEvent(new CustomEvent('open-wholesale-modal'))}
-              className="group inline-flex items-center gap-2.5 px-7 py-2.5 rounded-full font-sans text-[0.62rem] tracking-[0.22em] uppercase transition-all duration-400"
+              className="group relative inline-flex items-center gap-3 px-8 py-3 rounded-full overflow-hidden font-sans text-[0.62rem] tracking-[0.22em] uppercase transition-all duration-500"
               style={{
-                border: '1px solid rgba(184,146,74,0.38)',
-                color: 'rgba(184,146,74,0.8)',
-                background: 'rgba(184,146,74,0.05)',
-              }}
-              onMouseEnter={e => {
-                const el = e.currentTarget
-                el.style.border = '1px solid rgba(184,146,74,0.75)'
-                el.style.color = '#d4a855'
-                el.style.background = 'rgba(184,146,74,0.1)'
-                el.style.boxShadow = '0 4px 24px rgba(184,146,74,0.18)'
-              }}
-              onMouseLeave={e => {
-                const el = e.currentTarget
-                el.style.border = '1px solid rgba(184,146,74,0.38)'
-                el.style.color = 'rgba(184,146,74,0.8)'
-                el.style.background = 'rgba(184,146,74,0.05)'
-                el.style.boxShadow = 'none'
+                border: '1px solid rgba(184,146,74,0.55)',
+                color: '#d4a855',
+                background: 'rgba(12,10,8,0.6)',
+                backdropFilter: 'blur(10px)',
+                boxShadow: '0 4px 28px rgba(184,146,74,0.14), inset 0 1px 0 rgba(255,255,255,0.06)',
               }}
             >
-              <span style={{ color: 'rgba(184,146,74,0.5)', fontSize: '0.5rem' }}>✦</span>
-              Wholesale Login
-              <span className="opacity-60 group-hover:opacity-100 transition-opacity duration-300 translate-x-0 group-hover:translate-x-0.5">→</span>
+              {/* Gold shimmer fill — slides in on hover */}
+              <span
+                aria-hidden="true"
+                className="absolute inset-0 rounded-full origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                style={{ background: 'linear-gradient(135deg, #B8924A 0%, #d4a855 50%, #B8924A 100%)' }}
+              />
+              <span
+                className="relative z-10 transition-colors duration-300"
+                style={{ color: 'rgba(184,146,74,0.65)', fontSize: '0.48rem' }}
+              >
+                ✦
+              </span>
+              <span className="relative z-10 group-hover:text-[#1a1200] transition-colors duration-300">
+                Wholesale Login
+              </span>
+              <span className="relative z-10 text-gold/50 group-hover:text-[#1a1200] group-hover:translate-x-0.5 transition-all duration-300">
+                →
+              </span>
             </button>
+
+            {/* Subtle request-access hint */}
+            <p className="font-sans text-[0.48rem] tracking-[0.14em] text-white/22 mt-0.5">
+              Verified trade accounts only · <span className="text-gold/35 hover:text-gold/60 transition-colors duration-200 cursor-pointer" onClick={() => window.dispatchEvent(new CustomEvent('open-wholesale-modal'))}>Request access →</span>
+            </p>
           </motion.div>
 
           {/* Stats strip */}
