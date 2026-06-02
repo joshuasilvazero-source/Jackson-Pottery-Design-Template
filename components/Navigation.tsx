@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { Search, ShoppingCart, User, Phone, X, Menu, ArrowUpRight, ChevronDown } from 'lucide-react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useSession, signOut } from 'next-auth/react'
 import WholesaleModal from './WholesaleModal'
 
@@ -69,6 +70,8 @@ export default function Navigation() {
   const [dealerOpen, setDealerOpen]       = useState(false)
   const { data: session }                 = useSession()
   const isDealer                          = session?.user?.isWholesale === true
+  const pathname                          = usePathname()
+  const isHomepage                        = pathname === '/'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 5)
@@ -87,15 +90,15 @@ export default function Navigation() {
     return () => window.removeEventListener('open-wholesale-modal', handler)
   }, [])
 
-  const t = scrolled
+  const t = scrolled || !isHomepage
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           t
-            ? 'bg-[#F7F7F5] shadow-[0_1px_0_rgba(0,0,0,0.08)]'
-            : 'bg-[#2B2B2B]'
+            ? 'bg-white shadow-[0_1px_12px_rgba(0,0,0,0.10)]'
+            : 'bg-transparent'
         }`}
       >
         {/* ── Ticker — collapses on scroll ── */}

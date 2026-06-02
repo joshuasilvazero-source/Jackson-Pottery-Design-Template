@@ -142,3 +142,17 @@ img { display: block; }
   from { clip-path: inset(0 100% 0 0); }
   to   { clip-path: inset(0 0% 0 0); }
 }
+
+/* Hero cinematic Ken Burns — CSS only, compositor thread, no JS jank */
+@keyframes heroCinematic {
+  from { transform: scale(1.07) translateZ(0); }
+  to   { transform: scale(1.0)  translateZ(0); }
+}
+
+.hero-cinematic {
+  will-change: transform;
+  transform: translateZ(0);
+  animation: heroCinematic 20s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}

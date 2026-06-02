@@ -1,5 +1,6 @@
 import Navigation from '@/components/Navigation'
 import Hero from '@/components/Hero'
+import DealerSection from '@/components/DealerSection'
 import BrandStory from '@/components/BrandStory'
 import ShopByCollection from '@/components/ShopByCollection'
 import ShopByMaterial from '@/components/ShopByMaterial'
@@ -16,6 +17,7 @@ export default function Home() {
     <main className="bg-[#FDFAF5]">
       <Navigation />
       <Hero />
+      <DealerSection />
       <BrandStory />
       <ShopByCollection />
       <ShopByMaterial />
