@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Heart, Plus, Star, ArrowRight, Check, Eye, X, ShoppingCart } from 'lucide-react'
 import { products, type Product } from '@/lib/data'
+import PriceDisplay from '@/components/PriceDisplay'
 
 const categories = ['All', 'Terracotta', 'Glazed', 'Cast Stone', 'Lightweight', 'Metal'] as const
 
@@ -236,13 +237,13 @@ function ProductCard({
           </h3>
           <p className="font-sans text-muted text-xs mb-3">{product.subtitle}</p>
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2.5">
-              <span className="font-sans text-ink font-medium text-sm">${product.price.toLocaleString()}</span>
-              {product.originalPrice && (
-                <span className="font-sans text-muted/50 text-xs line-through">${product.originalPrice.toLocaleString()}</span>
-              )}
-            </div>
-            <div className="flex items-center gap-0.5">
+            <PriceDisplay
+              price={product.price}
+              wholesalePrice={product.wholesalePrice}
+              originalPrice={product.originalPrice}
+              priceClassName="font-sans text-ink font-medium text-sm"
+            />
+            <div className="flex items-center gap-0.5 flex-shrink-0 ml-2">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} size={10} className="fill-gold text-gold" strokeWidth={0} />
               ))}
@@ -347,14 +348,14 @@ function QuickViewModal({ product, onClose }: { product: Product; onClose: () =>
                     <Star key={i} size={12} className="fill-gold text-gold" strokeWidth={0} />
                   ))}
                 </div>
-                <span className="font-sans text-muted text-xs">(47 reviews)</span>
+                <span className="font-sans text-muted text-xs">4.9 rating</span>
               </div>
-              <div className="flex items-center gap-3">
-                <span className="font-sans text-ink font-medium text-xl">${product.price.toLocaleString()}</span>
-                {product.originalPrice && (
-                  <span className="font-sans text-muted/50 text-sm line-through">${product.originalPrice.toLocaleString()}</span>
-                )}
-              </div>
+              <PriceDisplay
+                price={product.price}
+                wholesalePrice={product.wholesalePrice}
+                originalPrice={product.originalPrice}
+                priceClassName="font-sans text-ink font-medium text-xl"
+              />
             </div>
 
             {/* Description */}

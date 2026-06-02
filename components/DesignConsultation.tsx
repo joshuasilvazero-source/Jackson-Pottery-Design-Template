@@ -29,7 +29,7 @@ export default function DesignConsultation() {
   })
 
   return (
-    <section className="bg-[#0C0A08] py-20 lg:py-28 overflow-hidden">
+    <section id="design-consultation" className="bg-[#0C0A08] py-20 lg:py-28 overflow-hidden">
       <div
         className="absolute pointer-events-none"
         style={{

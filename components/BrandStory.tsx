@@ -17,7 +17,7 @@ export default function BrandStory() {
   })
 
   return (
-    <section className="bg-[#F4EFE6] py-section">
+    <section id="brand-story" className="bg-[#F4EFE6] py-section">
       <div className="max-w-[1440px] mx-auto px-4 lg:px-8">
         <div
           ref={ref}
@@ -34,7 +34,7 @@ export default function BrandStory() {
             </motion.p>
             <motion.div {...fade(0.22)}>
               <Link
-                href="#"
+                href="/#brand-story"
                 className="inline-flex items-center gap-2 mt-8 text-xs tracking-[0.2em] uppercase font-sans text-ink hover:text-gold transition-colors duration-300 group"
               >
                 Our Story

@@ -120,7 +120,7 @@ export default function Hero() {
               Shop All Planters
             </Link>
             <Link
-              href="/shop"
+              href="/shop?category=Fountains"
               className="group relative inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 sm:px-9 py-3.5 sm:py-4 rounded-full border border-white/30 hover:border-[#B8924A]/60 text-white text-[11px] tracking-[0.16em] uppercase font-sans font-medium overflow-hidden transition-colors duration-300"
             >
               <span

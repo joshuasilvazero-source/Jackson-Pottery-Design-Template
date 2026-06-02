@@ -12,8 +12,9 @@ const categories = [
   {
     label: 'Landscape / Designer Planters',
     short: 'Designer Planters',
-    href: '/shop',
+    href: '/shop?category=Cast+Stone',
     sub: ['Tall Planters', 'Urns & Pedestals', 'Column Planters', 'Trough Planters'],
+    subHrefs: ['/shop?category=Cast+Stone', '/shop?category=Cast+Stone', '/shop?category=Cast+Stone', '/shop?category=Lightweight'],
     image: '/collection-designer-planters.png',
     featured: 'Curated for grand outdoor spaces',
     newItem: 'Tall Planters',
@@ -21,8 +22,9 @@ const categories = [
   {
     label: 'Garden / Indoor Planters',
     short: 'Garden & Indoor',
-    href: '/shop',
+    href: '/shop?category=Terracotta',
     sub: ['Terracotta', 'Glazed Ceramic', 'Cast Stone', 'Lightweight'],
+    subHrefs: ['/shop?category=Terracotta', '/shop?category=Glazed', '/shop?category=Cast+Stone', '/shop?category=Lightweight'],
     image: '/collection-indoors.png',
     featured: 'Natural beauty, every setting',
     newItem: 'Glazed Ceramic',
@@ -30,8 +32,9 @@ const categories = [
   {
     label: 'Fountains',
     short: 'Fountains',
-    href: '/shop',
+    href: '/shop?category=Fountains',
     sub: ['Wall Fountains', 'Tiered Fountains', 'Bowl Fountains', 'Pond Kits'],
+    subHrefs: ['/shop?category=Fountains', '/shop?category=Fountains', '/shop?category=Fountains', '/shop?category=Fountains'],
     image: '/collection-fountains.png',
     featured: 'The sound of serenity',
     newItem: null,
@@ -41,6 +44,7 @@ const categories = [
     short: 'Accessories',
     href: '/shop',
     sub: ['Saucers & Liners', 'Plant Stands', 'Potting Mix', 'Tools'],
+    subHrefs: ['/shop', '/shop', '/shop', '/shop'],
     image: '/collection-accessories.png',
     featured: 'The finishing details',
     newItem: null,
@@ -253,10 +257,10 @@ export default function Navigation() {
                             </p>
                           </div>
                           <ul className="space-y-0">
-                            {cat.sub.map((item) => (
+                            {cat.sub.map((item, subIdx) => (
                               <li key={item}>
                                 <Link
-                                  href="/shop"
+                                  href={cat.subHrefs[subIdx]}
                                   className="group/item flex items-center justify-between py-3.5 border-b border-border/35 last:border-0 transition-colors duration-150"
                                 >
                                   <div className="flex items-center gap-2.5">
