@@ -281,7 +281,7 @@ function ModalBody({
                 </>
               ) : (
                 <>
-                  Sign In to Trade Portal
+                  Sign In to Portal
                   <ArrowRight size={13} strokeWidth={2.5} />
                 </>
               )}

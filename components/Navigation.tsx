@@ -385,11 +385,8 @@ export default function Navigation() {
 
               <Link
                 href="/shop"
-                className={`inline-flex items-center justify-center px-5 py-2 rounded-full text-[0.68rem] tracking-[0.14em] uppercase font-sans font-semibold transition-all duration-300 ${
-                  t
-                    ? 'border border-charcoal text-charcoal hover:bg-charcoal hover:text-white hover:-translate-y-px'
-                    : 'border border-white/40 text-white hover:bg-white/10 hover:border-white/70 hover:-translate-y-px'
-                }`}
+                className="inline-flex items-center justify-center px-5 py-2 rounded-full text-[0.68rem] tracking-[0.14em] uppercase font-sans font-bold text-white transition-all duration-300 hover:-translate-y-px hover:shadow-[0_6px_20px_rgba(184,146,74,0.55)]"
+                style={{ background: 'linear-gradient(135deg, #B8924A 0%, #d4a855 55%, #B8924A 100%)' }}
               >
                 Shop Now
               </Link>
