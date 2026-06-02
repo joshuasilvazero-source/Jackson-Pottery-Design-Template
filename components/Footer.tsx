@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Instagram, Mail, Phone, ArrowRight } from 'lucide-react'
@@ -50,6 +51,58 @@ function NavLink({ href, children }: { href: string; children: React.ReactNode }
   )
 }
 
+function NewsletterForm() {
+  const [email, setEmail] = useState('')
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setStatus('loading')
+    try {
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+      setStatus(res.ok ? 'success' : 'error')
+    } catch {
+      setStatus('error')
+    }
+  }
+
+  if (status === 'success') {
+    return (
+      <div className="flex items-center gap-3 w-full lg:w-auto lg:min-w-[400px]">
+        <div className="flex-1 px-5 py-3.5 border border-gold/30 bg-gold/5 text-gold text-xs font-sans tracking-wide text-center">
+          ✦ You&rsquo;re subscribed — thank you.
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <form className="flex w-full lg:w-auto lg:min-w-[400px]" onSubmit={handleSubmit}>
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder={status === 'error' ? 'Something went wrong — try again' : 'Your email address'}
+        required
+        className={`flex-1 px-5 py-3.5 bg-white/[0.06] border text-warm-50 text-xs font-sans placeholder:text-ash-400/40 focus:outline-none focus:border-gold/30 transition-colors min-w-0 ${
+          status === 'error' ? 'border-red-500/40 placeholder:text-red-400/60' : 'border-white/10'
+        }`}
+      />
+      <button
+        type="submit"
+        disabled={status === 'loading'}
+        className="px-6 py-3.5 bg-gold text-ink text-[0.72rem] font-sans font-medium tracking-[0.14em] uppercase hover:bg-gold/90 transition-colors flex-shrink-0 disabled:opacity-60"
+      >
+        {status === 'loading' ? '…' : 'Subscribe'}
+      </button>
+    </form>
+  )
+}
+
 export default function Footer() {
   return (
     <footer className="bg-ink text-warm-50">
@@ -66,22 +119,7 @@ export default function Footer() {
                 New arrivals, design inspiration, and exclusive offers.
               </p>
             </div>
-            <form
-              className="flex w-full lg:w-auto lg:min-w-[400px]"
-              onSubmit={(e) => e.preventDefault()}
-            >
-              <input
-                type="email"
-                placeholder="Your email address"
-                className="flex-1 px-5 py-3.5 bg-white/[0.06] border border-white/10 text-warm-50 text-xs font-sans placeholder:text-ash-400/40 focus:outline-none focus:border-gold/30 transition-colors min-w-0"
-              />
-              <button
-                type="submit"
-                className="px-6 py-3.5 bg-gold text-ink text-[0.72rem] font-sans font-medium tracking-[0.14em] uppercase hover:bg-gold/90 transition-colors flex-shrink-0"
-              >
-                Subscribe
-              </button>
-            </form>
+            <NewsletterForm />
           </div>
         </div>
       </div>

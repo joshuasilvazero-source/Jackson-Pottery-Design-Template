@@ -15,11 +15,27 @@ export default function DesignConsultation() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-6%' })
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
   const [form, setForm] = useState({ name: '', email: '', type: '', message: '' })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setSubmitted(true)
+    setLoading(true)
+    setError('')
+    try {
+      const res = await fetch('/api/consultation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (!res.ok) throw new Error('Failed')
+      setSubmitted(true)
+    } catch {
+      setError('Something went wrong. Please email us directly at hello@jacksonpottery.com')
+    } finally {
+      setLoading(false)
+    }
   }
 
   const fade = (delay = 0) => ({
@@ -170,12 +186,17 @@ export default function DesignConsultation() {
                     />
                   </div>
 
+                  {error && (
+                    <p className="text-center font-sans text-xs text-red-400/80 leading-relaxed">{error}</p>
+                  )}
+
                   <button
                     type="submit"
-                    className="group w-full flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-white text-ink text-[0.72rem] tracking-[0.14em] uppercase font-sans font-medium hover:bg-ash-100 hover:shadow-[0_8px_28px_rgba(255,255,255,0.15)] hover:-translate-y-px transition-all duration-300 mt-2"
+                    disabled={loading}
+                    className="group w-full flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-white text-ink text-[0.72rem] tracking-[0.14em] uppercase font-sans font-medium hover:bg-ash-100 hover:shadow-[0_8px_28px_rgba(255,255,255,0.15)] hover:-translate-y-px transition-all duration-300 mt-2 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    Request a Consultation
-                    <ArrowRight size={13} strokeWidth={1.5} className="group-hover:translate-x-1 transition-transform duration-300" />
+                    {loading ? 'Sending…' : 'Request a Consultation'}
+                    {!loading && <ArrowRight size={13} strokeWidth={1.5} className="group-hover:translate-x-1 transition-transform duration-300" />}
                   </button>
 
                   <p className="text-center text-[0.6rem] font-sans text-stone/35 tracking-wide">
