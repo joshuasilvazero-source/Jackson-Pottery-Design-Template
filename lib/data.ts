@@ -3,6 +3,7 @@ export interface Product {
   name: string
   subtitle: string
   price: number
+  wholesalePrice: number
   originalPrice?: number
   category: string
   tags: string[]
@@ -52,6 +53,7 @@ export const products: Product[] = [
     name: 'Montserrat Vessel',
     subtitle: 'Artisan Terracotta Series',
     price: 485,
+    wholesalePrice: 291,
     category: 'Terracotta',
     tags: ['terracotta', 'handcrafted', 'outdoor', 'indoor'],
     image: '/products/montserrat-featured.png',
@@ -73,6 +75,7 @@ export const products: Product[] = [
     name: 'Arcadia Planter',
     subtitle: 'Glazed Ceramic Collection',
     price: 620,
+    wholesalePrice: 372,
     originalPrice: 780,
     category: 'Glazed',
     tags: ['glazed', 'ceramic', 'modern', 'indoor'],
@@ -95,6 +98,7 @@ export const products: Product[] = [
     name: 'Villa Urn',
     subtitle: 'Cast Stone Heritage Series',
     price: 1240,
+    wholesalePrice: 744,
     category: 'Cast Stone',
     tags: ['cast stone', 'classical', 'outdoor', 'large'],
     image: '/products/villa-urn-featured.png',
@@ -116,6 +120,7 @@ export const products: Product[] = [
     name: 'Canyon Planter',
     subtitle: 'Lightweight Architectural Series',
     price: 365,
+    wholesalePrice: 219,
     category: 'Lightweight',
     tags: ['lightweight', 'modern', 'balcony', 'rooftop'],
     image: '/products/canyon-featured.png',
@@ -137,6 +142,7 @@ export const products: Product[] = [
     name: 'Meridian Vessel',
     subtitle: 'Brushed Metal Collection',
     price: 895,
+    wholesalePrice: 537,
     category: 'Metal',
     tags: ['metal', 'contemporary', 'indoor', 'designer'],
     image: '/products/meridian-featured.png',
@@ -158,6 +164,7 @@ export const products: Product[] = [
     name: 'Solstice Bowl',
     subtitle: 'Low Profile Artisan Series',
     price: 295,
+    wholesalePrice: 177,
     category: 'Glazed',
     tags: ['glazed', 'bowl', 'indoor', 'tabletop'],
     image: '/products/solstice-featured.png',
