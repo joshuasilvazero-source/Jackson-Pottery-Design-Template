@@ -144,6 +144,19 @@ export default function Footer() {
                 <li key={item}><NavLink href="/shop">{item}</NavLink></li>
               ))}
             </ul>
+            <div className="mt-6 pt-5 border-t border-white/[0.06]">
+              <button
+                onClick={() => window.dispatchEvent(new CustomEvent('open-wholesale-modal'))}
+                className="group flex items-center gap-1.5 font-sans text-gold/55 text-[0.82rem] hover:text-gold transition-colors duration-200 py-1"
+              >
+                <span className="text-gold/40 text-xs">✦</span>
+                Wholesale Login
+                <ArrowRight size={10} strokeWidth={1.5} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 flex-shrink-0" />
+              </button>
+              <p className="font-sans text-ash-400/35 text-[0.7rem] mt-1.5 leading-relaxed">
+                Verified B2B accounts.<br />Sign in for trade pricing.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -195,6 +208,12 @@ export default function Footer() {
                 {item}
               </Link>
             ))}
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent('open-wholesale-modal'))}
+              className="font-sans text-gold/50 text-[0.78rem] hover:text-gold transition-colors duration-200 text-left"
+            >
+              ✦ Wholesale Login
+            </button>
           </div>
         </div>
       </div>
