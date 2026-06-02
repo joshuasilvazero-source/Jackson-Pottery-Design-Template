@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Cormorant_Garamond, Jost } from 'next/font/google'
 import './globals.css'
+import SessionProvider from '@/components/SessionProvider'
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -38,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${cormorant.variable} ${jost.variable}`}>
       <body className="bg-[#FDFAF5] text-ink font-sans antialiased">
-        {children}
+        <SessionProvider>{children}</SessionProvider>
       </body>
     </html>
   )
