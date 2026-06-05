@@ -28,7 +28,7 @@ export default function FeaturedCollections() {
     activeCategory === 'All' ? products : products.filter((p) => p.category === activeCategory)
 
   return (
-    <section className="relative bg-white py-section">
+    <section className="relative bg-white dark:bg-[#111111] py-section">
       <div className="max-w-[1440px] mx-auto px-4 lg:px-8">
         {/* Header */}
         <div ref={ref} className="mb-10 lg:mb-12">
@@ -45,7 +45,7 @@ export default function FeaturedCollections() {
               initial={{ opacity: 0, y: 22 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className="font-serif font-bold text-display-md text-ink"
+              className="font-serif font-bold text-display-md text-[#333333] dark:text-[#F4F4F4]"
             >
               Featured Pieces
             </motion.h2>
@@ -54,7 +54,7 @@ export default function FeaturedCollections() {
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ delay: 0.18, duration: 0.6 }}
             >
-              <Link href="/shop" className="hidden lg:inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase font-sans text-muted hover:text-[#333333] transition-colors duration-300 group py-2 px-3 -mr-3 rounded-lg hover:bg-black/[0.03]">
+              <Link href="/shop" className="hidden lg:inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase font-sans text-[#7A7672] dark:text-[#888882] hover:text-[#333333] dark:hover:text-white transition-colors duration-300 group py-2 px-3 -mr-3 rounded-lg hover:bg-black/[0.03] dark:hover:bg-white/[0.05]">
                 View All
                 <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform duration-300" strokeWidth={1.5} />
               </Link>
@@ -75,8 +75,8 @@ export default function FeaturedCollections() {
               onClick={() => setActiveCategory(cat)}
               className={`px-4 py-2 rounded-full text-[0.72rem] tracking-[0.12em] uppercase font-sans transition-all duration-300 ${
                 activeCategory === cat
-                  ? 'bg-ink text-white shadow-sm'
-                  : 'border border-border text-muted hover:border-ink/50 hover:text-ink bg-white'
+                  ? 'bg-[#333333] text-white shadow-sm'
+                  : 'border border-[#D6D3CE] dark:border-[#2E2E2E] text-[#7A7672] dark:text-[#888882] hover:border-[#333333]/50 dark:hover:border-white/30 hover:text-[#333333] dark:hover:text-white bg-white dark:bg-[#1A1A1A]'
               }`}
             >
               {cat}
@@ -92,7 +92,7 @@ export default function FeaturedCollections() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="grid grid-cols-2 md:grid-cols-3 gap-5 lg:gap-7"
+            className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-7"
           >
             {filtered.map((product, i) => (
               <ProductCard
@@ -159,11 +159,11 @@ function ProductCard({
       transition={{ duration: 0.65, delay: index * 0.07, ease: [0.16, 1, 0.3, 1] }}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
-      className="group bg-white rounded-2xl overflow-hidden border border-border/60 shadow-[0_2px_14px_rgba(0,0,0,0.05)] hover:shadow-[0_14px_42px_rgba(0,0,0,0.11)] hover:-translate-y-1.5 transition-all duration-500"
+      className="group bg-white dark:bg-[#1A1A1A] rounded-2xl overflow-hidden border border-[#D6D3CE]/60 dark:border-[#2E2E2E] shadow-[0_2px_14px_rgba(0,0,0,0.05)] dark:shadow-[0_2px_14px_rgba(0,0,0,0.3)] hover:shadow-[0_14px_42px_rgba(0,0,0,0.11)] dark:hover:shadow-[0_14px_42px_rgba(0,0,0,0.4)] hover:-translate-y-1.5 transition-all duration-500"
     >
       <Link href={`/products/${product.id}`} className="block">
         {/* Image */}
-        <div className="relative overflow-hidden aspect-[3/4] bg-ash-100">
+        <div className="relative overflow-hidden aspect-[3/4] bg-[#EFEFEB] dark:bg-[#222222]">
           <Image
             src={product.image}
             alt={product.name}
@@ -182,35 +182,35 @@ function ProductCard({
           {/* Badges */}
           <div className="absolute top-3 left-3 flex flex-col gap-1.5">
             {product.isNew && (
-              <span className="bg-[#333333] text-white text-[0.56rem] tracking-widest uppercase font-sans px-3 py-1 rounded-full shadow-sm">New</span>
+              <span className="bg-[#333333] text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1 rounded-full shadow-sm">New</span>
             )}
             {product.isBestseller && (
-              <span className="bg-ink text-white text-[0.56rem] tracking-widest uppercase font-sans px-3 py-1 rounded-full shadow-sm">Bestseller</span>
+              <span className="bg-[#333333] text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1 rounded-full shadow-sm">Bestseller</span>
             )}
           </div>
 
-          {/* Wishlist — always visible on mobile, hover-reveal on md+ */}
+          {/* Wishlist */}
           <button
             onClick={(e) => { e.preventDefault(); onWishlist() }}
-            className={`absolute top-3 right-3 w-9 h-9 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 shadow-md ${
+            className={`absolute top-3 right-3 w-9 h-9 bg-white/90 dark:bg-[#1A1A1A]/90 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 shadow-md ${
               hovered ? 'opacity-100 scale-100' : 'opacity-100 scale-100 md:opacity-0 md:scale-90'
             }`}
           >
-            <Heart size={13} strokeWidth={1.5} className={isWishlisted ? 'fill-[#333333] text-[#333333]' : 'text-muted'} />
+            <Heart size={13} strokeWidth={1.5} className={isWishlisted ? 'fill-[#333333] text-[#333333] dark:fill-white dark:text-white' : 'text-[#7A7672] dark:text-white/50'} />
           </button>
 
           {/* Quick View — desktop only */}
           <div className={`absolute inset-0 hidden md:flex items-center justify-center transition-all duration-300 ${hovered ? 'opacity-100' : 'opacity-0'}`}>
             <button
               onClick={(e) => { e.preventDefault(); onQuickView() }}
-              className="flex items-center gap-2 px-4 py-2.5 bg-white/95 backdrop-blur-sm rounded-full text-ink text-[0.7rem] tracking-[0.12em] uppercase font-sans font-medium shadow-lg hover:bg-white transition-colors duration-200"
+              className="flex items-center gap-2 px-4 py-2.5 bg-white/95 dark:bg-[#1A1A1A]/95 backdrop-blur-sm rounded-full text-[#333333] dark:text-white text-[0.72rem] tracking-[0.12em] uppercase font-sans font-medium shadow-lg hover:bg-white dark:hover:bg-[#222222] transition-colors duration-200"
             >
               <Eye size={11} strokeWidth={1.8} />
               Quick View
             </button>
           </div>
 
-          {/* Quick Add — always visible on mobile, hover-reveal on md+ */}
+          {/* Quick Add */}
           <div className={`absolute bottom-0 left-0 right-0 transition-all duration-[400ms] ease-luxury ${
             hovered ? 'translate-y-0 opacity-100' : 'translate-y-0 opacity-100 md:translate-y-3 md:opacity-0'
           }`}>
@@ -222,8 +222,8 @@ function ProductCard({
               }}
               className={`w-full py-3.5 flex items-center justify-center gap-2 text-[0.72rem] tracking-[0.12em] uppercase font-sans font-medium transition-all duration-300 backdrop-blur-sm ${
                 addedToCart
-                  ? 'bg-ink/95 text-white'
-                  : 'bg-white/92 text-ink hover:bg-ink hover:text-white'
+                  ? 'bg-[#333333] text-white'
+                  : 'bg-white/92 dark:bg-[#1A1A1A]/92 text-[#333333] dark:text-white hover:bg-[#333333] hover:text-white'
               }`}
             >
               {addedToCart ? (<><Check size={12} strokeWidth={2} /> Added to Cart</>) : (<><Plus size={12} strokeWidth={2} /> Quick Add</>)}
@@ -233,26 +233,26 @@ function ProductCard({
 
         {/* Info */}
         <div className="px-4 pt-4 pb-5">
-          <p className="font-sans text-[0.58rem] text-[#7A7672] tracking-[0.3em] uppercase mb-1.5">{product.category}</p>
-          <h3 className="font-serif font-semibold text-ink text-sm sm:text-base group-hover:text-[#333333] transition-colors duration-300 leading-snug mb-1.5 line-clamp-2">
+          <p className="font-sans text-[0.62rem] text-[#7A7672] dark:text-[#888882] tracking-[0.3em] uppercase mb-1.5">{product.category}</p>
+          <h3 className="font-serif font-semibold text-[#333333] dark:text-[#F4F4F4] text-sm sm:text-base group-hover:text-[#333333] dark:group-hover:text-white transition-colors duration-300 leading-snug mb-1.5 line-clamp-2">
             {product.name}
           </h3>
-          <p className="font-sans text-muted text-xs mb-3 line-clamp-1">{product.subtitle}</p>
+          <p className="font-sans text-[#7A7672] dark:text-[#888882] text-xs mb-3 line-clamp-1">{product.subtitle}</p>
           <div className="flex items-center justify-between">
             <PriceDisplay
               price={product.price}
               wholesalePrice={product.wholesalePrice}
               originalPrice={product.originalPrice}
-              priceClassName="font-sans text-ink font-medium text-sm"
+              priceClassName="font-sans text-[#333333] dark:text-[#F4F4F4] font-medium text-sm"
             />
             <div className="flex items-center gap-0.5 flex-shrink-0 ml-2">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} size={10} className="fill-[#333333]/50 text-[#333333]/50" strokeWidth={0} />
+                <Star key={i} size={10} className="fill-[#333333]/50 dark:fill-white/40 text-[#333333]/50 dark:text-white/40" strokeWidth={0} />
               ))}
             </div>
           </div>
           {urgencyTags[product.id] && (
-            <p className="mt-2.5 font-sans text-[0.62rem] tracking-[0.15em] text-[#7A7672]">
+            <p className="mt-2.5 font-sans text-[0.65rem] tracking-[0.15em] text-[#7A7672] dark:text-[#888882]">
               · {urgencyTags[product.id]}
             </p>
           )}
@@ -277,43 +277,38 @@ function QuickViewModal({ product, onClose }: { product: Product; onClose: () =>
 
   return (
     <>
-      {/* Backdrop */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.25 }}
-        className="fixed inset-0 bg-ink/50 backdrop-blur-sm z-50"
+        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50"
         onClick={onClose}
       />
 
-      {/* Modal — desktop: centered panel, mobile: bottom drawer */}
       <motion.div
         initial={{ opacity: 0, y: 40, scale: 0.97 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 30, scale: 0.97 }}
         transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed z-50 bg-white shadow-[0_32px_80px_rgba(0,0,0,0.22)] overflow-hidden
+        className="fixed z-50 bg-white dark:bg-[#1A1A1A] shadow-[0_32px_80px_rgba(0,0,0,0.22)] overflow-hidden
           bottom-0 left-0 right-0 rounded-t-3xl max-h-[92vh]
           sm:inset-auto sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2
           sm:rounded-2xl sm:w-[860px] sm:max-w-[95vw] sm:max-h-[90vh]"
       >
-        {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-ash-100 hover:bg-ash-200 flex items-center justify-center transition-colors duration-200"
+          className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-[#F4F4F4] dark:bg-[#2E2E2E] hover:bg-[#E5E2DC] dark:hover:bg-[#3A3A3A] flex items-center justify-center transition-colors duration-200"
         >
-          <X size={15} strokeWidth={1.8} className="text-ink" />
+          <X size={15} strokeWidth={1.8} className="text-[#333333] dark:text-white" />
         </button>
 
-        {/* Mobile drag handle */}
         <div className="sm:hidden flex justify-center pt-3 pb-1">
-          <div className="w-10 h-1 rounded-full bg-border" />
+          <div className="w-10 h-1 rounded-full bg-[#D6D3CE] dark:bg-[#2E2E2E]" />
         </div>
 
         <div className="flex flex-col sm:flex-row overflow-auto sm:overflow-hidden max-h-[88vh] sm:max-h-[90vh]">
-          {/* Image panel */}
-          <div className="relative flex-shrink-0 w-full sm:w-[42%] aspect-[4/3] sm:aspect-auto sm:h-auto bg-ash-100">
+          <div className="relative flex-shrink-0 w-full sm:w-[42%] aspect-[4/3] sm:aspect-auto sm:h-auto bg-[#EFEFEB] dark:bg-[#222222]">
             <Image
               src={product.image}
               alt={product.name}
@@ -322,60 +317,51 @@ function QuickViewModal({ product, onClose }: { product: Product; onClose: () =>
               sizes="(max-width: 640px) 100vw, 42vw"
               priority
             />
-            {/* Badges */}
             <div className="absolute top-4 left-4 flex flex-col gap-1.5">
               {product.isNew && (
-                <span className="bg-[#333333] text-white text-[0.56rem] tracking-widest uppercase font-sans px-3 py-1 rounded-full shadow-sm">New</span>
+                <span className="bg-[#333333] text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1 rounded-full shadow-sm">New</span>
               )}
               {product.isBestseller && (
-                <span className="bg-ink text-white text-[0.56rem] tracking-widest uppercase font-sans px-3 py-1 rounded-full shadow-sm">Bestseller</span>
+                <span className="bg-[#333333] text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1 rounded-full shadow-sm">Bestseller</span>
               )}
             </div>
           </div>
 
-          {/* Details panel */}
           <div className="flex-1 overflow-y-auto px-6 py-6 sm:px-8 sm:py-8">
-            {/* Category eyebrow */}
-            <p className="font-sans text-[0.58rem] text-[#7A7672] tracking-[0.3em] uppercase mb-2">{product.category}</p>
+            <p className="font-sans text-[0.62rem] text-[#7A7672] dark:text-[#888882] tracking-[0.3em] uppercase mb-2">{product.category}</p>
+            <h2 className="font-serif font-semibold text-[#333333] dark:text-[#F4F4F4] text-2xl leading-tight mb-1">{product.name}</h2>
+            <p className="font-sans text-[#7A7672] dark:text-[#888882] text-sm mb-4">{product.subtitle}</p>
 
-            {/* Name */}
-            <h2 className="font-serif font-semibold text-ink text-2xl leading-tight mb-1">{product.name}</h2>
-            <p className="font-sans text-muted text-sm mb-4">{product.subtitle}</p>
-
-            {/* Stars + price */}
             <div className="flex items-center justify-between mb-5">
               <div className="flex items-center gap-1.5">
                 <div className="flex items-center gap-0.5">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={12} className="fill-[#333333]/50 text-[#333333]/50" strokeWidth={0} />
+                    <Star key={i} size={12} className="fill-[#333333]/50 dark:fill-white/40 text-[#333333]/50 dark:text-white/40" strokeWidth={0} />
                   ))}
                 </div>
-                <span className="font-sans text-muted text-xs">4.9 rating</span>
+                <span className="font-sans text-[#7A7672] dark:text-[#888882] text-xs">4.9 rating</span>
               </div>
               <PriceDisplay
                 price={product.price}
                 wholesalePrice={product.wholesalePrice}
                 originalPrice={product.originalPrice}
-                priceClassName="font-sans text-ink font-medium text-xl"
+                priceClassName="font-sans text-[#333333] dark:text-[#F4F4F4] font-medium text-xl"
               />
             </div>
 
-            {/* Description */}
-            <p className="font-sans text-muted text-sm leading-relaxed mb-6 border-b border-border/60 pb-6">
+            <p className="font-sans text-[#7A7672] dark:text-[#A0A09C] text-sm leading-relaxed mb-6 border-b border-[#D6D3CE]/60 dark:border-[#2E2E2E] pb-6">
               {product.description}
             </p>
 
-            {/* Spec grid */}
             <div className="grid grid-cols-2 gap-x-6 gap-y-3 mb-7">
               {specs.map(({ label, value }) => (
                 <div key={label}>
-                  <p className="font-sans text-[0.6rem] tracking-[0.22em] uppercase text-muted/60 mb-0.5">{label}</p>
-                  <p className="font-sans text-ink text-sm">{value}</p>
+                  <p className="font-sans text-[0.62rem] tracking-[0.22em] uppercase text-[#7A7672]/60 dark:text-white/30 mb-0.5">{label}</p>
+                  <p className="font-sans text-[#333333] dark:text-[#F4F4F4] text-sm">{value}</p>
                 </div>
               ))}
             </div>
 
-            {/* Actions */}
             <div className="flex items-center gap-3 mb-4">
               <button
                 onClick={() => {
@@ -399,19 +385,18 @@ function QuickViewModal({ product, onClose }: { product: Product; onClose: () =>
                 onClick={() => setIsWishlisted((w) => !w)}
                 className={`w-12 h-12 rounded-full border flex items-center justify-center transition-all duration-300 flex-shrink-0 ${
                   isWishlisted
-                    ? 'border-[#333333] bg-[#333333]/5'
-                    : 'border-border hover:border-[#333333]/50'
+                    ? 'border-[#333333] dark:border-white bg-[#333333]/5 dark:bg-white/5'
+                    : 'border-[#D6D3CE] dark:border-[#2E2E2E] hover:border-[#333333] dark:hover:border-white'
                 }`}
               >
-                <Heart size={16} strokeWidth={1.5} className={isWishlisted ? 'fill-[#333333] text-[#333333]' : 'text-muted'} />
+                <Heart size={16} strokeWidth={1.5} className={isWishlisted ? 'fill-[#333333] dark:fill-white text-[#333333] dark:text-white' : 'text-[#7A7672] dark:text-white/40'} />
               </button>
             </div>
 
-            {/* View full details link */}
             <Link
               href={`/products/${product.id}`}
               onClick={onClose}
-              className="flex items-center justify-center gap-2 text-[0.65rem] tracking-[0.2em] uppercase font-sans text-muted hover:text-[#333333] transition-colors duration-200 group"
+              className="flex items-center justify-center gap-2 text-[0.68rem] tracking-[0.2em] uppercase font-sans text-[#7A7672] dark:text-[#888882] hover:text-[#333333] dark:hover:text-white transition-colors duration-200 group"
             >
               View Full Details
               <ArrowRight size={11} className="group-hover:translate-x-1 transition-transform duration-200" strokeWidth={1.5} />

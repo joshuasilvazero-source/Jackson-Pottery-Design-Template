@@ -26,16 +26,16 @@ export default async function ShopPage({ searchParams }: Props) {
     : products
 
   return (
-    <main className="bg-white">
+    <main className="bg-white dark:bg-[#111111] min-h-screen">
       <Navigation />
 
       {/* Header */}
-      <div className="max-w-[1440px] mx-auto px-4 lg:px-8 pt-24 lg:pt-36 pb-10 border-b border-border">
+      <div className="max-w-[1440px] mx-auto px-4 lg:px-8 pt-24 lg:pt-36 pb-10 border-b border-[#D6D3CE] dark:border-[#2E2E2E]">
         <p className="section-label mb-3">Collection</p>
-        <h1 className="font-serif font-bold text-display-lg text-ink leading-tight">
+        <h1 className="font-serif font-bold text-display-lg text-[#333333] dark:text-[#F4F4F4] leading-tight">
           {category && category !== 'All' ? category : 'All Planters'}
         </h1>
-        <p className="font-sans text-muted text-sm mt-3">{filtered.length} pieces</p>
+        <p className="font-sans text-[#7A7672] dark:text-[#888882] text-sm mt-3">{filtered.length} pieces</p>
       </div>
 
       {/* Category filter pills */}
@@ -49,7 +49,7 @@ export default async function ShopPage({ searchParams }: Props) {
               className={`px-4 py-2 rounded-full text-[0.72rem] tracking-[0.12em] uppercase font-sans transition-all duration-300 ${
                 isActive
                   ? 'bg-[#333333] text-white shadow-sm'
-                  : 'border border-border text-muted hover:border-[#333333]/50 hover:text-[#333333] bg-white'
+                  : 'border border-[#D6D3CE] dark:border-[#2E2E2E] text-[#7A7672] dark:text-[#888882] hover:border-[#333333]/50 dark:hover:border-white/30 hover:text-[#333333] dark:hover:text-white bg-white dark:bg-[#1A1A1A]'
               }`}
             >
               {cat}
@@ -62,16 +62,16 @@ export default async function ShopPage({ searchParams }: Props) {
       <div className="max-w-[1440px] mx-auto px-4 lg:px-8 py-10 lg:py-16">
         {filtered.length === 0 ? (
           <div className="text-center py-20">
-            <p className="font-serif text-ink text-xl mb-3">No products in this category yet.</p>
-            <Link href="/shop" className="font-sans text-sm text-[#333333]/50 hover:text-[#333333] transition-colors duration-200">
+            <p className="font-serif text-[#333333] dark:text-[#F4F4F4] text-xl mb-3">No products in this category yet.</p>
+            <Link href="/shop" className="font-sans text-sm text-[#333333]/50 dark:text-white/40 hover:text-[#333333] dark:hover:text-white transition-colors duration-200">
               View all planters →
             </Link>
           </div>
         ) : (
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-10">
             {filtered.map((product) => (
               <Link key={product.id} href={`/products/${product.id}`} className="group block">
-                <div className="relative aspect-[3/4] overflow-hidden bg-ash-100 mb-4 image-zoom">
+                <div className="relative aspect-[3/4] overflow-hidden bg-[#EFEFEB] dark:bg-[#222222] mb-4 image-zoom rounded-xl">
                   <Image
                     src={product.image}
                     alt={product.name}
@@ -81,23 +81,23 @@ export default async function ShopPage({ searchParams }: Props) {
                   />
                   <div className="absolute top-4 left-4 flex flex-col gap-2">
                     {product.isNew && (
-                      <span className="bg-[#333333] text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1.5">New</span>
+                      <span className="bg-[#333333] text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1.5 rounded-full">New</span>
                     )}
                     {product.isBestseller && (
-                      <span className="bg-[#333333] text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1.5">Bestseller</span>
+                      <span className="bg-[#333333] text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1.5 rounded-full">Bestseller</span>
                     )}
                   </div>
                 </div>
                 <p className="section-label mb-1">{product.category}</p>
-                <h3 className="font-serif font-bold text-ink text-xl group-hover:text-[#333333] transition-colors duration-300 mb-0.5">
+                <h3 className="font-serif font-bold text-[#333333] dark:text-[#F4F4F4] text-xl group-hover:text-[#333333] dark:group-hover:text-white transition-colors duration-300 mb-0.5">
                   {product.name}
                 </h3>
-                <p className="font-serif italic text-muted text-sm mb-2">{product.subtitle}</p>
+                <p className="font-serif italic text-[#7A7672] dark:text-[#888882] text-sm mb-2">{product.subtitle}</p>
                 <PriceDisplay
                   price={product.price}
                   wholesalePrice={product.wholesalePrice}
                   originalPrice={product.originalPrice}
-                  priceClassName="font-sans font-medium text-ink"
+                  priceClassName="font-sans font-medium text-[#333333] dark:text-[#F4F4F4]"
                 />
               </Link>
             ))}

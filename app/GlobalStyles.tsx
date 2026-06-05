@@ -1,11 +1,14 @@
 export default function GlobalStyles() {
   return (
     <style>{`
-      /* ── Design tokens ─────────────────────────────────────────────────── */
+      /* ── Design tokens (light) ─────────────────────────────────────────── */
       :root {
         --font-playfair: 'Playfair Display', Georgia, serif;
         --font-manrope:  'Manrope', system-ui, sans-serif;
 
+        --bg:         #FFFFFF;
+        --bg-surface: #F4F4F4;
+        --bg-card:    #FFFFFF;
         --charcoal:   #333333;
         --graphite:   #1F1F1F;
         --light-gray: #F4F4F4;
@@ -13,6 +16,20 @@ export default function GlobalStyles() {
         --stone-gray: #B8B4AE;
         --muted:      #7A7672;
         --border:     #D6D3CE;
+        --text:       #333333;
+        --text-muted: #7A7672;
+      }
+
+      /* ── Design tokens (dark) ──────────────────────────────────────────── */
+      html.dark {
+        --bg:         #111111;
+        --bg-surface: #1A1A1A;
+        --bg-card:    #1E1E1E;
+        --border:     #2E2E2E;
+        --text:       #F4F4F4;
+        --text-muted: #888882;
+        --warm-gray:  #2E2E2E;
+        --stone-gray: #444440;
       }
 
       /* ── Reset ─────────────────────────────────────────────────────────── */
@@ -25,8 +42,8 @@ export default function GlobalStyles() {
       }
 
       body {
-        background-color: #FFFFFF;
-        color: var(--charcoal);
+        background-color: var(--bg);
+        color: var(--text);
         font-family: var(--font-manrope), system-ui, sans-serif;
         overflow-x: hidden;
         font-size: 15px;
@@ -39,28 +56,19 @@ export default function GlobalStyles() {
 
       /* ── Scrollbar ─────────────────────────────────────────────────────── */
       ::-webkit-scrollbar { width: 5px; }
-      ::-webkit-scrollbar-track { background: var(--light-gray); }
+      ::-webkit-scrollbar-track { background: var(--bg-surface); }
       ::-webkit-scrollbar-thumb { background: var(--warm-gray); border-radius: 2px; }
       ::-webkit-scrollbar-thumb:hover { background: var(--stone-gray); }
 
-      ::selection { background: rgba(51, 51, 51, 0.10); color: var(--charcoal); }
+      ::selection {
+        background: rgba(51, 51, 51, 0.10);
+        color: var(--charcoal);
+      }
 
-      /* ── Utility classes ───────────────────────────────────────────────── */
+      /* ── Utility ────────────────────────────────────────────────────────── */
       .image-zoom { overflow: hidden; }
       .image-zoom img { transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
       .image-zoom:hover img { transform: scale(1.04); }
-
-      .dark-section {
-        background-color: var(--charcoal);
-        color: #FFFFFF;
-      }
-
-      .text-gradient-charcoal {
-        background: linear-gradient(135deg, #2B2B2B 0%, #4A4A4A 50%, #2B2B2B 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
 
       .glass-card {
         background: rgba(255, 255, 255, 0.04);
@@ -69,24 +77,7 @@ export default function GlobalStyles() {
         -webkit-backdrop-filter: blur(12px);
       }
 
-      .hover-lift {
-        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-      .hover-lift:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 16px 50px rgba(0, 0, 0, 0.22);
-      }
-
       /* ── Animations ────────────────────────────────────────────────────── */
-      .image-reveal {
-        animation: imageReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      }
-      @keyframes imageReveal {
-        from { clip-path: inset(0 100% 0 0); }
-        to   { clip-path: inset(0 0% 0 0); }
-      }
-
       @keyframes heroCinematicMobile {
         from { opacity: 0; }
         to   { opacity: 1; }
@@ -101,7 +92,7 @@ export default function GlobalStyles() {
       @keyframes heroCinematicDesktop {
         0%   { opacity: 0; transform: scale(1.07) translateZ(0); }
         18%  { opacity: 1; }
-        100% { opacity: 1; transform: scale(1.0)  translateZ(0); }
+        100% { opacity: 1; transform: scale(1.0) translateZ(0); }
       }
       .hero-cinematic-desktop {
         opacity: 0;

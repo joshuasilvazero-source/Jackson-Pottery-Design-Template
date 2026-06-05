@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
+  darkMode: 'class',
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -10,24 +11,33 @@ const config: Config = {
     extend: {
       colors: {
         // ── Brand darks ───────────────────────────────────────────────────
-        charcoal: '#333333',   // primary dark — canonical token
-        ink:      '#333333',   // alias kept for component compatibility
-        graphite: '#1F1F1F',   // near-black hover state
+        charcoal: '#333333',
+        ink:      '#333333',
+        graphite: '#1F1F1F',
 
         // ── Gray scale (ash) ──────────────────────────────────────────────
         ash: {
-          50:  '#F4F4F4',   // light section backgrounds
-          100: '#EFEFEB',   // image placeholder / card bg
-          200: '#E5E2DC',   // subtle hover fills
-          300: '#D6D3CE',   // borders and dividers
-          400: '#B8B4AE',   // subdued icons and secondary text
+          50:  '#F4F4F4',
+          100: '#EFEFEB',
+          200: '#E5E2DC',
+          300: '#D6D3CE',
+          400: '#B8B4AE',
         },
 
         // ── Semantic aliases ──────────────────────────────────────────────
-        'warm-gray':  '#D6D3CE',   // = ash-300
-        'stone-gray': '#B8B4AE',   // = ash-400
-        muted:        '#7A7672',   // secondary body text
-        border:       '#D6D3CE',   // default border
+        'warm-gray':  '#D6D3CE',
+        'stone-gray': '#B8B4AE',
+        muted:        '#7A7672',
+        border:       '#D6D3CE',
+
+        // ── Dark mode surfaces ────────────────────────────────────────────
+        dark: {
+          bg:      '#111111',
+          surface: '#1A1A1A',
+          card:    '#222222',
+          border:  '#333333',
+          muted:   '#888882',
+        },
       },
 
       fontFamily: {
@@ -54,17 +64,12 @@ const config: Config = {
 
       animation: {
         'ken-burns': 'kenBurns 24s ease-in-out infinite alternate',
-        marquee:     'marquee 55s linear infinite',
       },
 
       keyframes: {
         kenBurns: {
           '0%':   { transform: 'scale(1)' },
           '100%': { transform: 'scale(1.04) translate(-0.5%, -0.5%)' },
-        },
-        marquee: {
-          '0%':   { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-50%)' },
         },
       },
 

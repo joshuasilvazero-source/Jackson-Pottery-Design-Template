@@ -37,17 +37,17 @@ export default function ProductPageClient({
   ]
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-[#111111]">
       {/* Breadcrumb */}
-      <div className="max-w-[1440px] mx-auto px-4 lg:px-8 pt-24 lg:pt-36 pb-6 border-b border-border">
-        <div className="flex items-center gap-2 text-[0.65rem] font-sans text-muted tracking-widest uppercase">
-          <Link href="/" className="hover:text-[#333333] transition-colors">Home</Link>
+      <div className="max-w-[1440px] mx-auto px-4 lg:px-8 pt-24 lg:pt-36 pb-6 border-b border-[#D6D3CE] dark:border-[#2E2E2E]">
+        <div className="flex items-center gap-2 text-[0.68rem] font-sans text-[#7A7672] dark:text-[#888882] tracking-widest uppercase flex-wrap">
+          <Link href="/" className="hover:text-[#333333] dark:hover:text-white transition-colors">Home</Link>
           <span>/</span>
-          <Link href="/shop" className="hover:text-[#333333] transition-colors">Shop</Link>
+          <Link href="/shop" className="hover:text-[#333333] dark:hover:text-white transition-colors">Shop</Link>
           <span>/</span>
           <span>{product.category}</span>
           <span>/</span>
-          <span className="text-ink">{product.name}</span>
+          <span className="text-[#333333] dark:text-[#F4F4F4]">{product.name}</span>
         </div>
       </div>
 
@@ -57,8 +57,7 @@ export default function ProductPageClient({
 
           {/* Gallery */}
           <div className="flex flex-col gap-4">
-            {/* Main Image */}
-            <div className="relative overflow-hidden aspect-[4/5] bg-ash-100 group cursor-zoom-in">
+            <div className="relative overflow-hidden aspect-[4/5] bg-[#EFEFEB] dark:bg-[#222222] group cursor-zoom-in">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeImage}
@@ -79,12 +78,10 @@ export default function ProductPageClient({
                 </motion.div>
               </AnimatePresence>
 
-              {/* Zoom hint */}
-              <div className="absolute top-4 right-4 w-9 h-9 bg-white/90 shadow-card flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <ZoomIn size={14} className="text-muted" strokeWidth={1.5} />
+              <div className="absolute top-4 right-4 w-9 h-9 bg-white/90 dark:bg-[#1A1A1A]/90 shadow-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <ZoomIn size={14} className="text-[#7A7672] dark:text-[#888882]" strokeWidth={1.5} />
               </div>
 
-              {/* Badges */}
               <div className="absolute top-4 left-4 flex flex-col gap-2">
                 {product.isNew && (
                   <span className="bg-[#333333] text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1.5">New</span>
@@ -94,7 +91,7 @@ export default function ProductPageClient({
                 )}
               </div>
 
-              <div className="absolute bottom-4 right-4 font-sans text-[0.62rem] text-muted bg-white/80 px-2 py-1">
+              <div className="absolute bottom-4 right-4 font-sans text-[0.65rem] text-[#7A7672] dark:text-[#888882] bg-white/80 dark:bg-[#1A1A1A]/80 px-2 py-1">
                 {activeImage + 1} / {images.length}
               </div>
             </div>
@@ -106,7 +103,7 @@ export default function ProductPageClient({
                   key={i}
                   onClick={() => setActiveImage(i)}
                   className={`relative aspect-square overflow-hidden border transition-all duration-200 ${
-                    activeImage === i ? 'border-[#333333]' : 'border-border opacity-60 hover:opacity-90'
+                    activeImage === i ? 'border-[#333333] dark:border-white' : 'border-[#D6D3CE] dark:border-[#2E2E2E] opacity-60 hover:opacity-90'
                   }`}
                 >
                   <Image src={img} alt={`View ${i + 1}`} fill className="object-cover" sizes="100px" />
@@ -123,26 +120,26 @@ export default function ProductPageClient({
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             >
               <p className="section-label mb-2">{product.category} Collection</p>
-              <h1 className="font-serif font-bold text-display-md text-ink leading-tight mb-1">{product.name}</h1>
-              <p className="font-serif italic text-muted text-lg mb-4">{product.subtitle}</p>
+              <h1 className="font-serif font-bold text-display-md text-[#333333] dark:text-[#F4F4F4] leading-tight mb-1">{product.name}</h1>
+              <p className="font-serif italic text-[#7A7672] dark:text-[#888882] text-lg mb-4">{product.subtitle}</p>
 
               {/* Rating */}
               <div className="flex items-center gap-3 mb-6">
                 <div className="flex gap-0.5">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={12} className="fill-[#333333]/50 text-[#333333]/50" strokeWidth={0} />
+                    <Star key={i} size={12} className="fill-[#333333]/50 dark:fill-white/40 text-[#333333]/50 dark:text-white/40" strokeWidth={0} />
                   ))}
                 </div>
-                <span className="font-sans text-muted text-xs">4.9 (24 reviews)</span>
+                <span className="font-sans text-[#7A7672] dark:text-[#888882] text-xs">4.9 (24 reviews)</span>
               </div>
 
               {/* Price */}
-              <div className="pb-6 border-b border-border mb-6">
+              <div className="pb-6 border-b border-[#D6D3CE] dark:border-[#2E2E2E] mb-6">
                 <PriceDisplay
                   price={product.price}
                   wholesalePrice={product.wholesalePrice}
                   originalPrice={product.originalPrice}
-                  priceClassName="font-sans font-bold text-3xl text-ink"
+                  priceClassName="font-sans font-bold text-3xl text-[#333333] dark:text-[#F4F4F4]"
                 />
               </div>
 
@@ -154,22 +151,22 @@ export default function ProductPageClient({
                   { label: 'Finish', value: product.finish },
                   { label: 'Usage', value: product.usage },
                 ].map((spec) => (
-                  <div key={spec.label} className="bg-[#F4F4F4] border border-border px-4 py-3">
-                    <p className="font-sans text-[0.6rem] text-muted tracking-[0.25em] uppercase mb-1">{spec.label}</p>
-                    <p className="font-sans text-ink text-xs">{spec.value}</p>
+                  <div key={spec.label} className="bg-[#F4F4F4] dark:bg-[#1A1A1A] border border-[#D6D3CE] dark:border-[#2E2E2E] px-4 py-3">
+                    <p className="font-sans text-[0.62rem] text-[#7A7672] dark:text-[#888882] tracking-[0.25em] uppercase mb-1">{spec.label}</p>
+                    <p className="font-sans text-[#333333] dark:text-[#F4F4F4] text-xs">{spec.value}</p>
                   </div>
                 ))}
               </div>
 
               {/* Quantity */}
               <div className="flex items-center gap-4 mb-5">
-                <span className="font-sans text-[0.65rem] text-muted tracking-[0.2em] uppercase">Qty</span>
-                <div className="flex items-center border border-border">
-                  <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-10 h-10 flex items-center justify-center text-muted hover:text-ink transition-colors">
+                <span className="font-sans text-[0.68rem] text-[#7A7672] dark:text-[#888882] tracking-[0.2em] uppercase">Qty</span>
+                <div className="flex items-center border border-[#D6D3CE] dark:border-[#2E2E2E]">
+                  <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-10 h-10 flex items-center justify-center text-[#7A7672] dark:text-[#888882] hover:text-[#333333] dark:hover:text-white transition-colors">
                     <Minus size={12} strokeWidth={1.5} />
                   </button>
-                  <span className="w-11 text-center font-sans text-ink text-sm">{quantity}</span>
-                  <button onClick={() => setQuantity(quantity + 1)} className="w-10 h-10 flex items-center justify-center text-muted hover:text-ink transition-colors">
+                  <span className="w-11 text-center font-sans text-[#333333] dark:text-[#F4F4F4] text-sm">{quantity}</span>
+                  <button onClick={() => setQuantity(quantity + 1)} className="w-10 h-10 flex items-center justify-center text-[#7A7672] dark:text-[#888882] hover:text-[#333333] dark:hover:text-white transition-colors">
                     <Plus size={12} strokeWidth={1.5} />
                   </button>
                 </div>
@@ -191,40 +188,40 @@ export default function ProductPageClient({
                   onClick={() => setWishlisted(!wishlisted)}
                   className={`w-12 h-12 border flex items-center justify-center transition-all duration-300 ${
                     wishlisted
-                      ? 'border-[#333333] bg-[#333333]/[0.06] text-[#333333]'
-                      : 'border-border text-muted hover:border-[#333333] hover:text-[#333333]'
+                      ? 'border-[#333333] dark:border-white bg-[#333333]/[0.06] dark:bg-white/[0.06] text-[#333333] dark:text-white'
+                      : 'border-[#D6D3CE] dark:border-[#2E2E2E] text-[#7A7672] dark:text-white/40 hover:border-[#333333] dark:hover:border-white hover:text-[#333333] dark:hover:text-white'
                   }`}
                 >
-                  <Heart size={15} strokeWidth={1.5} className={wishlisted ? 'fill-[#333333]' : ''} />
+                  <Heart size={15} strokeWidth={1.5} className={wishlisted ? 'fill-[#333333] dark:fill-white' : ''} />
                 </button>
-                <button className="w-12 h-12 border border-border flex items-center justify-center text-muted hover:border-[#333333] hover:text-[#333333] transition-all duration-300">
+                <button className="w-12 h-12 border border-[#D6D3CE] dark:border-[#2E2E2E] flex items-center justify-center text-[#7A7672] dark:text-white/40 hover:border-[#333333] dark:hover:border-white hover:text-[#333333] dark:hover:text-white transition-all duration-300">
                   <Share2 size={14} strokeWidth={1.5} />
                 </button>
               </div>
 
               {/* Testimonial pull-quote */}
-              <div className="border-l-2 border-[#333333]/30 pl-4 mb-6">
-                <p className="font-serif italic text-muted text-sm leading-relaxed mb-2">
+              <div className="border-l-2 border-[#333333]/30 dark:border-white/20 pl-4 mb-6">
+                <p className="font-serif italic text-[#7A7672] dark:text-[#A0A09C] text-sm leading-relaxed mb-2">
                   &ldquo;The quality is beyond exceptional — these pieces feel like living sculptures.&rdquo;
                 </p>
-                <p className="font-sans text-[0.62rem] tracking-[0.2em] uppercase text-[#333333]/50">
+                <p className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-[#333333]/50 dark:text-white/35">
                   Sarah Mitchell · Principal Landscape Architect, LA
                 </p>
               </div>
 
               {/* Shipping info */}
-              <div className="bg-[#F4F4F4] border border-border p-4 mb-7 space-y-2">
+              <div className="bg-[#F4F4F4] dark:bg-[#1A1A1A] border border-[#D6D3CE] dark:border-[#2E2E2E] p-4 mb-7 space-y-2">
                 {['Free shipping on orders over $500', 'White-glove delivery available', '30-day hassle-free returns'].map((item) => (
                   <div key={item} className="flex items-center gap-2.5">
-                    <span className="w-1 h-1 rounded-full bg-[#333333]/40 flex-shrink-0" />
-                    <span className="font-sans text-xs text-muted">{item}</span>
+                    <span className="w-1 h-1 rounded-full bg-[#333333]/40 dark:bg-white/30 flex-shrink-0" />
+                    <span className="font-sans text-xs text-[#7A7672] dark:text-[#A0A09C]">{item}</span>
                   </div>
                 ))}
               </div>
             </motion.div>
 
             {/* Collapsible Details */}
-            <div className="divide-y divide-border border-t border-border">
+            <div className="divide-y divide-[#D6D3CE] dark:divide-[#2E2E2E] border-t border-[#D6D3CE] dark:border-[#2E2E2E]">
               {details.map((detail) => (
                 <div key={detail.label}>
                   <button
@@ -232,11 +229,11 @@ export default function ProductPageClient({
                     className="w-full flex items-center justify-between py-4"
                   >
                     <span className={`font-sans text-[0.72rem] tracking-[0.14em] uppercase font-semibold transition-colors duration-200 ${
-                      openDetail === detail.label ? 'text-[#333333]' : 'text-ink/60 hover:text-[#333333]'
+                      openDetail === detail.label ? 'text-[#333333] dark:text-white' : 'text-[#333333]/60 dark:text-white/40 hover:text-[#333333] dark:hover:text-white'
                     }`}>
                       {detail.label}
                     </span>
-                    <span className={`text-muted transition-transform duration-300 ${openDetail === detail.label ? 'rotate-45' : ''}`}>
+                    <span className={`text-[#7A7672] dark:text-white/40 transition-transform duration-300 ${openDetail === detail.label ? 'rotate-45' : ''}`}>
                       <Plus size={13} strokeWidth={1.5} />
                     </span>
                   </button>
@@ -249,7 +246,7 @@ export default function ProductPageClient({
                         transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
                         className="overflow-hidden"
                       >
-                        <p className="pb-5 font-sans text-muted text-sm leading-relaxed whitespace-pre-line">{detail.content}</p>
+                        <p className="pb-5 font-sans text-[#7A7672] dark:text-[#A0A09C] text-sm leading-relaxed whitespace-pre-line">{detail.content}</p>
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -261,22 +258,22 @@ export default function ProductPageClient({
 
         {/* Related Products */}
         {related.length > 0 && (
-          <div className="mt-16 lg:mt-20 pt-12 border-t border-border">
+          <div className="mt-16 lg:mt-20 pt-12 border-t border-[#D6D3CE] dark:border-[#2E2E2E]">
             <div className="flex items-center justify-between mb-10">
-              <h2 className="font-serif font-bold text-display-sm text-ink">You May Also Love</h2>
-              <Link href="/shop" className="hidden md:inline-flex items-center gap-2 text-[0.68rem] tracking-[0.2em] uppercase font-sans text-muted hover:text-[#333333] transition-colors group">
+              <h2 className="font-serif font-bold text-display-sm text-[#333333] dark:text-[#F4F4F4]">You May Also Love</h2>
+              <Link href="/shop" className="hidden md:inline-flex items-center gap-2 text-[0.68rem] tracking-[0.2em] uppercase font-sans text-[#7A7672] dark:text-[#888882] hover:text-[#333333] dark:hover:text-white transition-colors group">
                 View All <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" strokeWidth={1.5} />
               </Link>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
               {related.slice(0, 4).map((p) => (
                 <Link key={p.id} href={`/products/${p.id}`} className="group block">
-                  <div className="relative aspect-[3/4] overflow-hidden mb-3 bg-ash-100 image-zoom">
+                  <div className="relative aspect-[3/4] overflow-hidden mb-3 bg-[#EFEFEB] dark:bg-[#222222] image-zoom rounded-lg">
                     <Image src={p.image} alt={p.name} fill className="object-cover" sizes="(max-width: 768px) 50vw, 25vw" />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
                   </div>
-                  <p className="font-serif font-bold text-ink text-base group-hover:text-[#333333]/70 transition-colors duration-300 mb-0.5">{p.name}</p>
-                  <p className="font-sans text-muted text-sm mt-1">${p.price.toLocaleString()}</p>
+                  <p className="font-serif font-bold text-[#333333] dark:text-[#F4F4F4] text-base group-hover:text-[#333333] dark:group-hover:text-white transition-colors duration-300 mb-0.5">{p.name}</p>
+                  <p className="font-sans text-[#7A7672] dark:text-[#888882] text-sm mt-1">${p.price.toLocaleString()}</p>
                 </Link>
               ))}
             </div>
