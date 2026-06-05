@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { Search, ShoppingCart, User, Phone, X, Menu, ArrowUpRight, ChevronDown } from 'lucide-react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { useSession, signOut } from 'next-auth/react'
 
 const categories = [
@@ -61,40 +60,24 @@ const ticker = [
 ]
 
 export default function Navigation() {
-  const [mobileOpen, setMobileOpen]       = useState(false)
+  const [mobileOpen, setMobileOpen]         = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
-  const [scrolled, setScrolled]           = useState(false)
-  const [searchOpen, setSearchOpen]       = useState(false)
+  const [searchOpen, setSearchOpen]         = useState(false)
   const dropdownTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const { data: session }                 = useSession()
-  const isDealer                          = session?.user?.isWholesale === true
-  const pathname                          = usePathname()
-  const isHomepage                        = pathname === '/'
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 5)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  const { data: session }                   = useSession()
+  const isDealer                            = session?.user?.isWholesale === true
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [mobileOpen])
 
-  const t = scrolled || !isHomepage
-
   return (
     <>
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-          t
-            ? 'bg-white shadow-[0_1px_12px_rgba(0,0,0,0.10)]'
-            : 'bg-transparent'
-        }`}
-      >
-        {/* ── Ticker — collapses on scroll ── */}
-        <div className={`overflow-hidden transition-all duration-500 ${t ? 'h-0' : 'h-8 border-b border-white/[0.06]'}`}>
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-[0_1px_14px_rgba(0,0,0,0.08)]">
+
+        {/* ── Ticker ── */}
+        <div className="h-8 border-b border-[#D6D3CE]/50 overflow-hidden">
           <div className="flex items-center h-full">
             <div className="flex animate-marquee whitespace-nowrap will-change-transform">
               {[...ticker, ...ticker, ...ticker, ...ticker].map((item, i) => (
@@ -102,8 +85,8 @@ export default function Navigation() {
                   key={i}
                   className={`mx-8 font-sans ${
                     item === '·'
-                      ? 'text-white/25 text-[0.5rem]'
-                      : 'text-[0.58rem] tracking-[0.28em] uppercase text-white/55 font-medium'
+                      ? 'text-[#333333]/20 text-[0.5rem]'
+                      : 'text-[0.58rem] tracking-[0.28em] uppercase text-[#333333]/40 font-medium'
                   }`}
                 >
                   {item}
@@ -114,25 +97,25 @@ export default function Navigation() {
         </div>
 
         {/* ── Brand row ── */}
-        <div className={`transition-colors duration-500 ${t ? 'border-b border-[#D6D3CE]' : 'border-b border-white/[0.07]'}`}>
+        <div className="border-b border-[#D6D3CE]">
           <div className="max-w-[1440px] mx-auto px-4 lg:px-8 h-[4.4rem] flex items-center">
 
             {/* Mobile: logo + hamburger */}
             <div className="flex lg:hidden items-center justify-between w-full">
-              <Link href="/" className="flex items-center group">
+              <Link href="/" className="flex items-center">
                 <Image
                   src="/jackson-pottery-logo.png"
                   alt="Jackson Pottery"
                   width={1238}
                   height={240}
-                  className={`h-11 w-auto transition-all duration-500 ${t ? '' : 'brightness-0 invert'}`}
+                  className="h-10 w-auto"
                   priority
                 />
               </Link>
               <button
                 onClick={() => setMobileOpen(true)}
                 aria-label="Open menu"
-                className={`w-11 h-11 flex items-center justify-center rounded-full transition-colors duration-300 ${t ? 'text-charcoal/70 hover:text-charcoal' : 'text-white/75 hover:text-white'}`}
+                className="w-11 h-11 flex items-center justify-center rounded-full text-[#333333]/60 hover:text-[#333333] transition-colors duration-200"
               >
                 <Menu size={22} strokeWidth={1.5} />
               </button>
@@ -145,7 +128,7 @@ export default function Navigation() {
                 alt="Jackson Pottery"
                 width={1238}
                 height={240}
-                className={`h-14 w-auto transition-all duration-500 group-hover:opacity-80 ${t ? '' : 'brightness-0 invert'}`}
+                className="h-12 w-auto group-hover:opacity-70 transition-opacity duration-300"
                 priority
               />
             </Link>
@@ -153,17 +136,15 @@ export default function Navigation() {
         </div>
 
         {/* ── Category + actions row (desktop) ── */}
-        <div className={`hidden lg:block transition-colors duration-500 ${t ? 'border-b border-[#D6D3CE]' : 'border-b border-white/[0.06]'}`}>
+        <div className="hidden lg:block border-b border-[#D6D3CE]">
           <div className="max-w-[1440px] mx-auto px-4 lg:px-8 h-12 flex items-center justify-between gap-6">
 
             {/* Left — phone */}
-            <div className={`flex items-center gap-2 flex-shrink-0 transition-colors duration-500 ${t ? 'text-muted' : 'text-white/50'}`}>
+            <div className="flex items-center gap-2 flex-shrink-0 text-[#7A7672]">
               <Phone size={13} strokeWidth={1.5} />
               <div>
                 <p className="text-[0.52rem] tracking-widest uppercase font-sans leading-tight">Call Us</p>
-                <p className={`text-[0.68rem] font-sans font-medium leading-tight transition-colors duration-500 ${t ? 'text-charcoal' : 'text-white/85'}`}>
-                  (877) 533-7687
-                </p>
+                <p className="text-[0.68rem] font-sans font-medium leading-tight text-[#333333]">(877) 533-7687</p>
               </div>
             </div>
 
@@ -186,19 +167,22 @@ export default function Navigation() {
                     href={cat.href}
                     className={`flex items-center gap-1.5 px-4 h-12 text-[0.7rem] tracking-[0.14em] uppercase font-sans font-medium transition-colors duration-200 ${
                       activeDropdown === cat.label
-                        ? t ? 'text-charcoal' : 'text-white'
-                        : t ? 'text-charcoal/55 hover:text-charcoal' : 'text-white/60 hover:text-white'
+                        ? 'text-[#333333]'
+                        : 'text-[#333333]/50 hover:text-[#333333]'
                     }`}
                   >
                     {cat.short}
-                    <ChevronDown size={9} strokeWidth={2.5} className={`transition-all duration-300 ${activeDropdown === cat.label ? 'rotate-180 opacity-100' : 'opacity-40'}`} />
+                    <ChevronDown
+                      size={9}
+                      strokeWidth={2.5}
+                      className={`transition-all duration-300 ${activeDropdown === cat.label ? 'rotate-180 opacity-100' : 'opacity-40'}`}
+                    />
                   </Link>
 
                   {activeDropdown === cat.label && (
                     <motion.div
                       layoutId="cat-underline"
-                      className="absolute bottom-0 left-0 right-0 h-px"
-                      style={{ background: t ? '#2B2B2B' : 'rgba(255,255,255,0.7)' }}
+                      className="absolute bottom-0 left-0 right-0 h-px bg-[#333333]"
                       transition={{ type: 'spring', stiffness: 450, damping: 38 }}
                     />
                   )}
@@ -218,8 +202,8 @@ export default function Navigation() {
                       >
                         <div className="flex-1 py-8 px-8">
                           <div className="flex items-center gap-2 mb-5">
-                            <div className="h-px w-5 bg-stone-gray/60" />
-                            <p className="text-[0.52rem] tracking-[0.4em] uppercase text-stone-gray font-sans font-medium">
+                            <div className="h-px w-5 bg-[#B8B4AE]/60" />
+                            <p className="text-[0.52rem] tracking-[0.4em] uppercase text-[#B8B4AE] font-sans font-medium">
                               {cat.short}
                             </p>
                           </div>
@@ -231,23 +215,23 @@ export default function Navigation() {
                                   className="group/item flex items-center justify-between py-3.5 border-b border-[#D6D3CE]/50 last:border-0 transition-colors duration-150"
                                 >
                                   <div className="flex items-center gap-2.5">
-                                    <span className="font-serif text-[0.95rem] text-charcoal/60 group-hover/item:text-charcoal transition-colors duration-150">
+                                    <span className="font-serif text-[0.95rem] text-[#333333]/55 group-hover/item:text-[#333333] transition-colors duration-150">
                                       {item}
                                     </span>
                                     {cat.newItem === item && (
-                                      <span className="text-[0.48rem] tracking-[0.25em] uppercase font-sans text-[#F7F7F5] bg-charcoal px-2 py-0.5 rounded-full">
+                                      <span className="text-[0.48rem] tracking-[0.25em] uppercase font-sans text-white bg-[#333333] px-2 py-0.5 rounded-full">
                                         New
                                       </span>
                                     )}
                                   </div>
-                                  <ArrowUpRight size={12} strokeWidth={1.5} className="text-stone-gray opacity-0 -translate-x-1.5 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all duration-200" />
+                                  <ArrowUpRight size={12} strokeWidth={1.5} className="text-[#B8B4AE] opacity-0 -translate-x-1.5 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all duration-200" />
                                 </Link>
                               </li>
                             ))}
                           </ul>
                           <Link
                             href={cat.href}
-                            className="group/all inline-flex items-center gap-1.5 mt-5 text-[0.58rem] tracking-[0.25em] uppercase font-sans text-charcoal/50 hover:text-charcoal transition-colors duration-200"
+                            className="group/all inline-flex items-center gap-1.5 mt-5 text-[0.58rem] tracking-[0.25em] uppercase font-sans text-[#333333]/40 hover:text-[#333333] transition-colors duration-200"
                           >
                             View All {cat.short}
                             <ArrowUpRight size={10} strokeWidth={1.5} className="group-hover/all:translate-x-0.5 group-hover/all:-translate-y-0.5 transition-transform duration-200" />
@@ -255,7 +239,13 @@ export default function Navigation() {
                         </div>
 
                         <div className="w-48 flex-shrink-0 relative overflow-hidden group/panel">
-                          <Image src={cat.image} alt={cat.label} fill className="object-cover object-center transition-transform duration-700 group-hover/panel:scale-[1.04]" sizes="192px" />
+                          <Image
+                            src={cat.image}
+                            alt={cat.label}
+                            fill
+                            className="object-cover object-center transition-transform duration-700 group-hover/panel:scale-[1.04]"
+                            sizes="192px"
+                          />
                           <div className="absolute inset-0 bg-gradient-to-t from-[#2B2B2B]/80 via-[#2B2B2B]/15 to-transparent" />
                           <div className="absolute bottom-0 left-0 right-0 p-5">
                             <p className="font-serif italic text-white/85 text-sm leading-snug mb-2.5">{cat.featured}</p>
@@ -279,24 +269,16 @@ export default function Navigation() {
               {isDealer ? (
                 <button
                   onClick={() => signOut({ redirect: false })}
-                  className={`inline-flex items-center gap-2 px-5 py-2 rounded-full font-sans text-[0.68rem] tracking-[0.12em] uppercase font-semibold transition-all duration-300 hover:-translate-y-px ${
-                    t
-                      ? 'bg-[#333333] text-white hover:bg-[#1F1F1F]'
-                      : 'bg-white text-[#333333] hover:bg-white/90'
-                  }`}
+                  className="inline-flex items-center gap-2 px-5 py-2 rounded-full font-sans text-[0.68rem] tracking-[0.12em] uppercase font-semibold bg-[#333333] text-white hover:bg-[#1F1F1F] transition-all duration-300 hover:-translate-y-px"
                 >
                   <span className="text-[0.55rem]">✓</span>
                   Dealer Active
-                  <span className={`text-[0.6rem] ${t ? 'opacity-50' : 'opacity-40'}`}>· Sign Out</span>
+                  <span className="text-[0.6rem] opacity-50">· Sign Out</span>
                 </button>
               ) : (
                 <Link
                   href="/wholesale"
-                  className={`inline-flex items-center gap-2 px-5 py-2 rounded-full font-sans text-[0.68rem] tracking-[0.12em] uppercase font-semibold transition-all duration-300 hover:-translate-y-px ${
-                    t
-                      ? 'bg-[#333333] text-white hover:bg-[#1F1F1F] hover:shadow-[0_6px_20px_rgba(0,0,0,0.2)]'
-                      : 'bg-white text-[#333333] hover:bg-white/90 hover:shadow-[0_6px_20px_rgba(0,0,0,0.15)]'
-                  }`}
+                  className="inline-flex items-center gap-2 px-5 py-2 rounded-full font-sans text-[0.68rem] tracking-[0.12em] uppercase font-semibold bg-[#333333] text-white hover:bg-[#1F1F1F] hover:shadow-[0_6px_20px_rgba(0,0,0,0.2)] transition-all duration-300 hover:-translate-y-px"
                 >
                   Dealer Login
                 </Link>
@@ -315,17 +297,13 @@ export default function Navigation() {
                       className="overflow-hidden"
                     >
                       <div className="relative">
-                        <Search size={12} strokeWidth={1.5} className={`absolute left-3 top-1/2 -translate-y-1/2 ${t ? 'text-muted' : 'text-white/40'}`} />
+                        <Search size={12} strokeWidth={1.5} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#7A7672]" />
                         <input
                           autoFocus
                           type="search"
                           placeholder="Search planters..."
                           onBlur={() => setSearchOpen(false)}
-                          className={`w-full pl-8 pr-3 py-1.5 text-xs font-sans border rounded-full focus:outline-none transition-all duration-300 ${
-                            t
-                              ? 'bg-ash-50 border-warm-gray text-charcoal placeholder:text-muted/50 focus:border-stone-gray'
-                              : 'bg-white/10 border-white/20 text-white placeholder:text-white/35 focus:border-white/50'
-                          }`}
+                          className="w-full pl-8 pr-3 py-1.5 text-xs font-sans border rounded-full focus:outline-none bg-[#F4F4F4] border-[#D6D3CE] text-[#333333] placeholder:text-[#7A7672]/50 focus:border-[#B8B4AE] transition-colors duration-200"
                         />
                       </div>
                     </motion.div>
@@ -336,7 +314,7 @@ export default function Navigation() {
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                       onClick={() => setSearchOpen(true)}
-                      className={`w-9 h-9 flex items-center justify-center rounded-full transition-colors duration-300 ${t ? 'text-charcoal/50 hover:text-charcoal' : 'text-white/60 hover:text-white'}`}
+                      className="w-9 h-9 flex items-center justify-center rounded-full text-[#333333]/45 hover:text-[#333333] transition-colors duration-200"
                       aria-label="Search"
                     >
                       <Search size={16} strokeWidth={1.5} />
@@ -346,7 +324,7 @@ export default function Navigation() {
               </div>
 
               <button
-                className={`w-9 h-9 flex items-center justify-center rounded-full transition-colors duration-300 ${t ? 'text-charcoal/50 hover:text-charcoal' : 'text-white/60 hover:text-white'}`}
+                className="w-9 h-9 flex items-center justify-center rounded-full text-[#333333]/45 hover:text-[#333333] transition-colors duration-200"
                 aria-label="Account"
               >
                 <User size={16} strokeWidth={1.5} />
@@ -354,39 +332,27 @@ export default function Navigation() {
 
               <Link
                 href="#"
-                className={`flex items-center gap-1.5 transition-colors duration-300 ${t ? 'text-charcoal/60 hover:text-charcoal' : 'text-white/65 hover:text-white'}`}
+                className="flex items-center gap-1.5 text-[#333333]/55 hover:text-[#333333] transition-colors duration-200"
                 aria-label="Cart"
               >
                 <div className="relative">
                   <ShoppingCart size={16} strokeWidth={1.5} />
-                  <span className={`absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full text-[0.48rem] flex items-center justify-center font-sans font-semibold ${t ? 'bg-charcoal text-white' : 'bg-white text-charcoal'}`}>
+                  <span className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-[#333333] text-white text-[0.48rem] flex items-center justify-center font-sans font-semibold">
                     0
                   </span>
                 </div>
-                <span className={`text-[0.68rem] font-sans font-medium transition-colors duration-300 ${t ? 'text-charcoal/45' : 'text-white/45'}`}>
-                  Cart
-                </span>
+                <span className="text-[0.68rem] font-sans font-medium text-[#333333]/40">Cart</span>
               </Link>
 
               <Link
                 href="/shop"
-                className={`inline-flex items-center justify-center px-5 py-2 rounded-full text-[0.68rem] tracking-[0.14em] uppercase font-sans font-bold transition-all duration-300 hover:-translate-y-px hover:shadow-[0_6px_20px_rgba(0,0,0,0.25)] ${
-                  t ? 'bg-[#333333] text-white' : 'bg-white text-[#333333]'
-                }`}
+                className="inline-flex items-center justify-center px-5 py-2 rounded-full text-[0.68rem] tracking-[0.14em] uppercase font-sans font-bold bg-[#333333] text-white hover:bg-[#1F1F1F] transition-all duration-300 hover:-translate-y-px hover:shadow-[0_6px_20px_rgba(0,0,0,0.25)]"
               >
                 Shop Now
               </Link>
             </div>
           </div>
         </div>
-
-        {/* Subtle divider on scroll */}
-        <motion.div
-          initial={false}
-          animate={{ scaleX: t ? 1 : 0, opacity: t ? 1 : 0 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="h-px origin-center bg-warm-gray/40"
-        />
       </header>
 
       {/* ── Mobile Menu ── */}
@@ -411,13 +377,13 @@ export default function Navigation() {
             >
               {/* Panel header */}
               <div className="flex items-center justify-between px-6 h-[4.5rem] border-b border-white/[0.08] flex-shrink-0">
-                <Link href="/" onClick={() => setMobileOpen(false)} className="flex group">
+                <Link href="/" onClick={() => setMobileOpen(false)} className="flex">
                   <Image
                     src="/jackson-pottery-logo.png"
                     alt="Jackson Pottery"
                     width={1238}
                     height={240}
-                    className="h-11 w-auto brightness-0 invert group-hover:opacity-80 transition-opacity duration-300"
+                    className="h-10 w-auto brightness-0 invert opacity-80 hover:opacity-100 transition-opacity duration-300"
                   />
                 </Link>
                 <button
@@ -523,7 +489,7 @@ export default function Navigation() {
                   <Link
                     href="/shop"
                     onClick={() => setMobileOpen(false)}
-                    className="flex items-center justify-center w-full px-6 py-3.5 rounded-full bg-white text-charcoal text-[0.7rem] tracking-[0.14em] uppercase font-sans font-semibold hover:bg-soft-white transition-colors duration-200"
+                    className="flex items-center justify-center w-full px-6 py-3.5 rounded-full bg-white text-[#333333] text-[0.7rem] tracking-[0.14em] uppercase font-sans font-semibold hover:bg-[#F4F4F4] transition-colors duration-200"
                   >
                     Shop Now
                   </Link>
@@ -542,7 +508,6 @@ export default function Navigation() {
           </>
         )}
       </AnimatePresence>
-
     </>
   )
 }
