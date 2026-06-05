@@ -42,7 +42,7 @@ export default function ShopByCollection() {
   const isInView = useInView(ref, { once: true, margin: '-6%' })
 
   return (
-    <section className="relative bg-[#0C0A08] py-20 lg:py-24">
+    <section className="relative bg-[#2B2B2B] py-20 lg:py-24">
       <div className="max-w-[1440px] mx-auto px-4 lg:px-8">
 
         {/* Header */}
@@ -52,7 +52,7 @@ export default function ShopByCollection() {
               initial={{ opacity: 0, y: 12 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
-              className="text-[0.62rem] tracking-[0.38em] uppercase font-sans text-gold/70 mb-2"
+              className="text-[0.62rem] tracking-[0.38em] uppercase font-sans text-white/55 mb-2"
             >
               Browse Categories
             </motion.p>
@@ -102,23 +102,20 @@ export default function ShopByCollection() {
                 {/* Base gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-black/0 transition-opacity duration-500 group-hover:opacity-90" />
 
-                {/* Hover tint */}
-                <div className="absolute inset-0 bg-[#B8924A]/0 group-hover:bg-[#B8924A]/6 transition-all duration-500" />
-
                 {/* Text */}
-                <div className="absolute inset-x-0 bottom-0 p-5">
+                <div className="absolute inset-x-0 bottom-0 p-3 sm:p-5">
                   <div className="flex items-end justify-between">
                     <div>
-                      <p className="font-sans text-[0.58rem] tracking-[0.28em] uppercase text-white/55 mb-1.5 transition-colors duration-300 group-hover:text-gold/70">
+                      <p className="font-sans text-[0.5rem] sm:text-[0.58rem] tracking-[0.2em] sm:tracking-[0.28em] uppercase text-white/55 mb-1 sm:mb-1.5 transition-colors duration-300 group-hover:text-white/70">
                         {col.sub}
                       </p>
-                      <p className="font-serif font-semibold text-white text-lg leading-tight">
+                      <p className="font-serif font-semibold text-white text-sm sm:text-base lg:text-lg leading-tight">
                         {col.label}
                       </p>
                     </div>
 
-                    {/* Arrow — always visible on mobile, hover-reveal on desktop */}
-                    <div className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center flex-shrink-0 ml-3 sm:opacity-0 sm:translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)]">
+                    {/* Arrow — hover-reveal on desktop only, hidden on mobile to give text full width */}
+                    <div className="hidden sm:flex w-8 h-8 rounded-full border border-white/20 items-center justify-center flex-shrink-0 ml-3 sm:opacity-0 sm:translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)]">
                       <ArrowUpRight size={13} strokeWidth={1.5} className="text-white" />
                     </div>
                   </div>
