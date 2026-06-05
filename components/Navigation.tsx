@@ -7,7 +7,6 @@ import { Search, ShoppingCart, User, Phone, X, Menu, ArrowUpRight, ChevronDown }
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useSession, signOut } from 'next-auth/react'
-import WholesaleModal from './WholesaleModal'
 
 const categories = [
   {
@@ -67,7 +66,6 @@ export default function Navigation() {
   const [scrolled, setScrolled]           = useState(false)
   const [searchOpen, setSearchOpen]       = useState(false)
   const dropdownTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const [dealerOpen, setDealerOpen]       = useState(false)
   const { data: session }                 = useSession()
   const isDealer                          = session?.user?.isWholesale === true
   const pathname                          = usePathname()
@@ -83,12 +81,6 @@ export default function Navigation() {
     document.body.style.overflow = mobileOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [mobileOpen])
-
-  useEffect(() => {
-    const handler = () => setDealerOpen(true)
-    window.addEventListener('open-wholesale-modal', handler)
-    return () => window.removeEventListener('open-wholesale-modal', handler)
-  }, [])
 
   const t = scrolled || !isHomepage
 
@@ -128,13 +120,14 @@ export default function Navigation() {
             {/* Mobile: logo + hamburger */}
             <div className="flex lg:hidden items-center justify-between w-full">
               <Link href="/" className="flex items-center group">
-                <span className={`font-serif font-bold text-[1.05rem] tracking-[0.2em] uppercase transition-colors duration-500 ${t ? 'text-charcoal' : 'text-white'}`}>
-                  Jackson
-                </span>
-                <Image src="/logo.png" alt="Jackson Pottery" width={30} height={30} className="object-contain flex-shrink-0" style={{ margin: '0 -1px' }} />
-                <span className={`font-serif font-bold text-[1.05rem] uppercase tracking-[0.2em] transition-colors duration-500 ${t ? 'text-charcoal' : 'text-white'}`}>
-                  Pottery
-                </span>
+                <Image
+                  src="/jackson-pottery-logo.png"
+                  alt="Jackson Pottery"
+                  width={1238}
+                  height={240}
+                  className={`h-11 w-auto transition-all duration-500 ${t ? '' : 'brightness-0 invert'}`}
+                  priority
+                />
               </Link>
               <button
                 onClick={() => setMobileOpen(true)}
@@ -146,23 +139,15 @@ export default function Navigation() {
             </div>
 
             {/* Desktop: logo centered */}
-            <Link href="/" className="hidden lg:flex absolute left-1/2 -translate-x-1/2 flex-col items-center leading-none group">
-              <div className="flex items-center">
-                <span className={`font-serif font-bold text-[1.18rem] tracking-[0.2em] uppercase transition-colors duration-500 ${t ? 'text-charcoal' : 'text-white'}`}>
-                  Jackson
-                </span>
-                <Image src="/logo.png" alt="Jackson Pottery logo" width={36} height={36} className="object-contain flex-shrink-0 transition-transform duration-500 group-hover:scale-105" style={{ margin: '0 -1px' }} />
-                <span className={`font-serif font-bold text-[1.18rem] uppercase tracking-[0.2em] transition-colors duration-500 ${t ? 'text-charcoal' : 'text-white'}`}>
-                  Pottery
-                </span>
-              </div>
-              <div className="flex items-center gap-2 mt-1">
-                <div className={`h-px w-5 transition-colors duration-500 ${t ? 'bg-warm-gray' : 'bg-white/20'}`} />
-                <span className={`font-sans text-[0.52rem] tracking-[0.32em] uppercase transition-colors duration-500 ${t ? 'text-muted' : 'text-white/65'}`}>
-                  Designed to Define Space
-                </span>
-                <div className={`h-px w-5 transition-colors duration-500 ${t ? 'bg-warm-gray' : 'bg-white/20'}`} />
-              </div>
+            <Link href="/" className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center leading-none group">
+              <Image
+                src="/jackson-pottery-logo.png"
+                alt="Jackson Pottery"
+                width={1238}
+                height={240}
+                className={`h-14 w-auto transition-all duration-500 group-hover:opacity-80 ${t ? '' : 'brightness-0 invert'}`}
+                priority
+              />
             </Link>
           </div>
         </div>
@@ -226,7 +211,7 @@ export default function Navigation() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 8 }}
                         transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                        className={`absolute top-full z-20 flex overflow-hidden bg-[#F7F7F5] border border-[#D6D3CE] shadow-[0_24px_60px_rgba(0,0,0,0.12)] rounded-b-xl ${
+                        className={`absolute top-full z-20 flex overflow-hidden bg-white border border-[#D6D3CE] shadow-[0_24px_60px_rgba(0,0,0,0.12)] rounded-b-xl ${
                           idx >= categories.length - 2 ? 'right-0' : 'left-0'
                         }`}
                         style={{ minWidth: '500px' }}
@@ -290,14 +275,14 @@ export default function Navigation() {
             {/* Right — dealer login, search, account, cart, shop */}
             <div className="flex items-center gap-3 flex-shrink-0">
 
-              {/* Dealer & Distributor button */}
+              {/* Dealer button */}
               {isDealer ? (
                 <button
                   onClick={() => signOut({ redirect: false })}
                   className={`inline-flex items-center gap-2 px-5 py-2 rounded-full font-sans text-[0.68rem] tracking-[0.12em] uppercase font-semibold transition-all duration-300 hover:-translate-y-px ${
                     t
-                      ? 'bg-charcoal text-white hover:bg-graphite'
-                      : 'bg-white text-charcoal hover:bg-white/90'
+                      ? 'bg-[#333333] text-white hover:bg-[#1F1F1F]'
+                      : 'bg-white text-[#333333] hover:bg-white/90'
                   }`}
                 >
                   <span className="text-[0.55rem]">✓</span>
@@ -305,16 +290,16 @@ export default function Navigation() {
                   <span className={`text-[0.6rem] ${t ? 'opacity-50' : 'opacity-40'}`}>· Sign Out</span>
                 </button>
               ) : (
-                <button
-                  onClick={() => setDealerOpen(true)}
+                <Link
+                  href="/wholesale"
                   className={`inline-flex items-center gap-2 px-5 py-2 rounded-full font-sans text-[0.68rem] tracking-[0.12em] uppercase font-semibold transition-all duration-300 hover:-translate-y-px ${
                     t
-                      ? 'bg-charcoal text-white hover:bg-graphite hover:shadow-[0_6px_20px_rgba(0,0,0,0.2)]'
-                      : 'bg-white text-charcoal hover:bg-white/90 hover:shadow-[0_6px_20px_rgba(0,0,0,0.15)]'
+                      ? 'bg-[#333333] text-white hover:bg-[#1F1F1F] hover:shadow-[0_6px_20px_rgba(0,0,0,0.2)]'
+                      : 'bg-white text-[#333333] hover:bg-white/90 hover:shadow-[0_6px_20px_rgba(0,0,0,0.15)]'
                   }`}
                 >
-                  Dealer & Distributor Login
-                </button>
+                  Dealer Login
+                </Link>
               )}
 
               {/* Search */}
@@ -385,8 +370,9 @@ export default function Navigation() {
 
               <Link
                 href="/shop"
-                className="inline-flex items-center justify-center px-5 py-2 rounded-full text-[0.68rem] tracking-[0.14em] uppercase font-sans font-bold text-white transition-all duration-300 hover:-translate-y-px hover:shadow-[0_6px_20px_rgba(184,146,74,0.55)]"
-                style={{ background: 'linear-gradient(135deg, #B8924A 0%, #d4a855 55%, #B8924A 100%)' }}
+                className={`inline-flex items-center justify-center px-5 py-2 rounded-full text-[0.68rem] tracking-[0.14em] uppercase font-sans font-bold transition-all duration-300 hover:-translate-y-px hover:shadow-[0_6px_20px_rgba(0,0,0,0.25)] ${
+                  t ? 'bg-[#333333] text-white' : 'bg-white text-[#333333]'
+                }`}
               >
                 Shop Now
               </Link>
@@ -425,15 +411,14 @@ export default function Navigation() {
             >
               {/* Panel header */}
               <div className="flex items-center justify-between px-6 h-[4.5rem] border-b border-white/[0.08] flex-shrink-0">
-                <Link href="/" onClick={() => setMobileOpen(false)} className="flex flex-col group">
-                  <div className="flex items-center">
-                    <span className="font-serif font-bold text-sm tracking-[0.2em] uppercase text-white group-hover:text-white/80 transition-colors duration-300">Jackson</span>
-                    <Image src="/logo.png" alt="Jackson Pottery logo" width={22} height={22} className="object-contain" style={{ margin: '0 1px' }} />
-                    <span className="font-serif font-bold text-sm tracking-[0.2em] uppercase text-white group-hover:text-white/80 transition-colors duration-300">Pottery</span>
-                  </div>
-                  <span className="text-[0.48rem] tracking-[0.3em] text-white/40 uppercase mt-0.5">
-                    Designed to Define Space
-                  </span>
+                <Link href="/" onClick={() => setMobileOpen(false)} className="flex group">
+                  <Image
+                    src="/jackson-pottery-logo.png"
+                    alt="Jackson Pottery"
+                    width={1238}
+                    height={240}
+                    className="h-11 w-auto brightness-0 invert group-hover:opacity-80 transition-opacity duration-300"
+                  />
                 </Link>
                 <button
                   onClick={() => setMobileOpen(false)}
@@ -495,8 +480,9 @@ export default function Navigation() {
                       <span className="font-sans text-[0.62rem] tracking-[0.12em] uppercase text-white/40">Sign Out</span>
                     </button>
                   ) : (
-                    <button
-                      onClick={() => { setMobileOpen(false); setDealerOpen(true) }}
+                    <Link
+                      href="/wholesale"
+                      onClick={() => setMobileOpen(false)}
                       className="flex items-center justify-between w-full"
                     >
                       <div className="flex items-center gap-3">
@@ -504,12 +490,12 @@ export default function Navigation() {
                           <span className="text-white/70 text-xs">↗</span>
                         </div>
                         <div>
-                          <p className="font-sans text-sm font-semibold text-white leading-tight">Dealer & Distributor Login</p>
+                          <p className="font-sans text-sm font-semibold text-white leading-tight">Dealer & Distributor</p>
                           <p className="font-sans text-[0.58rem] text-white/40 mt-0.5">Wholesale pricing access</p>
                         </div>
                       </div>
                       <ArrowUpRight size={14} strokeWidth={1.5} className="text-white/35 flex-shrink-0" />
-                    </button>
+                    </Link>
                   )}
                 </motion.div>
 
@@ -557,7 +543,6 @@ export default function Navigation() {
         )}
       </AnimatePresence>
 
-      <WholesaleModal open={dealerOpen} onClose={() => setDealerOpen(false)} />
     </>
   )
 }
