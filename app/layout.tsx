@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
-import { Cormorant_Garamond, Manrope } from 'next/font/google'
+import { Playfair_Display, Manrope } from 'next/font/google'
 import './globals.css'
 import SessionProvider from '@/components/SessionProvider'
 
-const cormorant = Cormorant_Garamond({
+const playfair = Playfair_Display({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['400', '500', '600', '700', '800'],
   style: ['normal', 'italic'],
-  variable: '--font-cormorant',
+  variable: '--font-playfair',
   display: 'swap',
 })
 
@@ -25,20 +25,16 @@ export const metadata: Metadata = {
   keywords:
     'designer planters, landscape planters, garden planters, premium outdoor decor, terracotta planters, cast stone urns',
   openGraph: {
-    title: 'Jackson Pottery — Designed to Define Space',
+    title: 'Jackson Pottery — Designer Planters',
     description: 'Premium designer planters that elevate every space they inhabit.',
     type: 'website',
   },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${manrope.variable}`}>
-      <body className="bg-soft-white text-ink font-sans antialiased">
+    <html lang="en" className={`${playfair.variable} ${manrope.variable}`}>
+      <body className="bg-white text-ink font-sans antialiased">
         <SessionProvider>{children}</SessionProvider>
       </body>
     </html>
