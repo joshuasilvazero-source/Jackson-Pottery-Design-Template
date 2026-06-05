@@ -28,9 +28,7 @@ export default function FeaturedCollections() {
     activeCategory === 'All' ? products : products.filter((p) => p.category === activeCategory)
 
   return (
-    <section className="relative bg-[#FDFAF5] py-section">
-      {/* Soft fade from dark section above */}
-      <div className="absolute top-0 inset-x-0 h-20 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(26,23,20,0.08) 0%, transparent 100%)' }} />
+    <section className="relative bg-white py-section">
       <div className="max-w-[1440px] mx-auto px-4 lg:px-8">
         {/* Header */}
         <div ref={ref} className="mb-10 lg:mb-12">
@@ -56,7 +54,7 @@ export default function FeaturedCollections() {
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ delay: 0.18, duration: 0.6 }}
             >
-              <Link href="/shop" className="hidden lg:inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase font-sans text-muted hover:text-gold transition-colors duration-300 group py-2 px-3 -mr-3 rounded-lg hover:bg-black/[0.03]">
+              <Link href="/shop" className="hidden lg:inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase font-sans text-muted hover:text-[#333333] transition-colors duration-300 group py-2 px-3 -mr-3 rounded-lg hover:bg-black/[0.03]">
                 View All
                 <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform duration-300" strokeWidth={1.5} />
               </Link>
@@ -184,23 +182,25 @@ function ProductCard({
           {/* Badges */}
           <div className="absolute top-3 left-3 flex flex-col gap-1.5">
             {product.isNew && (
-              <span className="bg-gold text-ink text-[0.56rem] tracking-widest uppercase font-sans px-3 py-1 rounded-full shadow-sm">New</span>
+              <span className="bg-[#333333] text-white text-[0.56rem] tracking-widest uppercase font-sans px-3 py-1 rounded-full shadow-sm">New</span>
             )}
             {product.isBestseller && (
               <span className="bg-ink text-white text-[0.56rem] tracking-widest uppercase font-sans px-3 py-1 rounded-full shadow-sm">Bestseller</span>
             )}
           </div>
 
-          {/* Wishlist */}
+          {/* Wishlist — always visible on mobile, hover-reveal on md+ */}
           <button
             onClick={(e) => { e.preventDefault(); onWishlist() }}
-            className={`absolute top-3 right-3 w-9 h-9 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 shadow-md ${hovered ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}
+            className={`absolute top-3 right-3 w-9 h-9 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 shadow-md ${
+              hovered ? 'opacity-100 scale-100' : 'opacity-100 scale-100 md:opacity-0 md:scale-90'
+            }`}
           >
-            <Heart size={13} strokeWidth={1.5} className={isWishlisted ? 'fill-gold text-gold' : 'text-muted'} />
+            <Heart size={13} strokeWidth={1.5} className={isWishlisted ? 'fill-[#333333] text-[#333333]' : 'text-muted'} />
           </button>
 
-          {/* Quick View — centered pill */}
-          <div className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${hovered ? 'opacity-100' : 'opacity-0'}`}>
+          {/* Quick View — desktop only */}
+          <div className={`absolute inset-0 hidden md:flex items-center justify-center transition-all duration-300 ${hovered ? 'opacity-100' : 'opacity-0'}`}>
             <button
               onClick={(e) => { e.preventDefault(); onQuickView() }}
               className="flex items-center gap-2 px-4 py-2.5 bg-white/95 backdrop-blur-sm rounded-full text-ink text-[0.7rem] tracking-[0.12em] uppercase font-sans font-medium shadow-lg hover:bg-white transition-colors duration-200"
@@ -210,8 +210,10 @@ function ProductCard({
             </button>
           </div>
 
-          {/* Quick Add */}
-          <div className={`absolute bottom-0 left-0 right-0 transition-all duration-[400ms] ease-luxury ${hovered ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-0'}`}>
+          {/* Quick Add — always visible on mobile, hover-reveal on md+ */}
+          <div className={`absolute bottom-0 left-0 right-0 transition-all duration-[400ms] ease-luxury ${
+            hovered ? 'translate-y-0 opacity-100' : 'translate-y-0 opacity-100 md:translate-y-3 md:opacity-0'
+          }`}>
             <button
               onClick={(e) => {
                 e.preventDefault()
@@ -231,11 +233,11 @@ function ProductCard({
 
         {/* Info */}
         <div className="px-4 pt-4 pb-5">
-          <p className="font-sans text-[0.58rem] text-gold/70 tracking-[0.3em] uppercase mb-1.5">{product.category}</p>
-          <h3 className="font-serif font-semibold text-ink text-base group-hover:text-gold transition-colors duration-300 leading-tight mb-1">
+          <p className="font-sans text-[0.58rem] text-[#7A7672] tracking-[0.3em] uppercase mb-1.5">{product.category}</p>
+          <h3 className="font-serif font-semibold text-ink text-sm sm:text-base group-hover:text-[#333333] transition-colors duration-300 leading-snug mb-1.5 line-clamp-2">
             {product.name}
           </h3>
-          <p className="font-sans text-muted text-xs mb-3">{product.subtitle}</p>
+          <p className="font-sans text-muted text-xs mb-3 line-clamp-1">{product.subtitle}</p>
           <div className="flex items-center justify-between">
             <PriceDisplay
               price={product.price}
@@ -245,12 +247,12 @@ function ProductCard({
             />
             <div className="flex items-center gap-0.5 flex-shrink-0 ml-2">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} size={10} className="fill-gold text-gold" strokeWidth={0} />
+                <Star key={i} size={10} className="fill-[#333333]/50 text-[#333333]/50" strokeWidth={0} />
               ))}
             </div>
           </div>
           {urgencyTags[product.id] && (
-            <p className="mt-2.5 font-sans text-[0.62rem] tracking-[0.15em] text-gold/70">
+            <p className="mt-2.5 font-sans text-[0.62rem] tracking-[0.15em] text-[#7A7672]">
               · {urgencyTags[product.id]}
             </p>
           )}
@@ -323,7 +325,7 @@ function QuickViewModal({ product, onClose }: { product: Product; onClose: () =>
             {/* Badges */}
             <div className="absolute top-4 left-4 flex flex-col gap-1.5">
               {product.isNew && (
-                <span className="bg-gold text-ink text-[0.56rem] tracking-widest uppercase font-sans px-3 py-1 rounded-full shadow-sm">New</span>
+                <span className="bg-[#333333] text-white text-[0.56rem] tracking-widest uppercase font-sans px-3 py-1 rounded-full shadow-sm">New</span>
               )}
               {product.isBestseller && (
                 <span className="bg-ink text-white text-[0.56rem] tracking-widest uppercase font-sans px-3 py-1 rounded-full shadow-sm">Bestseller</span>
@@ -334,7 +336,7 @@ function QuickViewModal({ product, onClose }: { product: Product; onClose: () =>
           {/* Details panel */}
           <div className="flex-1 overflow-y-auto px-6 py-6 sm:px-8 sm:py-8">
             {/* Category eyebrow */}
-            <p className="font-sans text-[0.58rem] text-gold/70 tracking-[0.3em] uppercase mb-2">{product.category}</p>
+            <p className="font-sans text-[0.58rem] text-[#7A7672] tracking-[0.3em] uppercase mb-2">{product.category}</p>
 
             {/* Name */}
             <h2 className="font-serif font-semibold text-ink text-2xl leading-tight mb-1">{product.name}</h2>
@@ -345,7 +347,7 @@ function QuickViewModal({ product, onClose }: { product: Product; onClose: () =>
               <div className="flex items-center gap-1.5">
                 <div className="flex items-center gap-0.5">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={12} className="fill-gold text-gold" strokeWidth={0} />
+                    <Star key={i} size={12} className="fill-[#333333]/50 text-[#333333]/50" strokeWidth={0} />
                   ))}
                 </div>
                 <span className="font-sans text-muted text-xs">4.9 rating</span>
@@ -382,8 +384,8 @@ function QuickViewModal({ product, onClose }: { product: Product; onClose: () =>
                 }}
                 className={`flex-1 flex items-center justify-center gap-2 py-3.5 rounded-full text-[0.72rem] tracking-[0.14em] uppercase font-sans font-medium transition-all duration-300 ${
                   addedToCart
-                    ? 'bg-ink text-white'
-                    : 'bg-gold text-ink hover:bg-gold/90 hover:shadow-[0_8px_24px_rgba(184,146,74,0.35)] hover:-translate-y-px'
+                    ? 'bg-[#333333] text-white'
+                    : 'bg-[#333333] text-white hover:bg-[#1F1F1F] hover:shadow-[0_8px_24px_rgba(0,0,0,0.25)] hover:-translate-y-px'
                 }`}
               >
                 {addedToCart ? (
@@ -397,11 +399,11 @@ function QuickViewModal({ product, onClose }: { product: Product; onClose: () =>
                 onClick={() => setIsWishlisted((w) => !w)}
                 className={`w-12 h-12 rounded-full border flex items-center justify-center transition-all duration-300 flex-shrink-0 ${
                   isWishlisted
-                    ? 'border-gold bg-gold/5'
-                    : 'border-border hover:border-gold/50'
+                    ? 'border-[#333333] bg-[#333333]/5'
+                    : 'border-border hover:border-[#333333]/50'
                 }`}
               >
-                <Heart size={16} strokeWidth={1.5} className={isWishlisted ? 'fill-gold text-gold' : 'text-muted'} />
+                <Heart size={16} strokeWidth={1.5} className={isWishlisted ? 'fill-[#333333] text-[#333333]' : 'text-muted'} />
               </button>
             </div>
 
@@ -409,7 +411,7 @@ function QuickViewModal({ product, onClose }: { product: Product; onClose: () =>
             <Link
               href={`/products/${product.id}`}
               onClick={onClose}
-              className="flex items-center justify-center gap-2 text-[0.65rem] tracking-[0.2em] uppercase font-sans text-muted hover:text-gold transition-colors duration-200 group"
+              className="flex items-center justify-center gap-2 text-[0.65rem] tracking-[0.2em] uppercase font-sans text-muted hover:text-[#333333] transition-colors duration-200 group"
             >
               View Full Details
               <ArrowRight size={11} className="group-hover:translate-x-1 transition-transform duration-200" strokeWidth={1.5} />
