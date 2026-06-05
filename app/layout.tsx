@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Playfair_Display, Manrope } from 'next/font/google'
 import './globals.css'
+import GlobalStyles from './GlobalStyles'
 import SessionProvider from '@/components/SessionProvider'
 
 const playfair = Playfair_Display({
@@ -34,6 +35,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${playfair.variable} ${manrope.variable}`}>
+      <head>
+        <GlobalStyles />
+      </head>
       <body className="bg-white text-ink font-sans antialiased">
         <SessionProvider>{children}</SessionProvider>
       </body>
