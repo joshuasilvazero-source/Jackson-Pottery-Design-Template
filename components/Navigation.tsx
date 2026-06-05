@@ -50,15 +50,6 @@ const categories = [
   },
 ]
 
-const ticker = [
-  'SPRING COLLECTION · 10% OFF SITEWIDE · CODE: PLANT10',
-  '·',
-  'FREE SHIPPING ON ORDERS OVER $499.99',
-  '·',
-  'NEW ARRIVALS — SHOP NOW',
-  '·',
-]
-
 export default function Navigation() {
   const [mobileOpen, setMobileOpen]         = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
@@ -75,26 +66,6 @@ export default function Navigation() {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-[0_1px_14px_rgba(0,0,0,0.08)]">
-
-        {/* ── Ticker ── */}
-        <div className="h-8 border-b border-[#D6D3CE]/50 overflow-hidden">
-          <div className="flex items-center h-full">
-            <div className="flex animate-marquee whitespace-nowrap will-change-transform">
-              {[...ticker, ...ticker, ...ticker, ...ticker].map((item, i) => (
-                <span
-                  key={i}
-                  className={`mx-8 font-sans ${
-                    item === '·'
-                      ? 'text-[#333333]/20 text-[0.5rem]'
-                      : 'text-[0.58rem] tracking-[0.28em] uppercase text-[#333333]/40 font-medium'
-                  }`}
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
 
         {/* ── Brand row ── */}
         <div className="border-b border-[#D6D3CE]">

@@ -30,7 +30,7 @@ export default async function ShopPage({ searchParams }: Props) {
       <Navigation />
 
       {/* Header */}
-      <div className="max-w-[1440px] mx-auto px-4 lg:px-8 pt-36 pb-10 border-b border-border">
+      <div className="max-w-[1440px] mx-auto px-4 lg:px-8 pt-24 lg:pt-36 pb-10 border-b border-border">
         <p className="section-label mb-3">Collection</p>
         <h1 className="font-serif font-bold text-display-lg text-ink leading-tight">
           {category && category !== 'All' ? category : 'All Planters'}

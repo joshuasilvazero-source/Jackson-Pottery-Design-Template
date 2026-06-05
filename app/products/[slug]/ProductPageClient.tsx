@@ -39,7 +39,7 @@ export default function ProductPageClient({
   return (
     <div className="min-h-screen bg-white">
       {/* Breadcrumb */}
-      <div className="max-w-[1440px] mx-auto px-4 lg:px-8 pt-36 pb-6 border-b border-border">
+      <div className="max-w-[1440px] mx-auto px-4 lg:px-8 pt-24 lg:pt-36 pb-6 border-b border-border">
         <div className="flex items-center gap-2 text-[0.65rem] font-sans text-muted tracking-widest uppercase">
           <Link href="/" className="hover:text-[#333333] transition-colors">Home</Link>
           <span>/</span>

@@ -31,7 +31,7 @@ export default async function ProductPage({ params }: Props) {
   const related = products.filter((p) => p.id !== product.id)
 
   return (
-    <main className="bg-[#FDFAF5]">
+    <main className="bg-white">
       <Navigation />
       <ProductPageClient product={product} related={related} />
       <Footer />
