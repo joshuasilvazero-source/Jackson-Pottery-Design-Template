@@ -81,7 +81,7 @@ export default async function ShopPage({ searchParams }: Props) {
                   />
                   <div className="absolute top-4 left-4 flex flex-col gap-2">
                     {product.isNew && (
-                      <span className="bg-gold text-ink text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1.5">New</span>
+                      <span className="bg-[#333333] text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1.5">New</span>
                     )}
                     {product.isBestseller && (
                       <span className="bg-ink text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1.5">Bestseller</span>
