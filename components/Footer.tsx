@@ -10,30 +10,14 @@ const support = ['Sizing Guide', 'Care Instructions', 'Shipping & Delivery', 'Re
 
 function FooterLogo() {
   return (
-    <Link href="/" className="inline-flex flex-col items-center group">
-      <div className="flex items-center">
-        <span className="font-serif font-bold text-[1.1rem] tracking-[0.2em] uppercase text-warm-50 group-hover:text-gold transition-colors duration-300">
-          Jackson
-        </span>
-        <Image
-          src="/logo.png"
-          alt="Jackson Pottery"
-          width={34}
-          height={34}
-          className="object-contain flex-shrink-0 opacity-90"
-          style={{ margin: '0 -1px' }}
-        />
-        <span className="font-serif font-bold text-[1.1rem] tracking-[0.2em] uppercase text-warm-50 group-hover:text-gold transition-colors duration-300">
-          Pottery
-        </span>
-      </div>
-      <div className="flex items-center gap-2 mt-1">
-        <div className="h-px w-5 bg-gold/25" />
-        <span className="font-sans text-[0.52rem] tracking-[0.32em] uppercase text-ash-400/50">
-          Designed to Define Space
-        </span>
-        <div className="h-px w-5 bg-gold/25" />
-      </div>
+    <Link href="/" className="inline-flex items-center group">
+      <Image
+        src="/jackson-pottery-logo.png"
+        alt="Jackson Pottery"
+        width={1238}
+        height={240}
+        className="h-14 w-auto brightness-0 invert opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+      />
     </Link>
   )
 }
@@ -54,30 +38,31 @@ export default function Footer() {
   return (
     <footer className="bg-ink text-warm-50">
 
-      {/* ── Newsletter strip ─────────────────────────────────── */}
+      {/* ── Newsletter strip — cohesive unit ── */}
       <div className="border-b border-white/[0.08]">
         <div className="max-w-[1440px] mx-auto px-4 lg:px-8 py-10 lg:py-12">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-7">
-            <div className="text-center lg:text-left">
-              <h3 className="font-serif text-2xl lg:text-[1.9rem] text-warm-50 mb-1.5">
-                Stay in the world of Jackson Pottery
-              </h3>
-              <p className="font-sans text-ash-400/60 text-sm">
-                New arrivals, design inspiration, and exclusive offers.
-              </p>
-            </div>
+          <div className="max-w-2xl mx-auto">
+            <p className="font-sans text-[0.58rem] tracking-[0.32em] uppercase text-white/40 text-center mb-3">
+              Stay Connected
+            </p>
+            <h3 className="font-serif text-2xl lg:text-[1.9rem] text-white text-center mb-2">
+              Stay in the world of Jackson Pottery
+            </h3>
+            <p className="font-sans text-white/45 text-sm text-center mb-6">
+              New arrivals, design inspiration, and exclusive offers.
+            </p>
             <form
-              className="flex w-full lg:w-auto lg:min-w-[400px]"
+              className="flex w-full rounded-full overflow-hidden border border-white/15 focus-within:border-white/35 transition-colors duration-300"
               onSubmit={(e) => e.preventDefault()}
             >
               <input
                 type="email"
                 placeholder="Your email address"
-                className="flex-1 px-5 py-3.5 bg-white/[0.06] border border-white/10 text-warm-50 text-xs font-sans placeholder:text-ash-400/40 focus:outline-none focus:border-gold/30 transition-colors min-w-0"
+                className="flex-1 px-6 py-4 bg-white/[0.06] text-white text-sm font-sans placeholder:text-white/30 focus:outline-none min-w-0"
               />
               <button
                 type="submit"
-                className="px-6 py-3.5 bg-gold text-ink text-[0.72rem] font-sans font-medium tracking-[0.14em] uppercase hover:bg-gold/90 transition-colors flex-shrink-0"
+                className="px-7 py-4 bg-white text-[#333333] text-[0.72rem] font-sans font-semibold tracking-[0.14em] uppercase hover:bg-[#F4F4F4] transition-colors flex-shrink-0"
               >
                 Subscribe
               </button>
@@ -118,7 +103,7 @@ export default function Footer() {
 
           {/* Collections */}
           <div>
-            <h4 className="font-sans text-[0.56rem] tracking-[0.38em] uppercase text-gold/60 mb-6">Collections</h4>
+            <h4 className="font-sans text-[0.56rem] tracking-[0.38em] uppercase text-white/40 mb-6">Collections</h4>
             <ul className="space-y-3.5">
               {collections.map((item) => (
                 <li key={item}><NavLink href="/shop">{item}</NavLink></li>
@@ -128,7 +113,7 @@ export default function Footer() {
 
           {/* Shop by Space */}
           <div>
-            <h4 className="font-sans text-[0.56rem] tracking-[0.38em] uppercase text-gold/60 mb-6">By Space</h4>
+            <h4 className="font-sans text-[0.56rem] tracking-[0.38em] uppercase text-white/40 mb-6">By Space</h4>
             <ul className="space-y-3.5">
               {spaces.map((item) => (
                 <li key={item}><NavLink href="/shop">{item}</NavLink></li>
@@ -138,21 +123,20 @@ export default function Footer() {
 
           {/* Support */}
           <div>
-            <h4 className="font-sans text-[0.56rem] tracking-[0.38em] uppercase text-gold/60 mb-6">Support</h4>
+            <h4 className="font-sans text-[0.56rem] tracking-[0.38em] uppercase text-white/40 mb-6">Support</h4>
             <ul className="space-y-3.5">
               {support.map((item) => (
                 <li key={item}><NavLink href="/shop">{item}</NavLink></li>
               ))}
             </ul>
             <div className="mt-6 pt-5 border-t border-white/[0.06]">
-              <button
-                onClick={() => window.dispatchEvent(new CustomEvent('open-wholesale-modal'))}
-                className="group flex items-center gap-1.5 font-sans text-gold/55 text-[0.82rem] hover:text-gold transition-colors duration-200 py-1"
+              <Link
+                href="/wholesale"
+                className="group flex items-center gap-1.5 font-sans text-white/45 text-[0.82rem] hover:text-white transition-colors duration-200 py-1"
               >
-                <span className="text-gold/40 text-xs">✦</span>
                 Dealer Login
                 <ArrowRight size={10} strokeWidth={1.5} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 flex-shrink-0" />
-              </button>
+              </Link>
               <p className="font-sans text-ash-400/35 text-[0.7rem] mt-1.5 leading-relaxed">
                 Verified dealer accounts.<br />Sign in for trade pricing.
               </p>
@@ -186,9 +170,9 @@ export default function Footer() {
 
           {/* Divider with "Since 2009" */}
           <div className="flex items-center gap-4 w-full max-w-xs">
-            <div className="h-px flex-1" style={{ background: 'linear-gradient(90deg, transparent, rgba(184,146,74,0.2))' }} />
+            <div className="h-px flex-1" style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.15))' }} />
             <span className="font-sans text-[0.5rem] tracking-[0.4em] uppercase text-ash-400/30">Since 2009</span>
-            <div className="h-px flex-1" style={{ background: 'linear-gradient(270deg, transparent, rgba(184,146,74,0.2))' }} />
+            <div className="h-px flex-1" style={{ background: 'linear-gradient(270deg, transparent, rgba(255,255,255,0.15))' }} />
           </div>
 
           {/* Compact link grid */}
@@ -208,12 +192,12 @@ export default function Footer() {
                 {item}
               </Link>
             ))}
-            <button
-              onClick={() => window.dispatchEvent(new CustomEvent('open-wholesale-modal'))}
-              className="font-sans text-gold/50 text-[0.78rem] hover:text-gold transition-colors duration-200 text-left"
+            <Link
+              href="/wholesale"
+              className="font-sans text-white/45 text-[0.78rem] hover:text-white transition-colors duration-200 text-left"
             >
               ✦ Dealer Login
-            </button>
+            </Link>
           </div>
         </div>
       </div>
