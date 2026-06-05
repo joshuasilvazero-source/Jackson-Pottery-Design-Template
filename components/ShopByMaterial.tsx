@@ -56,9 +56,7 @@ export default function ShopByMaterial() {
   const isInView = useInView(ref, { once: true, margin: '-6%' })
 
   return (
-    <section className="relative bg-[#FDFAF5] py-section">
-      {/* Soft fade from dark section above */}
-      <div className="absolute top-0 inset-x-0 h-20 pointer-events-none" style={{ background: 'linear-gradient(to bottom, rgba(12,10,8,0.07) 0%, transparent 100%)' }} />
+    <section className="relative bg-[#F4F4F4] py-section">
       <div className="max-w-[1440px] mx-auto px-4 lg:px-8">
 
         {/* Section Header */}
@@ -89,6 +87,7 @@ export default function ShopByMaterial() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.1 + i * 0.07, ease: [0.16, 1, 0.3, 1] }}
+              className={i === materials.length - 1 ? 'col-span-2 mx-auto w-full max-w-[50%] sm:col-span-1 sm:max-w-none sm:mx-0' : ''}
             >
               <Link href={mat.href} className="group block">
                 {/* Image */}
@@ -106,11 +105,11 @@ export default function ShopByMaterial() {
 
                 {/* Text */}
                 <div>
-                  <p className="font-serif font-semibold text-ink text-base group-hover:text-gold transition-colors duration-300 mb-0.5">
+                  <p className="font-serif font-semibold text-ink text-base group-hover:text-[#333333] transition-colors duration-300 mb-0.5">
                     {mat.label}
                   </p>
                   <p className="font-sans text-muted text-xs leading-relaxed mb-2">{mat.sub}</p>
-                  <span className="inline-flex items-center gap-1 text-[0.65rem] tracking-[0.2em] uppercase font-sans text-gold/80 group-hover:gap-2 transition-all duration-300">
+                  <span className="inline-flex items-center gap-1 text-[0.65rem] tracking-[0.2em] uppercase font-sans text-[#333333]/60 group-hover:gap-2 transition-all duration-300">
                     Shop Now
                     <ArrowRight size={10} strokeWidth={1.5} />
                   </span>
