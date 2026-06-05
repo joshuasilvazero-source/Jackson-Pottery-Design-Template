@@ -26,7 +26,7 @@ function NavLink({ href, children }: { href: string; children: React.ReactNode }
   return (
     <Link
       href={href}
-      className="group flex items-center gap-1.5 font-sans text-ash-400/55 text-[0.82rem] hover:text-warm-50 transition-colors duration-200 py-1"
+      className="group flex items-center gap-1.5 font-sans text-ash-400/55 text-[0.82rem] hover:text-white transition-colors duration-200 py-1"
     >
       {children}
       <ArrowRight size={10} strokeWidth={1.5} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 flex-shrink-0" />
@@ -36,7 +36,7 @@ function NavLink({ href, children }: { href: string; children: React.ReactNode }
 
 export default function Footer() {
   return (
-    <footer className="bg-ink text-warm-50">
+    <footer className="bg-ink text-white">
 
       {/* ── Newsletter strip — cohesive unit ── */}
       <div className="border-b border-white/[0.08]">
@@ -86,15 +86,15 @@ export default function Footer() {
               Premium handcrafted planters and outdoor décor that elevate every space they inhabit.
             </p>
             <div className="space-y-3">
-              <a href="tel:8775337687" className="flex items-center gap-2.5 text-ash-400/50 hover:text-warm-50 transition-colors duration-200">
+              <a href="tel:8775337687" className="flex items-center gap-2.5 text-ash-400/50 hover:text-white transition-colors duration-200">
                 <Phone size={12} strokeWidth={1.5} />
                 <span className="font-sans text-xs">(877) 533-7687</span>
               </a>
-              <a href="mailto:hello@jacksonpottery.com" className="flex items-center gap-2.5 text-ash-400/50 hover:text-warm-50 transition-colors duration-200">
+              <a href="mailto:hello@jacksonpottery.com" className="flex items-center gap-2.5 text-ash-400/50 hover:text-white transition-colors duration-200">
                 <Mail size={12} strokeWidth={1.5} />
                 <span className="font-sans text-xs">hello@jacksonpottery.com</span>
               </a>
-              <a href="https://instagram.com/jacksonpottery" className="flex items-center gap-2.5 text-ash-400/50 hover:text-warm-50 transition-colors duration-200">
+              <a href="https://instagram.com/jacksonpottery" className="flex items-center gap-2.5 text-ash-400/50 hover:text-white transition-colors duration-200">
                 <Instagram size={12} strokeWidth={1.5} />
                 <span className="font-sans text-xs">@JacksonPottery</span>
               </a>
@@ -157,13 +157,13 @@ export default function Footer() {
 
           {/* Contact icons */}
           <div className="flex items-center justify-center gap-6">
-            <a href="tel:8775337687" aria-label="Call us" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-ash-400/50 hover:text-warm-50 hover:border-white/25 transition-all duration-200">
+            <a href="tel:8775337687" aria-label="Call us" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-ash-400/50 hover:text-white hover:border-white/25 transition-all duration-200">
               <Phone size={14} strokeWidth={1.5} />
             </a>
-            <a href="mailto:hello@jacksonpottery.com" aria-label="Email us" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-ash-400/50 hover:text-warm-50 hover:border-white/25 transition-all duration-200">
+            <a href="mailto:hello@jacksonpottery.com" aria-label="Email us" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-ash-400/50 hover:text-white hover:border-white/25 transition-all duration-200">
               <Mail size={14} strokeWidth={1.5} />
             </a>
-            <a href="https://instagram.com/jacksonpottery" aria-label="Instagram" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-ash-400/50 hover:text-warm-50 hover:border-white/25 transition-all duration-200">
+            <a href="https://instagram.com/jacksonpottery" aria-label="Instagram" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-ash-400/50 hover:text-white hover:border-white/25 transition-all duration-200">
               <Instagram size={14} strokeWidth={1.5} />
             </a>
           </div>
@@ -187,7 +187,7 @@ export default function Footer() {
               <Link
                 key={item}
                 href="/shop"
-                className="font-sans text-ash-400/50 text-[0.78rem] hover:text-warm-50 transition-colors duration-200"
+                className="font-sans text-ash-400/50 text-[0.78rem] hover:text-white transition-colors duration-200"
               >
                 {item}
               </Link>

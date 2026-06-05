@@ -1,22 +1,21 @@
 export default function GlobalStyles() {
   return (
     <style>{`
+      /* ── Design tokens ─────────────────────────────────────────────────── */
       :root {
         --font-playfair: 'Playfair Display', Georgia, serif;
         --font-manrope:  'Manrope', system-ui, sans-serif;
 
-        --ink:         #333333;
-        --charcoal:    #333333;
-        --graphite:    #1F1F1F;
-        --soft-white:  #F4F4F4;
-        --light-gray:  #F4F4F4;
-        --warm-gray:   #D6D3CE;
-        --stone-gray:  #B8B4AE;
-        --muted:       #7A7672;
-        --border:      #D6D3CE;
-        --gold:        #333333;
+        --charcoal:   #333333;
+        --graphite:   #1F1F1F;
+        --light-gray: #F4F4F4;
+        --warm-gray:  #D6D3CE;
+        --stone-gray: #B8B4AE;
+        --muted:      #7A7672;
+        --border:     #D6D3CE;
       }
 
+      /* ── Reset ─────────────────────────────────────────────────────────── */
       * { box-sizing: border-box; padding: 0; margin: 0; }
 
       html {
@@ -27,31 +26,33 @@ export default function GlobalStyles() {
 
       body {
         background-color: #FFFFFF;
-        color: var(--ink);
+        color: var(--charcoal);
         font-family: var(--font-manrope), system-ui, sans-serif;
         overflow-x: hidden;
         font-size: 15px;
         line-height: 1.6;
       }
 
-      ::-webkit-scrollbar { width: 5px; }
-      ::-webkit-scrollbar-track { background: var(--soft-white); }
-      ::-webkit-scrollbar-thumb { background: var(--warm-gray); border-radius: 2px; }
-      ::-webkit-scrollbar-thumb:hover { background: var(--stone-gray); }
-
-      ::selection { background: rgba(43, 43, 43, 0.10); color: var(--ink); }
-
       button { cursor: pointer; border: none; background: none; }
       a { color: inherit; text-decoration: none; }
       img { display: block; }
 
+      /* ── Scrollbar ─────────────────────────────────────────────────────── */
+      ::-webkit-scrollbar { width: 5px; }
+      ::-webkit-scrollbar-track { background: var(--light-gray); }
+      ::-webkit-scrollbar-thumb { background: var(--warm-gray); border-radius: 2px; }
+      ::-webkit-scrollbar-thumb:hover { background: var(--stone-gray); }
+
+      ::selection { background: rgba(51, 51, 51, 0.10); color: var(--charcoal); }
+
+      /* ── Utility classes ───────────────────────────────────────────────── */
       .image-zoom { overflow: hidden; }
       .image-zoom img { transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
       .image-zoom:hover img { transform: scale(1.04); }
 
       .dark-section {
         background-color: var(--charcoal);
-        color: var(--soft-white);
+        color: #FFFFFF;
       }
 
       .text-gradient-charcoal {
@@ -77,6 +78,7 @@ export default function GlobalStyles() {
         box-shadow: 0 16px 50px rgba(0, 0, 0, 0.22);
       }
 
+      /* ── Animations ────────────────────────────────────────────────────── */
       .image-reveal {
         animation: imageReveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       }

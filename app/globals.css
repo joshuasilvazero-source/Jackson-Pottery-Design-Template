@@ -2,36 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Button system ──────────────────────────────────────────────────────── */
 @layer utilities {
+  /* Filled dark button — primary CTA on light backgrounds */
   .btn-dark {
     @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-charcoal text-white text-[11px] tracking-[0.16em] uppercase font-sans font-medium transition-all duration-300 hover:bg-graphite hover:shadow-[0_8px_28px_rgba(0,0,0,0.22)] hover:-translate-y-px;
   }
 
+  /* Outlined dark button — secondary CTA on light backgrounds */
   .btn-dark-outline {
     @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full border border-charcoal text-charcoal text-[11px] tracking-[0.16em] uppercase font-sans font-medium transition-all duration-300 hover:bg-charcoal hover:text-white hover:-translate-y-px;
   }
 
+  /* Outlined white button — CTA on dark/charcoal backgrounds */
   .btn-white-outline {
     @apply inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full border border-white/50 text-white text-[11px] tracking-[0.16em] uppercase font-sans font-medium transition-all duration-300 hover:bg-white/10 hover:border-white/80 hover:-translate-y-px;
   }
+}
 
+/* ── Typography utilities ───────────────────────────────────────────────── */
+@layer utilities {
+  /* Eyebrow label above section headings */
   .section-label {
     @apply text-[0.62rem] tracking-[0.32em] uppercase font-sans font-medium text-stone-gray;
   }
 
+  /* Primary section heading */
   .section-heading {
     @apply font-serif text-display-lg text-ink leading-tight;
   }
 
+  /* Navigation link */
   .nav-item {
     @apply text-[0.72rem] tracking-[0.14em] uppercase font-sans text-ink/65 hover:text-ink transition-colors duration-200;
   }
-}
-
-.btn-primary {
-  @apply inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-charcoal text-white text-[11px] tracking-[0.16em] uppercase font-sans font-medium transition-all duration-300 hover:bg-graphite hover:shadow-[0_8px_28px_rgba(0,0,0,0.22)] hover:-translate-y-px;
-}
-
-.btn-outline {
-  @apply inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-white/30 text-white text-[11px] tracking-[0.16em] uppercase font-sans font-medium transition-all duration-300 hover:border-white/60 hover:bg-white/[0.08] hover:-translate-y-px;
 }

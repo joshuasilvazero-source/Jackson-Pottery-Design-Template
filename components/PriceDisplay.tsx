@@ -37,8 +37,8 @@ export default function PriceDisplay({
   return (
     <div className="space-y-1">
       <div className="flex items-center gap-2">
-        <span className="w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0" />
-        <span className="font-sans text-[0.58rem] tracking-[0.2em] uppercase text-gold/70">
+        <span className="w-1.5 h-1.5 rounded-full bg-[#333333] flex-shrink-0" />
+        <span className="font-sans text-[0.58rem] tracking-[0.2em] uppercase text-[#333333]/70">
           Wholesale Pricing Active
         </span>
       </div>
@@ -48,7 +48,7 @@ export default function PriceDisplay({
           ${price.toLocaleString()}
         </span>
       </div>
-      <p className="font-sans text-[0.6rem] text-gold/60 tracking-wide">
+      <p className="font-sans text-[0.6rem] text-[#333333]/55 tracking-wide">
         You save ${savings.toLocaleString()} · {discountPct}% trade discount
       </p>
     </div>

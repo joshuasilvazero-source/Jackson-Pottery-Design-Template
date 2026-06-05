@@ -37,13 +37,13 @@ export default function ProductPageClient({
   ]
 
   return (
-    <div className="min-h-screen bg-[#FDFAF5]">
+    <div className="min-h-screen bg-white">
       {/* Breadcrumb */}
       <div className="max-w-[1440px] mx-auto px-4 lg:px-8 pt-36 pb-6 border-b border-border">
         <div className="flex items-center gap-2 text-[0.65rem] font-sans text-muted tracking-widest uppercase">
-          <Link href="/" className="hover:text-gold transition-colors">Home</Link>
+          <Link href="/" className="hover:text-[#333333] transition-colors">Home</Link>
           <span>/</span>
-          <Link href="/shop" className="hover:text-gold transition-colors">Shop</Link>
+          <Link href="/shop" className="hover:text-[#333333] transition-colors">Shop</Link>
           <span>/</span>
           <span>{product.category}</span>
           <span>/</span>
@@ -87,10 +87,10 @@ export default function ProductPageClient({
               {/* Badges */}
               <div className="absolute top-4 left-4 flex flex-col gap-2">
                 {product.isNew && (
-                  <span className="bg-gold text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1.5">New</span>
+                  <span className="bg-[#333333] text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1.5">New</span>
                 )}
                 {product.isBestseller && (
-                  <span className="bg-ink text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1.5">Bestseller</span>
+                  <span className="bg-[#333333] text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1.5">Bestseller</span>
                 )}
               </div>
 
@@ -106,7 +106,7 @@ export default function ProductPageClient({
                   key={i}
                   onClick={() => setActiveImage(i)}
                   className={`relative aspect-square overflow-hidden border transition-all duration-200 ${
-                    activeImage === i ? 'border-gold' : 'border-border opacity-60 hover:opacity-90'
+                    activeImage === i ? 'border-[#333333]' : 'border-border opacity-60 hover:opacity-90'
                   }`}
                 >
                   <Image src={img} alt={`View ${i + 1}`} fill className="object-cover" sizes="100px" />
@@ -129,7 +129,9 @@ export default function ProductPageClient({
               {/* Rating */}
               <div className="flex items-center gap-3 mb-6">
                 <div className="flex gap-0.5">
-                  {[...Array(5)].map((_, i) => <Star key={i} size={12} className="fill-gold text-gold" strokeWidth={0} />)}
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} size={12} className="fill-[#333333]/50 text-[#333333]/50" strokeWidth={0} />
+                  ))}
                 </div>
                 <span className="font-sans text-muted text-xs">4.9 (24 reviews)</span>
               </div>
@@ -152,7 +154,7 @@ export default function ProductPageClient({
                   { label: 'Finish', value: product.finish },
                   { label: 'Usage', value: product.usage },
                 ].map((spec) => (
-                  <div key={spec.label} className="bg-white border border-border px-4 py-3">
+                  <div key={spec.label} className="bg-[#F4F4F4] border border-border px-4 py-3">
                     <p className="font-sans text-[0.6rem] text-muted tracking-[0.25em] uppercase mb-1">{spec.label}</p>
                     <p className="font-sans text-ink text-xs">{spec.value}</p>
                   </div>
@@ -177,38 +179,44 @@ export default function ProductPageClient({
               <div className="flex gap-2.5 mb-6">
                 <button
                   onClick={() => { setAddedToCart(true); setTimeout(() => setAddedToCart(false), 2200) }}
-                  className={`flex-1 py-3.5 flex items-center justify-center gap-2 text-[0.68rem] tracking-[0.2em] uppercase font-sans transition-all duration-400 ${
-                    addedToCart ? 'bg-ink text-white' : 'bg-gold text-white hover:bg-gold/90'
+                  className={`flex-1 py-3.5 flex items-center justify-center gap-2 text-[0.68rem] tracking-[0.2em] uppercase font-sans transition-all duration-300 ${
+                    addedToCart
+                      ? 'bg-[#1F1F1F] text-white'
+                      : 'bg-[#333333] text-white hover:bg-[#1F1F1F]'
                   }`}
                 >
                   {addedToCart ? <><Check size={13} strokeWidth={2} /> Added to Cart</> : 'Add to Cart'}
                 </button>
                 <button
                   onClick={() => setWishlisted(!wishlisted)}
-                  className={`w-12 h-12 border flex items-center justify-center transition-all duration-300 ${wishlisted ? 'border-gold bg-gold/8 text-gold' : 'border-border text-muted hover:border-gold hover:text-gold'}`}
+                  className={`w-12 h-12 border flex items-center justify-center transition-all duration-300 ${
+                    wishlisted
+                      ? 'border-[#333333] bg-[#333333]/[0.06] text-[#333333]'
+                      : 'border-border text-muted hover:border-[#333333] hover:text-[#333333]'
+                  }`}
                 >
-                  <Heart size={15} strokeWidth={1.5} className={wishlisted ? 'fill-gold' : ''} />
+                  <Heart size={15} strokeWidth={1.5} className={wishlisted ? 'fill-[#333333]' : ''} />
                 </button>
-                <button className="w-12 h-12 border border-border flex items-center justify-center text-muted hover:border-gold hover:text-gold transition-all duration-300">
+                <button className="w-12 h-12 border border-border flex items-center justify-center text-muted hover:border-[#333333] hover:text-[#333333] transition-all duration-300">
                   <Share2 size={14} strokeWidth={1.5} />
                 </button>
               </div>
 
               {/* Testimonial pull-quote */}
-              <div className="border-l-2 border-gold/40 pl-4 mb-6">
+              <div className="border-l-2 border-[#333333]/30 pl-4 mb-6">
                 <p className="font-serif italic text-muted text-sm leading-relaxed mb-2">
                   &ldquo;The quality is beyond exceptional — these pieces feel like living sculptures.&rdquo;
                 </p>
-                <p className="font-sans text-[0.62rem] tracking-[0.2em] uppercase text-gold/70">
+                <p className="font-sans text-[0.62rem] tracking-[0.2em] uppercase text-[#333333]/50">
                   Sarah Mitchell · Principal Landscape Architect, LA
                 </p>
               </div>
 
               {/* Shipping info */}
-              <div className="bg-white border border-border p-4 mb-7 space-y-2">
+              <div className="bg-[#F4F4F4] border border-border p-4 mb-7 space-y-2">
                 {['Free shipping on orders over $500', 'White-glove delivery available', '30-day hassle-free returns'].map((item) => (
                   <div key={item} className="flex items-center gap-2.5">
-                    <span className="w-1 h-1 rounded-full bg-gold flex-shrink-0" />
+                    <span className="w-1 h-1 rounded-full bg-[#333333]/40 flex-shrink-0" />
                     <span className="font-sans text-xs text-muted">{item}</span>
                   </div>
                 ))}
@@ -223,7 +231,9 @@ export default function ProductPageClient({
                     onClick={() => setOpenDetail(openDetail === detail.label ? null : detail.label)}
                     className="w-full flex items-center justify-between py-4"
                   >
-                    <span className={`font-sans text-[0.72rem] tracking-[0.14em] uppercase font-semibold transition-colors duration-200 ${openDetail === detail.label ? 'text-gold' : 'text-ink'}`}>
+                    <span className={`font-sans text-[0.72rem] tracking-[0.14em] uppercase font-semibold transition-colors duration-200 ${
+                      openDetail === detail.label ? 'text-[#333333]' : 'text-ink/60 hover:text-[#333333]'
+                    }`}>
                       {detail.label}
                     </span>
                     <span className={`text-muted transition-transform duration-300 ${openDetail === detail.label ? 'rotate-45' : ''}`}>
@@ -254,7 +264,7 @@ export default function ProductPageClient({
           <div className="mt-16 lg:mt-20 pt-12 border-t border-border">
             <div className="flex items-center justify-between mb-10">
               <h2 className="font-serif font-bold text-display-sm text-ink">You May Also Love</h2>
-              <Link href="/shop" className="hidden md:inline-flex items-center gap-2 text-[0.68rem] tracking-[0.2em] uppercase font-sans text-muted hover:text-gold transition-colors group">
+              <Link href="/shop" className="hidden md:inline-flex items-center gap-2 text-[0.68rem] tracking-[0.2em] uppercase font-sans text-muted hover:text-[#333333] transition-colors group">
                 View All <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" strokeWidth={1.5} />
               </Link>
             </div>
@@ -263,9 +273,9 @@ export default function ProductPageClient({
                 <Link key={p.id} href={`/products/${p.id}`} className="group block">
                   <div className="relative aspect-[3/4] overflow-hidden mb-3 bg-ash-100 image-zoom">
                     <Image src={p.image} alt={p.name} fill className="object-cover" sizes="(max-width: 768px) 50vw, 25vw" />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-400" />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
                   </div>
-                  <p className="font-serif font-bold text-ink text-base group-hover:text-gold transition-colors duration-300 mb-0.5">{p.name}</p>
+                  <p className="font-serif font-bold text-ink text-base group-hover:text-[#333333]/70 transition-colors duration-300 mb-0.5">{p.name}</p>
                   <p className="font-sans text-muted text-sm mt-1">${p.price.toLocaleString()}</p>
                 </Link>
               ))}
