@@ -472,7 +472,7 @@ export default function Navigation() {
               <div className="px-6 py-5 border-t border-[#D6D3CE] flex-shrink-0">
                 <div className="flex items-center gap-3">
                   <div className="h-px flex-1 bg-[#D6D3CE]" />
-                  <span className="text-[0.52rem] tracking-[0.4em] uppercase font-sans text-[#333333]/35">Since 2009</span>
+                  <span className="text-[0.52rem] tracking-[0.4em] uppercase font-sans text-[#333333]/35">Since 1983</span>
                   <div className="h-px flex-1 bg-[#D6D3CE]" />
                 </div>
               </div>
