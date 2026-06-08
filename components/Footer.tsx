@@ -173,7 +173,7 @@ export default function Footer() {
           {/* Divider */}
           <div className="flex items-center gap-4 w-full max-w-xs">
             <div className="h-px flex-1 bg-[#D6D3CE]" />
-            <span className="font-sans text-[0.55rem] tracking-[0.4em] uppercase text-[#333333]/30">Since 2009</span>
+            <span className="font-sans text-[0.55rem] tracking-[0.4em] uppercase text-[#333333]/30">Since 1983</span>
             <div className="h-px flex-1 bg-[#D6D3CE]" />
           </div>
 
