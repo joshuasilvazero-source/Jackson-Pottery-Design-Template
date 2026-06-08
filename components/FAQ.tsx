@@ -11,7 +11,7 @@ export default function FAQ() {
   const isInView = useInView(ref, { once: true, margin: '-8%' })
 
   return (
-    <section className="relative bg-white py-section">
+    <section className="relative bg-white pt-section-sm pb-section lg:py-section">
       <div className="max-w-[1440px] mx-auto px-4 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.8fr] gap-12 lg:gap-20">
 

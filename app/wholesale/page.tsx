@@ -4,7 +4,7 @@ import { useSession, signIn, signOut } from 'next-auth/react'
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Tag, Clock, Headphones, Shield, FileText, ArrowRight, Check } from 'lucide-react'
+import { Tag, Headphones, FileText, ArrowRight } from 'lucide-react'
 import PriceDisplay from '@/components/PriceDisplay'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
@@ -18,12 +18,6 @@ const products = [
   { id: 'solstice',   name: 'Solstice Bowl',        price: 295,  wholesalePrice: 177, category: 'Glazed'       },
 ]
 
-const benefits = [
-  { icon: Tag,        label: 'Trade Pricing',        sub: 'Approx. 40% off retail across all collections' },
-  { icon: Clock,      label: 'Priority Fulfillment', sub: 'Dedicated allocation and faster lead times'     },
-  { icon: Headphones, label: 'Dedicated Rep',        sub: 'One point of contact for your account'         },
-  { icon: Shield,     label: 'Verified Accounts',    sub: 'Secure, invitation-only trade portal'           },
-]
 
 export default function WholesalePage() {
   const { data: session, status } = useSession()
@@ -185,47 +179,12 @@ export default function WholesalePage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#111111]">
+    <div className="min-h-screen bg-charcoal">
       <Navigation />
 
-      <div className="max-w-[1440px] mx-auto px-4 lg:px-8 pt-24 lg:pt-36 pb-16 lg:pb-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-
-          {/* Left — trade value proposition */}
-          <div className="lg:pt-4">
-            <p className="font-sans text-[0.6rem] tracking-[0.4em] uppercase text-white/30 mb-5">Dealer & Distributor Portal</p>
-            <h1 className="font-serif font-bold text-display-lg text-white leading-tight mb-5">
-              Jackson Pottery<br />Wholesale
-            </h1>
-            <p className="font-sans text-white/45 text-sm leading-relaxed mb-10 max-w-md">
-              Access exclusive trade pricing, priority fulfillment, and a dedicated account rep.
-              Built for designers, dealers, and distributors who specify premium planters.
-            </p>
-
-            {/* Benefit cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10">
-              {benefits.map(({ icon: Icon, label, sub }) => (
-                <div key={label} className="bg-white/[0.04] border border-white/[0.07] rounded-xl p-5">
-                  <Icon size={18} className="text-white/25 mb-3" strokeWidth={1.5} />
-                  <p className="font-sans font-semibold text-white/80 text-sm mb-1">{label}</p>
-                  <p className="font-sans text-white/35 text-xs leading-relaxed">{sub}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* Trust line */}
-            <div className="flex items-center gap-5 flex-wrap pt-2">
-              {['Verified Dealers Only', 'Secure Portal', 'No Minimums'].map((item) => (
-                <div key={item} className="flex items-center gap-1.5">
-                  <Check size={11} strokeWidth={2} className="text-white/25" />
-                  <span className="font-sans text-[0.72rem] text-white/30 tracking-wide">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right — white login card */}
-          <div className="bg-white rounded-2xl p-8 lg:p-10 shadow-[0_32px_80px_rgba(0,0,0,0.5)]">
+      <div className="flex items-center justify-center min-h-[calc(100vh-4.5rem)] px-4 py-12">
+          {/* White login card */}
+          <div className="w-full max-w-md bg-white rounded-2xl p-8 shadow-[0_32px_80px_rgba(0,0,0,0.5)]">
             {/* Logo */}
             <div className="mb-8 pb-7 border-b border-[#D6D3CE]">
               <Image
@@ -237,15 +196,16 @@ export default function WholesalePage() {
               />
             </div>
 
+            <p className="font-sans text-[0.6rem] tracking-[0.38em] uppercase text-[#333333] mb-2">Dealer & Distributor Portal</p>
             <h2 className="font-serif text-2xl font-semibold text-[#333333] mb-1">Trade Login</h2>
-            <p className="font-sans text-[#7A7672] text-sm mb-7">
+            <p className="font-sans text-[#7A7672] text-sm mb-7 leading-relaxed">
               Sign in with your dealer credentials to access wholesale pricing.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
                 <label htmlFor="email" className="block font-sans text-[0.68rem] tracking-[0.14em] uppercase font-medium text-[#333333]/60 mb-2">
-                  Email Address
+                  Business Email
                 </label>
                 <input
                   id="email"
@@ -292,8 +252,6 @@ export default function WholesalePage() {
               Invitation-only access. Contact your rep<br />to request a dealer account.
             </p>
           </div>
-
-        </div>
       </div>
 
       <div className="border-t border-white/[0.06]">
