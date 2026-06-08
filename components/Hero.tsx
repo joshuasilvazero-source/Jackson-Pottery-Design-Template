@@ -56,7 +56,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="font-sans text-[0.58rem] tracking-[0.38em] uppercase text-white/55 font-medium mb-5"
+          className="font-sans text-[0.58rem] tracking-[0.38em] uppercase text-white font-medium mb-5 [text-shadow:0_1px_12px_rgba(0,0,0,0.6)]"
         >
           Handcrafted Since 1983
         </motion.p>
@@ -66,7 +66,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 36 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.3, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="font-serif font-bold text-white text-display-2xl leading-[1.12] sm:leading-[1.05] max-w-4xl mb-5"
+          className="font-serif font-bold text-white text-display-2xl leading-[1.12] sm:leading-[1.05] max-w-4xl mb-5 [text-shadow:0_2px_20px_rgba(0,0,0,0.5)]"
         >
           Elevated planters for
           <br />
@@ -86,7 +86,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.62, ease: [0.16, 1, 0.3, 1] }}
-          className="font-serif italic text-white/80 text-lg md:text-xl max-w-lg leading-relaxed mb-10"
+          className="font-serif italic text-white text-lg md:text-xl max-w-lg leading-relaxed mb-10 [text-shadow:0_1px_12px_rgba(0,0,0,0.6)]"
         >
           Timeless designs. Premium materials. Spaces transformed.
         </motion.p>
