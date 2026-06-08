@@ -188,7 +188,7 @@ export default function Navigation() {
                                   className="group/item flex items-center justify-between py-3.5 border-b border-[#D6D3CE]/50 last:border-0 transition-colors duration-150"
                                 >
                                   <div className="flex items-center gap-2.5">
-                                    <span className="font-serif text-[0.95rem] text-[#333333]/80 group-hover/item:text-[#333333] transition-colors duration-150">
+                                    <span className="font-serif text-[0.95rem] text-[#333333] transition-colors duration-150">
                                       {item}
                                     </span>
                                     {cat.newItem === item && (
@@ -204,7 +204,7 @@ export default function Navigation() {
                           </ul>
                           <Link
                             href={cat.href}
-                            className="group/all inline-flex items-center gap-1.5 mt-5 text-[0.62rem] tracking-[0.25em] uppercase font-sans text-[#333333]/70 hover:text-[#333333] transition-colors duration-200"
+                            className="group/all inline-flex items-center gap-1.5 mt-5 text-[0.62rem] tracking-[0.25em] uppercase font-sans text-[#333333] hover:text-[#333333] transition-colors duration-200"
                           >
                             View All {cat.short}
                             <ArrowUpRight size={10} strokeWidth={1.5} className="group-hover/all:translate-x-0.5 group-hover/all:-translate-y-0.5 transition-transform duration-200" />
