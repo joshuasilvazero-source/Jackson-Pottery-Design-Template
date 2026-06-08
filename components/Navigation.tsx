@@ -345,22 +345,22 @@ export default function Navigation() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed top-0 right-0 bottom-0 z-[60] w-[85vw] max-w-sm bg-[#1A1A1A] flex flex-col"
+              className="fixed top-0 right-0 bottom-0 z-[60] w-[85vw] max-w-sm bg-white flex flex-col shadow-[-12px_0_40px_rgba(0,0,0,0.12)]"
             >
               {/* Panel header */}
-              <div className="flex items-center justify-between px-6 h-[4.5rem] border-b border-white/[0.08] flex-shrink-0">
+              <div className="flex items-center justify-between px-6 h-[4.5rem] border-b border-[#D6D3CE] flex-shrink-0">
                 <Link href="/" onClick={() => setMobileOpen(false)} className="flex">
                   <Image
                     src="/jackson-pottery-logo.png"
                     alt="Jackson Pottery"
                     width={1238}
                     height={240}
-                    className="h-9 w-auto brightness-0 invert opacity-80 hover:opacity-100 transition-opacity duration-300"
+                    className="h-9 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
                   />
                 </Link>
                 <button
                   onClick={() => setMobileOpen(false)}
-                  className="w-10 h-10 rounded-full border border-white/[0.12] flex items-center justify-center text-white/45 hover:text-white hover:border-white/25 transition-all duration-200"
+                  className="w-10 h-10 rounded-full border border-[#D6D3CE] flex items-center justify-center text-[#333333]/45 hover:text-[#333333] hover:border-[#333333]/40 transition-all duration-200"
                 >
                   <X size={15} strokeWidth={1.5} />
                 </button>
@@ -374,7 +374,7 @@ export default function Navigation() {
                     initial={{ opacity: 0, x: 28 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.07 + i * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                    className="border-b border-white/[0.06]"
+                    className="border-b border-[#D6D3CE]/70"
                   >
                     <Link
                       href={cat.href}
@@ -382,14 +382,14 @@ export default function Navigation() {
                       className="group flex items-center justify-between px-6 py-5"
                     >
                       <div>
-                        <span className="font-sans text-sm font-medium text-white/65 group-hover:text-white transition-colors duration-200 block">
+                        <span className="font-sans text-sm font-medium text-[#333333] group-hover:text-[#333333] transition-colors duration-200 block">
                           {cat.label}
                         </span>
-                        <span className="font-serif italic text-[0.72rem] text-white/25 group-hover:text-white/45 transition-colors duration-200 mt-0.5 block">
+                        <span className="font-serif italic text-[0.72rem] text-[#333333]/45 group-hover:text-[#333333]/70 transition-colors duration-200 mt-0.5 block">
                           {cat.featured}
                         </span>
                       </div>
-                      <ArrowUpRight size={14} strokeWidth={1.5} className="text-white/20 group-hover:text-white/60 flex-shrink-0 ml-4 transition-colors duration-200" />
+                      <ArrowUpRight size={14} strokeWidth={1.5} className="text-[#333333]/30 group-hover:text-[#333333]/70 flex-shrink-0 ml-4 transition-colors duration-200" />
                     </Link>
                   </motion.div>
                 ))}
@@ -399,7 +399,7 @@ export default function Navigation() {
                   initial={{ opacity: 0, x: 28 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                  className="border-b border-white/[0.1] bg-white/[0.05] px-6 py-4"
+                  className="border-b border-[#D6D3CE] bg-[#F4F4F4] px-6 py-4"
                 >
                   {isDealer ? (
                     <button
@@ -407,15 +407,15 @@ export default function Navigation() {
                       className="flex items-center justify-between w-full"
                     >
                       <div className="flex items-center gap-2.5">
-                        <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
-                          <span className="text-white text-xs">✓</span>
+                        <div className="w-8 h-8 rounded-full bg-[#333333]/10 flex items-center justify-center flex-shrink-0">
+                          <span className="text-[#333333] text-xs">✓</span>
                         </div>
                         <div>
-                          <p className="font-sans text-sm font-medium text-white leading-tight">Dealer Active</p>
-                          <p className="font-sans text-[0.62rem] text-white/35 mt-0.5">Wholesale pricing enabled</p>
+                          <p className="font-sans text-sm font-medium text-[#333333] leading-tight">Dealer Active</p>
+                          <p className="font-sans text-[0.62rem] text-[#333333]/50 mt-0.5">Wholesale pricing enabled</p>
                         </div>
                       </div>
-                      <span className="font-sans text-[0.62rem] tracking-[0.12em] uppercase text-white/40">Sign Out</span>
+                      <span className="font-sans text-[0.62rem] tracking-[0.12em] uppercase text-[#333333]/50">Sign Out</span>
                     </button>
                   ) : (
                     <Link
@@ -424,15 +424,15 @@ export default function Navigation() {
                       className="flex items-center justify-between w-full"
                     >
                       <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0">
-                          <span className="text-white/70 text-xs">↗</span>
+                        <div className="w-8 h-8 rounded-full bg-[#333333]/10 border border-[#333333]/20 flex items-center justify-center flex-shrink-0">
+                          <span className="text-[#333333]/70 text-xs">↗</span>
                         </div>
                         <div>
-                          <p className="font-sans text-sm font-semibold text-white leading-tight">Dealer & Distributor</p>
-                          <p className="font-sans text-[0.62rem] text-white/40 mt-0.5">Wholesale pricing access</p>
+                          <p className="font-sans text-sm font-semibold text-[#333333] leading-tight">Dealer & Distributor</p>
+                          <p className="font-sans text-[0.62rem] text-[#333333]/50 mt-0.5">Wholesale pricing access</p>
                         </div>
                       </div>
-                      <ArrowUpRight size={14} strokeWidth={1.5} className="text-white/35 flex-shrink-0" />
+                      <ArrowUpRight size={14} strokeWidth={1.5} className="text-[#333333]/40 flex-shrink-0" />
                     </Link>
                   )}
                 </motion.div>
@@ -442,12 +442,12 @@ export default function Navigation() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.36 }}
-                  className="flex items-center gap-3 px-6 py-5 border-b border-white/[0.05]"
+                  className="flex items-center gap-3 px-6 py-5 border-b border-[#D6D3CE]/60"
                 >
-                  <Phone size={13} strokeWidth={1.5} className="text-white/25" />
+                  <Phone size={13} strokeWidth={1.5} className="text-[#333333]/45" />
                   <div>
-                    <p className="text-[0.58rem] tracking-widest uppercase font-sans text-white/25">Call Us</p>
-                    <p className="text-sm font-sans font-medium text-white/55">(877) 533-7687</p>
+                    <p className="text-[0.58rem] tracking-widest uppercase font-sans text-[#333333]/45">Call Us</p>
+                    <p className="text-sm font-sans font-medium text-[#333333]">(877) 533-7687</p>
                   </div>
                 </motion.div>
 
@@ -461,7 +461,7 @@ export default function Navigation() {
                   <Link
                     href="/shop"
                     onClick={() => setMobileOpen(false)}
-                    className="flex items-center justify-center w-full px-6 py-3.5 rounded-full bg-white text-[#333333] text-[0.72rem] tracking-[0.14em] uppercase font-sans font-semibold hover:bg-[#F4F4F4] transition-colors duration-200"
+                    className="flex items-center justify-center w-full px-6 py-3.5 rounded-full bg-[#333333] text-white text-[0.72rem] tracking-[0.14em] uppercase font-sans font-semibold hover:bg-[#1F1F1F] transition-colors duration-200"
                   >
                     Shop Now
                   </Link>
@@ -469,11 +469,11 @@ export default function Navigation() {
               </nav>
 
               {/* Bottom */}
-              <div className="px-6 py-5 border-t border-white/[0.06] flex-shrink-0">
+              <div className="px-6 py-5 border-t border-[#D6D3CE] flex-shrink-0">
                 <div className="flex items-center gap-3">
-                  <div className="h-px flex-1 bg-white/[0.08]" />
-                  <span className="text-[0.52rem] tracking-[0.4em] uppercase font-sans text-white/20">Since 2009</span>
-                  <div className="h-px flex-1 bg-white/[0.08]" />
+                  <div className="h-px flex-1 bg-[#D6D3CE]" />
+                  <span className="text-[0.52rem] tracking-[0.4em] uppercase font-sans text-[#333333]/35">Since 2009</span>
+                  <div className="h-px flex-1 bg-[#D6D3CE]" />
                 </div>
               </div>
             </motion.div>
