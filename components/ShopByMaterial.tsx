@@ -26,7 +26,7 @@ export default function ShopByMaterial() {
   const isInView = useInView(ref, { once: true, margin: '-6%' })
 
   return (
-    <section className="relative bg-[#F4F4F4] dark:bg-[#1A1A1A] py-section">
+    <section className="relative bg-[#F4F4F4] py-section">
       <div className="max-w-[1440px] mx-auto px-4 lg:px-8">
 
         <div ref={ref} className="text-center mb-10 lg:mb-12">
@@ -34,7 +34,7 @@ export default function ShopByMaterial() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="font-serif font-bold text-display-md text-[#333333] dark:text-[#F4F4F4] tracking-wide mb-2"
+            className="font-serif font-bold text-display-md text-[#333333] tracking-wide mb-2"
           >
             Shop by Material
           </motion.h2>
@@ -42,7 +42,7 @@ export default function ShopByMaterial() {
             initial={{ opacity: 0, y: 14 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-sans text-[#7A7672] dark:text-[#888882] text-sm"
+            className="font-sans text-[#7A7672] text-sm"
           >
             Explore our planters and accents by premium material.
           </motion.p>
@@ -70,11 +70,11 @@ export default function ShopByMaterial() {
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-500" />
                 </div>
                 <div>
-                  <p className="font-serif font-semibold text-[#333333] dark:text-[#F4F4F4] text-base group-hover:text-[#333333] dark:group-hover:text-white transition-colors duration-300 mb-0.5">
+                  <p className="font-serif font-semibold text-[#333333] text-base group-hover:text-[#333333] transition-colors duration-300 mb-0.5">
                     {mat.label}
                   </p>
-                  <p className="font-sans text-[#7A7672] dark:text-[#888882] text-xs leading-relaxed mb-2">{mat.sub}</p>
-                  <span className="inline-flex items-center gap-1 text-[0.68rem] tracking-[0.2em] uppercase font-sans text-[#333333]/60 dark:text-white/40 group-hover:gap-2 transition-all duration-300">
+                  <p className="font-sans text-[#7A7672] text-xs leading-relaxed mb-2">{mat.sub}</p>
+                  <span className="inline-flex items-center gap-1 text-[0.68rem] tracking-[0.2em] uppercase font-sans text-[#333333]/60 group-hover:gap-2 transition-all duration-300">
                     Shop Now
                     <ArrowRight size={10} strokeWidth={1.5} />
                   </span>
@@ -89,14 +89,14 @@ export default function ShopByMaterial() {
           initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.55 }}
-          className="mt-10 lg:mt-14 pt-8 border-t border-[#D6D3CE] dark:border-[#2E2E2E] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6"
+          className="mt-10 lg:mt-14 pt-8 border-t border-[#D6D3CE] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6"
         >
           {featureBadges.map((badge) => (
             <div key={badge.label} className="flex items-start gap-3">
-              <badge.icon size={20} className="text-[#7A7672] dark:text-[#888882] flex-shrink-0 mt-0.5" strokeWidth={1.5} />
+              <badge.icon size={20} className="text-[#7A7672] flex-shrink-0 mt-0.5" strokeWidth={1.5} />
               <div>
-                <p className="font-sans text-xs font-medium text-[#333333] dark:text-[#F4F4F4] tracking-wide uppercase">{badge.label}</p>
-                <p className="font-sans text-xs text-[#7A7672] dark:text-[#888882] mt-0.5">{badge.sub}</p>
+                <p className="font-sans text-xs font-medium text-[#333333] tracking-wide uppercase">{badge.label}</p>
+                <p className="font-sans text-xs text-[#7A7672] mt-0.5">{badge.sub}</p>
               </div>
             </div>
           ))}

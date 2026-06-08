@@ -21,32 +21,6 @@ export interface Product {
   inStock: boolean
 }
 
-export interface Testimonial {
-  id: number
-  name: string
-  role: string
-  location: string
-  rating: number
-  text: string
-  image: string
-}
-
-export interface SpaceCategory {
-  id: string
-  name: string
-  description: string
-  image: string
-  href: string
-  count: number
-}
-
-export interface GalleryItem {
-  id: number
-  image: string
-  alt: string
-  span: 'normal' | 'tall' | 'wide'
-}
-
 export const products: Product[] = [
   {
     id: 'montserrat-terracotta-vessel',
@@ -181,98 +155,6 @@ export const products: Product[] = [
     isBestseller: false,
     inStock: true,
   },
-]
-
-export const testimonials: Testimonial[] = [
-  {
-    id: 1,
-    name: 'Sarah Mitchell',
-    role: 'Principal Landscape Architect',
-    location: 'Los Angeles, CA',
-    rating: 5,
-    text: 'Jackson Pottery transformed my client\'s entire courtyard project. The quality is beyond exceptional — these pieces feel like living sculptures. I\'ve been recommending them to every client for three years.',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&q=80&fit=crop',
-  },
-  {
-    id: 2,
-    name: 'James Holloway',
-    role: 'Homeowner',
-    location: 'Scottsdale, AZ',
-    rating: 5,
-    text: 'I spent months looking for something that felt truly special for our backyard. The Villa Urn arrived and completely transformed the space — our guests ask about it every time. Worth every penny.',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&q=80&fit=crop',
-  },
-  {
-    id: 3,
-    name: 'Elena Voss',
-    role: 'Hospitality Design Director',
-    location: 'Miami, FL',
-    rating: 5,
-    text: 'We outfitted our entire hotel lobby and terrace with Jackson Pottery pieces. Guests constantly ask about them. The craftsmanship holds up beautifully in Florida\'s climate — two years and counting.',
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&q=80&fit=crop',
-  },
-]
-
-export const spaceCategories: SpaceCategory[] = [
-  {
-    id: 'patio',
-    name: 'Patio',
-    description: 'Al fresco elegance',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=750&q=80&fit=crop',
-    href: '/spaces/patio',
-    count: 24,
-  },
-  {
-    id: 'garden',
-    name: 'Garden',
-    description: 'Naturalistic beauty',
-    image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&h=750&q=80&fit=crop',
-    href: '/spaces/garden',
-    count: 31,
-  },
-  {
-    id: 'office',
-    name: 'Office',
-    description: 'Refined workspaces',
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=750&q=80&fit=crop',
-    href: '/spaces/office',
-    count: 18,
-  },
-  {
-    id: 'lobby',
-    name: 'Lobby',
-    description: 'Grand first impressions',
-    image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&h=750&q=80&fit=crop',
-    href: '/spaces/lobby',
-    count: 15,
-  },
-  {
-    id: 'poolside',
-    name: 'Poolside',
-    description: 'Resort-inspired living',
-    image: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=600&h=750&q=80&fit=crop',
-    href: '/spaces/poolside',
-    count: 12,
-  },
-  {
-    id: 'indoor',
-    name: 'Indoor Living',
-    description: 'Interior warmth',
-    image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=750&q=80&fit=crop',
-    href: '/spaces/indoor',
-    count: 28,
-  },
-]
-
-export const galleryImages: GalleryItem[] = [
-  { id: 1, image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80&fit=crop', alt: 'Luxury patio with terracotta planters', span: 'tall' },
-  { id: 2, image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?w=800&q=80&fit=crop', alt: 'Modern interior with ceramic vessels', span: 'normal' },
-  { id: 3, image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80&fit=crop', alt: 'Botanical garden setting', span: 'normal' },
-  { id: 4, image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80&fit=crop', alt: 'Indoor living room with greenery', span: 'tall' },
-  { id: 5, image: 'https://images.unsplash.com/photo-1567016432779-094069958ea5?w=800&q=80&fit=crop', alt: 'Glazed ceramic collection', span: 'normal' },
-  { id: 6, image: 'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800&q=80&fit=crop', alt: 'Poolside luxury planters', span: 'normal' },
-  { id: 7, image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80&fit=crop', alt: 'Office space with designer vessels', span: 'tall' },
-  { id: 8, image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80&fit=crop', alt: 'Architectural planter detail', span: 'normal' },
 ]
 
 export const faqs = [

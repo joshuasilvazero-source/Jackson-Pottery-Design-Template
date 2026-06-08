@@ -6,7 +6,6 @@ import Image from 'next/image'
 import { Search, ShoppingCart, User, Phone, X, Menu, ArrowUpRight, ChevronDown } from 'lucide-react'
 import Link from 'next/link'
 import { useSession, signOut } from 'next-auth/react'
-import ThemeToggle from './ThemeToggle'
 
 const categories = [
   {
@@ -66,10 +65,10 @@ export default function Navigation() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-[#111111] shadow-[0_1px_14px_rgba(0,0,0,0.08)] dark:shadow-[0_1px_14px_rgba(0,0,0,0.4)]">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-[0_1px_14px_rgba(0,0,0,0.08)]">
 
         {/* ── Brand row ── */}
-        <div className="border-b border-[#D6D3CE] dark:border-[#2E2E2E]">
+        <div className="border-b border-[#D6D3CE]">
           <div className="max-w-[1440px] mx-auto px-4 lg:px-8 h-[4.4rem] flex items-center">
 
             {/* Mobile: logo + hamburger */}
@@ -80,16 +79,15 @@ export default function Navigation() {
                   alt="Jackson Pottery"
                   width={1238}
                   height={240}
-                  className="h-9 w-auto dark:brightness-0 dark:invert dark:opacity-90"
+                  className="h-9 w-auto"
                   priority
                 />
               </Link>
               <div className="flex items-center gap-1">
-                <ThemeToggle />
                 <button
                   onClick={() => setMobileOpen(true)}
                   aria-label="Open menu"
-                  className="w-11 h-11 flex items-center justify-center rounded-full text-[#333333]/60 dark:text-white/50 hover:text-[#333333] dark:hover:text-white transition-colors duration-200"
+                  className="w-11 h-11 flex items-center justify-center rounded-full text-[#333333]/60 hover:text-[#333333] transition-colors duration-200"
                 >
                   <Menu size={22} strokeWidth={1.5} />
                 </button>
@@ -103,7 +101,7 @@ export default function Navigation() {
                 alt="Jackson Pottery"
                 width={1238}
                 height={240}
-                className="h-11 w-auto group-hover:opacity-70 transition-opacity duration-300 dark:brightness-0 dark:invert dark:opacity-90"
+                className="h-11 w-auto group-hover:opacity-70 transition-opacity duration-300"
                 priority
               />
             </Link>
@@ -111,15 +109,15 @@ export default function Navigation() {
         </div>
 
         {/* ── Category + actions row (desktop) ── */}
-        <div className="hidden lg:block border-b border-[#D6D3CE] dark:border-[#2E2E2E]">
+        <div className="hidden lg:block border-b border-[#D6D3CE]">
           <div className="max-w-[1440px] mx-auto px-4 lg:px-8 h-12 flex items-center justify-between gap-6">
 
             {/* Left — phone */}
-            <div className="flex items-center gap-2 flex-shrink-0 text-[#7A7672] dark:text-[#888882]">
+            <div className="flex items-center gap-2 flex-shrink-0 text-[#7A7672]">
               <Phone size={13} strokeWidth={1.5} />
               <div>
                 <p className="text-[0.58rem] tracking-widest uppercase font-sans leading-tight">Call Us</p>
-                <p className="text-[0.72rem] font-sans font-medium leading-tight text-[#333333] dark:text-[#F4F4F4]">(877) 533-7687</p>
+                <p className="text-[0.72rem] font-sans font-medium leading-tight text-[#333333]">(877) 533-7687</p>
               </div>
             </div>
 
@@ -142,8 +140,8 @@ export default function Navigation() {
                     href={cat.href}
                     className={`flex items-center gap-1.5 px-4 h-12 text-[0.72rem] tracking-[0.14em] uppercase font-sans font-medium transition-colors duration-200 ${
                       activeDropdown === cat.label
-                        ? 'text-[#333333] dark:text-white'
-                        : 'text-[#333333]/50 dark:text-white/40 hover:text-[#333333] dark:hover:text-white'
+                        ? 'text-[#333333]'
+                        : 'text-[#333333] hover:text-[#333333]'
                     }`}
                   >
                     {cat.short}
@@ -157,7 +155,7 @@ export default function Navigation() {
                   {activeDropdown === cat.label && (
                     <motion.div
                       layoutId="cat-underline"
-                      className="absolute bottom-0 left-0 right-0 h-px bg-[#333333] dark:bg-white"
+                      className="absolute bottom-0 left-0 right-0 h-px bg-[#333333]"
                       transition={{ type: 'spring', stiffness: 450, damping: 38 }}
                     />
                   )}
@@ -170,15 +168,15 @@ export default function Navigation() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 8 }}
                         transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                        className={`absolute top-full z-20 flex overflow-hidden bg-white dark:bg-[#1A1A1A] border border-[#D6D3CE] dark:border-[#2E2E2E] shadow-[0_24px_60px_rgba(0,0,0,0.12)] dark:shadow-[0_24px_60px_rgba(0,0,0,0.5)] rounded-b-xl ${
+                        className={`absolute top-full z-20 flex overflow-hidden bg-white border border-[#D6D3CE] shadow-[0_24px_60px_rgba(0,0,0,0.12)] rounded-b-xl ${
                           idx >= categories.length - 2 ? 'right-0' : 'left-0'
                         }`}
                         style={{ minWidth: '500px' }}
                       >
                         <div className="flex-1 py-8 px-8">
                           <div className="flex items-center gap-2 mb-5">
-                            <div className="h-px w-5 bg-[#B8B4AE]/60 dark:bg-white/20" />
-                            <p className="text-[0.58rem] tracking-[0.4em] uppercase text-[#B8B4AE] dark:text-white/30 font-sans font-medium">
+                            <div className="h-px w-5 bg-[#B8B4AE]/60" />
+                            <p className="text-[0.58rem] tracking-[0.4em] uppercase text-[#B8B4AE] font-sans font-medium">
                               {cat.short}
                             </p>
                           </div>
@@ -187,26 +185,26 @@ export default function Navigation() {
                               <li key={item}>
                                 <Link
                                   href={cat.subHrefs[subIdx]}
-                                  className="group/item flex items-center justify-between py-3.5 border-b border-[#D6D3CE]/50 dark:border-[#2E2E2E] last:border-0 transition-colors duration-150"
+                                  className="group/item flex items-center justify-between py-3.5 border-b border-[#D6D3CE]/50 last:border-0 transition-colors duration-150"
                                 >
                                   <div className="flex items-center gap-2.5">
-                                    <span className="font-serif text-[0.95rem] text-[#333333]/55 dark:text-white/45 group-hover/item:text-[#333333] dark:group-hover/item:text-white transition-colors duration-150">
+                                    <span className="font-serif text-[0.95rem] text-[#333333]/80 group-hover/item:text-[#333333] transition-colors duration-150">
                                       {item}
                                     </span>
                                     {cat.newItem === item && (
-                                      <span className="text-[0.52rem] tracking-[0.25em] uppercase font-sans text-white bg-[#333333] dark:bg-white dark:text-[#333333] px-2 py-0.5 rounded-full">
+                                      <span className="text-[0.52rem] tracking-[0.25em] uppercase font-sans text-white bg-[#333333] px-2 py-0.5 rounded-full">
                                         New
                                       </span>
                                     )}
                                   </div>
-                                  <ArrowUpRight size={12} strokeWidth={1.5} className="text-[#B8B4AE] dark:text-white/25 opacity-0 -translate-x-1.5 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all duration-200" />
+                                  <ArrowUpRight size={12} strokeWidth={1.5} className="text-[#B8B4AE] opacity-0 -translate-x-1.5 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all duration-200" />
                                 </Link>
                               </li>
                             ))}
                           </ul>
                           <Link
                             href={cat.href}
-                            className="group/all inline-flex items-center gap-1.5 mt-5 text-[0.62rem] tracking-[0.25em] uppercase font-sans text-[#333333]/40 dark:text-white/30 hover:text-[#333333] dark:hover:text-white transition-colors duration-200"
+                            className="group/all inline-flex items-center gap-1.5 mt-5 text-[0.62rem] tracking-[0.25em] uppercase font-sans text-[#333333]/70 hover:text-[#333333] transition-colors duration-200"
                           >
                             View All {cat.short}
                             <ArrowUpRight size={10} strokeWidth={1.5} className="group-hover/all:translate-x-0.5 group-hover/all:-translate-y-0.5 transition-transform duration-200" />
@@ -237,7 +235,7 @@ export default function Navigation() {
               ))}
             </nav>
 
-            {/* Right — dealer login, theme, search, account, cart, shop */}
+            {/* Right — dealer login, search, account, cart, shop */}
             <div className="flex items-center gap-2.5 flex-shrink-0">
 
               {/* Dealer button */}
@@ -259,8 +257,6 @@ export default function Navigation() {
                 </Link>
               )}
 
-              <ThemeToggle />
-
               {/* Search */}
               <div className="relative">
                 <AnimatePresence mode="wait">
@@ -274,13 +270,13 @@ export default function Navigation() {
                       className="overflow-hidden"
                     >
                       <div className="relative">
-                        <Search size={12} strokeWidth={1.5} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#7A7672] dark:text-[#888882]" />
+                        <Search size={12} strokeWidth={1.5} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#7A7672]" />
                         <input
                           autoFocus
                           type="search"
                           placeholder="Search planters..."
                           onBlur={() => setSearchOpen(false)}
-                          className="w-full pl-8 pr-3 py-1.5 text-xs font-sans border rounded-full focus:outline-none bg-[#F4F4F4] dark:bg-[#1A1A1A] border-[#D6D3CE] dark:border-[#2E2E2E] text-[#333333] dark:text-[#F4F4F4] placeholder:text-[#7A7672]/50 dark:placeholder:text-white/25 focus:border-[#B8B4AE] dark:focus:border-[#555] transition-colors duration-200"
+                          className="w-full pl-8 pr-3 py-1.5 text-xs font-sans border rounded-full focus:outline-none bg-[#F4F4F4] border-[#D6D3CE] text-[#333333] placeholder:text-[#7A7672]/50 focus:border-[#B8B4AE] transition-colors duration-200"
                         />
                       </div>
                     </motion.div>
@@ -291,7 +287,7 @@ export default function Navigation() {
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                       onClick={() => setSearchOpen(true)}
-                      className="w-9 h-9 flex items-center justify-center rounded-full text-[#333333]/45 dark:text-white/40 hover:text-[#333333] dark:hover:text-white transition-colors duration-200"
+                      className="w-9 h-9 flex items-center justify-center rounded-full text-[#333333]/45 hover:text-[#333333] transition-colors duration-200"
                       aria-label="Search"
                     >
                       <Search size={16} strokeWidth={1.5} />
@@ -301,7 +297,7 @@ export default function Navigation() {
               </div>
 
               <button
-                className="w-9 h-9 flex items-center justify-center rounded-full text-[#333333]/45 dark:text-white/40 hover:text-[#333333] dark:hover:text-white transition-colors duration-200"
+                className="w-9 h-9 flex items-center justify-center rounded-full text-[#333333]/45 hover:text-[#333333] transition-colors duration-200"
                 aria-label="Account"
               >
                 <User size={16} strokeWidth={1.5} />
@@ -309,12 +305,12 @@ export default function Navigation() {
 
               <Link
                 href="#"
-                className="flex items-center gap-1.5 text-[#333333]/55 dark:text-white/45 hover:text-[#333333] dark:hover:text-white transition-colors duration-200"
+                className="flex items-center gap-1.5 text-[#333333]/55 hover:text-[#333333] transition-colors duration-200"
                 aria-label="Cart"
               >
                 <div className="relative">
                   <ShoppingCart size={16} strokeWidth={1.5} />
-                  <span className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-[#333333] dark:bg-white text-white dark:text-[#111111] text-[0.48rem] flex items-center justify-center font-sans font-semibold">
+                  <span className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-[#333333] text-white text-[0.48rem] flex items-center justify-center font-sans font-semibold">
                     0
                   </span>
                 </div>

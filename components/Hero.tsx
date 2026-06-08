@@ -45,9 +45,6 @@ export default function Hero() {
         <source src="/hero-desktop.mp4" type="video/mp4" />
       </video>
 
-      {/* Dark gradient only — no warm tint */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/10 to-black/55 pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/15 via-transparent to-transparent pointer-events-none" />
 
       {/* Text content — fades out on scroll */}
       <motion.div
@@ -61,7 +58,7 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
           className="font-sans text-[0.58rem] tracking-[0.38em] uppercase text-white/55 font-medium mb-5"
         >
-          Handcrafted Since 2009
+          Handcrafted Since 1983
         </motion.p>
 
         {/* Headline */}
@@ -99,13 +96,19 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.78, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center justify-center"
+          className="flex flex-col sm:flex-row items-center justify-center gap-3"
         >
           <Link
             href="/shop"
             className="inline-flex items-center justify-center gap-2 px-9 py-4 rounded-full bg-white text-[#333333] text-[11px] tracking-[0.18em] uppercase font-sans font-semibold hover:bg-[#F4F4F4] hover:shadow-[0_8px_28px_rgba(255,255,255,0.22)] hover:-translate-y-px transition-all duration-300"
           >
             Shop All Planters
+          </Link>
+          <Link
+            href="/wholesale"
+            className="inline-flex items-center justify-center gap-2 px-9 py-4 rounded-full bg-[#333333] text-white text-[11px] tracking-[0.18em] uppercase font-sans font-semibold border border-white/15 hover:bg-[#1F1F1F] hover:shadow-[0_8px_28px_rgba(0,0,0,0.4)] hover:-translate-y-px transition-all duration-300"
+          >
+            Dealer &amp; Distributor Login
           </Link>
         </motion.div>
       </motion.div>

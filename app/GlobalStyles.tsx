@@ -20,17 +20,6 @@ export default function GlobalStyles() {
         --text-muted: #7A7672;
       }
 
-      /* ── Design tokens (dark) ──────────────────────────────────────────── */
-      html.dark {
-        --bg:         #111111;
-        --bg-surface: #1A1A1A;
-        --bg-card:    #1E1E1E;
-        --border:     #2E2E2E;
-        --text:       #F4F4F4;
-        --text-muted: #888882;
-        --warm-gray:  #2E2E2E;
-        --stone-gray: #444440;
-      }
 
       /* ── Reset ─────────────────────────────────────────────────────────── */
       * { box-sizing: border-box; padding: 0; margin: 0; }

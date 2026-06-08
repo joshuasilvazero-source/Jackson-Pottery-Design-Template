@@ -24,16 +24,16 @@
 @layer utilities {
   /* Eyebrow label above section headings */
   .section-label {
-    @apply text-[0.62rem] tracking-[0.32em] uppercase font-sans font-medium text-stone-gray;
+    @apply text-[0.62rem] tracking-[0.32em] uppercase font-sans font-medium text-black;
   }
 
   /* Primary section heading */
   .section-heading {
-    @apply font-serif text-display-lg text-ink leading-tight;
+    @apply font-serif text-display-lg text-black leading-tight;
   }
 
   /* Navigation link */
   .nav-item {
-    @apply text-[0.72rem] tracking-[0.14em] uppercase font-sans text-ink/65 hover:text-ink transition-colors duration-200;
+    @apply text-[0.72rem] tracking-[0.14em] uppercase font-sans text-black;
   }
 }

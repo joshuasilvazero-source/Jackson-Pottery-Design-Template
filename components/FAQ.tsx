@@ -11,7 +11,7 @@ export default function FAQ() {
   const isInView = useInView(ref, { once: true, margin: '-8%' })
 
   return (
-    <section className="relative bg-white dark:bg-[#111111] py-section">
+    <section className="relative bg-white py-section">
       <div className="max-w-[1440px] mx-auto px-4 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.8fr] gap-12 lg:gap-20">
 
@@ -29,7 +29,7 @@ export default function FAQ() {
               initial={{ opacity: 0, y: 22 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.08 }}
-              className="font-serif font-bold text-display-md text-[#333333] dark:text-[#F4F4F4] leading-tight mb-5"
+              className="font-serif font-bold text-display-md text-[#333333] leading-tight mb-5"
             >
               Questions about<br />our planters?
             </motion.h2>
@@ -37,13 +37,13 @@ export default function FAQ() {
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ delay: 0.15 }}
-              className="w-10 h-0.5 bg-[#333333]/30 dark:bg-white/20 mb-6"
+              className="w-10 h-0.5 bg-[#333333]/30 mb-6"
             />
             <motion.p
               initial={{ opacity: 0, y: 14 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.18 }}
-              className="font-sans text-[#7A7672] dark:text-[#888882] text-sm leading-relaxed max-w-xs mb-8"
+              className="font-sans text-[#7A7672] text-sm leading-relaxed max-w-xs mb-8"
             >
               Everything you need to know about materials, durability, and care.
             </motion.p>
@@ -52,7 +52,7 @@ export default function FAQ() {
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ delay: 0.28 }}
               href="mailto:hello@jacksonpottery.com"
-              className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase font-sans text-[#333333]/60 dark:text-white/40 hover:text-[#333333] dark:hover:text-white transition-colors duration-300"
+              className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase font-sans text-[#333333]/60 hover:text-[#333333] transition-colors duration-300"
             >
               Still have questions? →
             </motion.a>
@@ -63,7 +63,7 @@ export default function FAQ() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="divide-y divide-[#D6D3CE]/50 dark:divide-[#2E2E2E]"
+            className="divide-y divide-[#D6D3CE]/50"
           >
             {faqs.map((faq) => (
               <div key={faq.id}>
@@ -71,10 +71,10 @@ export default function FAQ() {
                   onClick={() => setOpenId(openId === faq.id ? null : faq.id)}
                   className="w-full flex items-start justify-between gap-4 sm:gap-6 py-6 text-left group"
                 >
-                  <span className={`font-serif text-base sm:text-[1.0625rem] leading-snug transition-colors duration-300 flex-1 min-w-0 ${openId === faq.id ? 'text-[#333333] dark:text-white' : 'text-[#333333] dark:text-[#F4F4F4] group-hover:text-[#333333] dark:group-hover:text-white'}`}>
+                  <span className={`font-serif text-base sm:text-[1.0625rem] leading-snug transition-colors duration-300 flex-1 min-w-0 ${openId === faq.id ? 'text-[#333333]' : 'text-[#333333] group-hover:text-[#333333]'}`}>
                     {faq.question}
                   </span>
-                  <span className={`flex-shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${openId === faq.id ? 'border-[#333333] dark:border-white bg-[#333333] dark:bg-white text-white dark:text-[#111111]' : 'border-[#D6D3CE] dark:border-[#2E2E2E] text-[#7A7672] dark:text-white/40 group-hover:border-[#333333] dark:group-hover:border-white group-hover:text-[#333333] dark:group-hover:text-white'}`}>
+                  <span className={`flex-shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${openId === faq.id ? 'border-[#333333] bg-[#333333] text-white' : 'border-[#D6D3CE] text-[#7A7672] group-hover:border-[#333333] group-hover:text-[#333333]'}`}>
                     {openId === faq.id ? <Minus size={13} strokeWidth={1.5} /> : <Plus size={13} strokeWidth={1.5} />}
                   </span>
                 </button>
@@ -87,7 +87,7 @@ export default function FAQ() {
                       transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
                       className="overflow-hidden"
                     >
-                      <p className="pb-6 pr-4 sm:pr-12 font-sans text-[#7A7672] dark:text-[#A0A09C] text-sm leading-relaxed">
+                      <p className="pb-6 pr-4 sm:pr-12 font-sans text-[#7A7672] text-sm leading-relaxed">
                         {faq.answer}
                       </p>
                     </motion.div>

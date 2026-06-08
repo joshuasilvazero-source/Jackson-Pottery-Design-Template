@@ -32,25 +32,13 @@ export const metadata: Metadata = {
   },
 }
 
-const themeScript = `
-(function(){
-  try {
-    var t = localStorage.getItem('theme');
-    if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark');
-    }
-  } catch(e){}
-})();
-`
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${playfair.variable} ${manrope.variable}`}>
       <head>
         <GlobalStyles />
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className="bg-white dark:bg-[#111111] text-[#333333] dark:text-[#F4F4F4] font-sans antialiased transition-colors duration-200">
+      <body className="bg-white text-[#333333] font-sans antialiased">
         <SessionProvider>{children}</SessionProvider>
       </body>
     </html>

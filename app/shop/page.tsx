@@ -26,16 +26,16 @@ export default async function ShopPage({ searchParams }: Props) {
     : products
 
   return (
-    <main className="bg-white dark:bg-[#111111] min-h-screen">
+    <main className="bg-white min-h-screen">
       <Navigation />
 
       {/* Header */}
-      <div className="max-w-[1440px] mx-auto px-4 lg:px-8 pt-24 lg:pt-36 pb-10 border-b border-[#D6D3CE] dark:border-[#2E2E2E]">
+      <div className="max-w-[1440px] mx-auto px-4 lg:px-8 pt-24 lg:pt-36 pb-10 border-b border-[#D6D3CE]">
         <p className="section-label mb-3">Collection</p>
-        <h1 className="font-serif font-bold text-display-lg text-[#333333] dark:text-[#F4F4F4] leading-tight">
+        <h1 className="font-serif font-bold text-display-lg text-[#333333] leading-tight">
           {category && category !== 'All' ? category : 'All Planters'}
         </h1>
-        <p className="font-sans text-[#7A7672] dark:text-[#888882] text-sm mt-3">{filtered.length} pieces</p>
+        <p className="font-sans text-[#7A7672] text-sm mt-3">{filtered.length} pieces</p>
       </div>
 
       {/* Category filter pills */}
@@ -49,7 +49,7 @@ export default async function ShopPage({ searchParams }: Props) {
               className={`px-4 py-2 rounded-full text-[0.72rem] tracking-[0.12em] uppercase font-sans transition-all duration-300 ${
                 isActive
                   ? 'bg-[#333333] text-white shadow-sm'
-                  : 'border border-[#D6D3CE] dark:border-[#2E2E2E] text-[#7A7672] dark:text-[#888882] hover:border-[#333333]/50 dark:hover:border-white/30 hover:text-[#333333] dark:hover:text-white bg-white dark:bg-[#1A1A1A]'
+                  : 'border border-[#D6D3CE] text-[#7A7672] hover:border-[#333333]/50 hover:text-[#333333] bg-white'
               }`}
             >
               {cat}
@@ -62,8 +62,8 @@ export default async function ShopPage({ searchParams }: Props) {
       <div className="max-w-[1440px] mx-auto px-4 lg:px-8 py-10 lg:py-16">
         {filtered.length === 0 ? (
           <div className="text-center py-20">
-            <p className="font-serif text-[#333333] dark:text-[#F4F4F4] text-xl mb-3">No products in this category yet.</p>
-            <Link href="/shop" className="font-sans text-sm text-[#333333]/50 dark:text-white/40 hover:text-[#333333] dark:hover:text-white transition-colors duration-200">
+            <p className="font-serif text-[#333333] text-xl mb-3">No products in this category yet.</p>
+            <Link href="/shop" className="font-sans text-sm text-[#333333]/50 hover:text-[#333333] transition-colors duration-200">
               View all planters →
             </Link>
           </div>
@@ -71,7 +71,7 @@ export default async function ShopPage({ searchParams }: Props) {
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-10">
             {filtered.map((product) => (
               <Link key={product.id} href={`/products/${product.id}`} className="group block">
-                <div className="relative aspect-[3/4] overflow-hidden bg-[#EFEFEB] dark:bg-[#222222] mb-4 image-zoom rounded-xl">
+                <div className="relative aspect-[3/4] overflow-hidden bg-[#EFEFEB] mb-4 image-zoom rounded-xl">
                   <Image
                     src={product.image}
                     alt={product.name}
@@ -89,15 +89,15 @@ export default async function ShopPage({ searchParams }: Props) {
                   </div>
                 </div>
                 <p className="section-label mb-1">{product.category}</p>
-                <h3 className="font-serif font-bold text-[#333333] dark:text-[#F4F4F4] text-xl group-hover:text-[#333333] dark:group-hover:text-white transition-colors duration-300 mb-0.5">
+                <h3 className="font-serif font-bold text-[#333333] text-xl group-hover:text-[#333333] transition-colors duration-300 mb-0.5">
                   {product.name}
                 </h3>
-                <p className="font-serif italic text-[#7A7672] dark:text-[#888882] text-sm mb-2">{product.subtitle}</p>
+                <p className="font-serif italic text-[#7A7672] text-sm mb-2">{product.subtitle}</p>
                 <PriceDisplay
                   price={product.price}
                   wholesalePrice={product.wholesalePrice}
                   originalPrice={product.originalPrice}
-                  priceClassName="font-sans font-medium text-[#333333] dark:text-[#F4F4F4]"
+                  priceClassName="font-sans font-medium text-[#333333]"
                 />
               </Link>
             ))}
