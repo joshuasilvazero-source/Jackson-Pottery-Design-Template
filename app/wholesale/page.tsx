@@ -182,7 +182,7 @@ export default function WholesalePage() {
     <div className="min-h-screen bg-charcoal">
       <Navigation />
 
-      <div className="flex items-center justify-center min-h-[calc(100vh-4.5rem)] px-4 py-12">
+      <div className="flex items-center justify-center mt-[4.4rem] min-h-[calc(100vh-4.4rem)] px-4 py-12">
           {/* White login card */}
           <div className="w-full max-w-md bg-white rounded-2xl p-8 shadow-[0_32px_80px_rgba(0,0,0,0.5)]">
             {/* Logo */}
@@ -244,7 +244,7 @@ export default function WholesalePage() {
                 disabled={isSubmitting}
                 className="w-full bg-[#333333] text-white rounded-lg py-3.5 font-sans text-[0.72rem] tracking-[0.14em] uppercase font-semibold hover:bg-[#1F1F1F] transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed mt-2"
               >
-                {isSubmitting ? 'Signing in…' : 'Sign In to Trade Portal'}
+                {isSubmitting ? 'Signing in…' : 'Sign In to Portal'}
               </button>
             </form>
 
