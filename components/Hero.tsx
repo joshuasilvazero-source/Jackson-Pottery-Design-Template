@@ -96,17 +96,17 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.78, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-3"
+          className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto px-4 sm:px-0"
         >
           <Link
             href="/shop"
-            className="inline-flex items-center justify-center gap-2 px-9 py-4 rounded-full bg-white text-[#333333] text-[11px] tracking-[0.18em] uppercase font-sans font-semibold hover:bg-[#F4F4F4] hover:shadow-[0_8px_28px_rgba(255,255,255,0.22)] hover:-translate-y-px transition-all duration-300"
+            className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 sm:px-9 py-4 rounded-full bg-white text-[#333333] text-xs sm:text-[11px] tracking-[0.18em] uppercase font-sans font-semibold hover:bg-[#F4F4F4] hover:shadow-[0_8px_28px_rgba(255,255,255,0.22)] hover:-translate-y-px transition-all duration-300"
           >
             Shop All Planters
           </Link>
           <Link
             href="/wholesale"
-            className="inline-flex items-center justify-center gap-2 px-9 py-4 rounded-full bg-[#333333] text-white text-[11px] tracking-[0.18em] uppercase font-sans font-semibold border border-white/15 hover:bg-[#1F1F1F] hover:shadow-[0_8px_28px_rgba(0,0,0,0.4)] hover:-translate-y-px transition-all duration-300"
+            className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 sm:px-9 py-4 rounded-full bg-[#333333] text-white text-xs sm:text-[11px] tracking-[0.18em] uppercase font-sans font-semibold border border-white/15 hover:bg-[#1F1F1F] hover:shadow-[0_8px_28px_rgba(0,0,0,0.4)] hover:-translate-y-px transition-all duration-300"
           >
             Dealer &amp; Distributor Login
           </Link>

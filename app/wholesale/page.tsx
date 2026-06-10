@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useSession, signIn, signOut } from 'next-auth/react'
 import { useState } from 'react'
@@ -30,7 +30,7 @@ export default function WholesalePage() {
   if (status === 'loading') {
     return (
       <div className="min-h-screen bg-[#F4F4F4] flex items-center justify-center">
-        <div className="w-8 h-8 border-2 border-[#D6D3CE] border-t-[#333333]/40 rounded-full animate-spin" />
+        <div className="w-8 h-8 border-2 border-[#333333]/15 border-t-[#333333]/40 rounded-full animate-spin" />
       </div>
     )
   }
@@ -40,12 +40,12 @@ export default function WholesalePage() {
     const companyName = session.user.companyName
 
     return (
-      <div className="min-h-screen bg-[#111111]">
+      <div className="min-h-screen bg-[#333333]">
         <Navigation />
 
         {/* Welcome bar */}
-        <div className="bg-[#1A1A1A] border-b border-white/[0.06]">
-          <div className="max-w-[1440px] mx-auto px-4 lg:px-8 mt-[4.4rem] lg:mt-[7.4rem] h-[4.5rem] flex items-center justify-between gap-4">
+        <div className="bg-[#333333] border-b border-white/[0.06]">
+          <div className="max-w-[1440px] mx-auto px-4 lg:px-8 mt-[4.4rem] lg:mt-[7.4rem] min-h-[4.5rem] py-3 flex items-center justify-between gap-4 flex-wrap">
             <div className="flex items-center gap-4 flex-wrap min-w-0">
               <span className="font-serif text-lg lg:text-xl text-white truncate">
                 Welcome back, {companyName}
@@ -89,7 +89,7 @@ export default function WholesalePage() {
           {/* Product grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
             {products.map((product) => (
-              <div key={product.id} className="bg-[#1A1A1A] border border-white/[0.07] rounded-xl p-6 hover:border-white/15 transition-colors duration-200">
+              <div key={product.id} className="bg-[#333333] border border-white/[0.07] rounded-xl p-6 hover:border-white/15 transition-colors duration-200">
                 <p className="font-sans text-[0.62rem] tracking-[0.28em] uppercase text-white/30 mb-2">
                   {product.category}
                 </p>
@@ -116,7 +116,7 @@ export default function WholesalePage() {
 
           {/* Dealer resources */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-            <div className="lg:col-span-2 bg-[#1A1A1A] border border-white/[0.07] rounded-xl p-8">
+            <div className="lg:col-span-2 bg-[#333333] border border-white/[0.07] rounded-xl p-6 lg:p-8">
               <h3 className="font-serif text-xl font-semibold text-white mb-6">Dealer Resources</h3>
               <div className="divide-y divide-white/[0.06]">
                 {[
@@ -185,24 +185,24 @@ export default function WholesalePage() {
       {/* ── Mobile: centered card only ── */}
       <div className="lg:hidden flex items-center justify-center mt-[4.4rem] min-h-[calc(100vh-4.4rem)] px-4 py-12">
         <div className="w-full max-w-md bg-white rounded-2xl p-8 shadow-[0_4px_24px_rgba(0,0,0,0.08)]">
-          <div className="mb-8 pb-7 border-b border-[#D6D3CE]">
-            <Image src="/jackson-pottery-logo.png" alt="Jackson Pottery" width={1238} height={240} className="h-9 w-auto opacity-85" />
+          <div className="mb-8 pb-7 border-b border-[#333333]/15">
+            <Image src="/jackson-pottery-logo-nav.jpg" alt="Jackson Pottery" width={1238} height={240} className="h-9 w-auto opacity-85" />
           </div>
           <p className="font-sans text-[0.6rem] tracking-[0.38em] uppercase text-[#333333]/45 mb-2">Dealer & Distributor Portal</p>
           <h2 className="font-serif text-2xl font-semibold text-[#333333] mb-1">Trade Login</h2>
-          <p className="font-sans text-[#7A7672] text-sm mb-7 leading-relaxed">
+          <p className="font-sans text-[#333333]/55 text-sm mb-7 leading-relaxed">
             Sign in with your dealer credentials to access wholesale pricing.
           </p>
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label htmlFor="email-m" className="block font-sans text-[0.68rem] tracking-[0.14em] uppercase font-medium text-[#333333]/60 mb-2">Business Email</label>
               <input id="email-m" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required autoComplete="email" placeholder="you@company.com"
-                className="w-full bg-[#F4F4F4] border border-[#D6D3CE] rounded-lg px-4 py-3 font-sans text-sm text-[#333333] placeholder:text-[#333333]/30 focus:outline-none focus:border-[#333333]/50 focus:bg-white transition-colors duration-200" />
+                className="w-full bg-[#F4F4F4] border border-[#333333]/15 rounded-lg px-4 py-3 font-sans text-sm text-[#333333] placeholder:text-[#333333]/30 focus:outline-none focus:border-[#333333]/50 focus:bg-white transition-colors duration-200" />
             </div>
             <div>
               <label htmlFor="password-m" className="block font-sans text-[0.68rem] tracking-[0.14em] uppercase font-medium text-[#333333]/60 mb-2">Password</label>
               <input id="password-m" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required autoComplete="current-password" placeholder="••••••••"
-                className="w-full bg-[#F4F4F4] border border-[#D6D3CE] rounded-lg px-4 py-3 font-sans text-sm text-[#333333] placeholder:text-[#333333]/30 focus:outline-none focus:border-[#333333]/50 focus:bg-white transition-colors duration-200" />
+                className="w-full bg-[#F4F4F4] border border-[#333333]/15 rounded-lg px-4 py-3 font-sans text-sm text-[#333333] placeholder:text-[#333333]/30 focus:outline-none focus:border-[#333333]/50 focus:bg-white transition-colors duration-200" />
             </div>
             {error && <p className="font-sans text-red-500 text-sm">{error}</p>}
             <button type="submit" disabled={isSubmitting}
@@ -221,7 +221,7 @@ export default function WholesalePage() {
         <div className="w-full max-w-[860px] grid grid-cols-2 rounded-2xl overflow-hidden shadow-[0_8px_48px_rgba(0,0,0,0.14)]">
 
           {/* Left — brand panel */}
-          <div className="bg-[#1A1A1A] px-10 py-11 flex flex-col justify-between">
+          <div className="bg-[#333333] px-10 py-11 flex flex-col justify-between">
             <div>
               <p className="font-sans text-[0.6rem] tracking-[0.38em] uppercase text-white/30 mb-3">
                 Dealer & Distributor Program
@@ -248,7 +248,7 @@ export default function WholesalePage() {
           <div className="bg-white px-10 py-11 flex flex-col justify-center">
             <p className="font-sans text-[0.6rem] tracking-[0.38em] uppercase text-[#333333]/45 mb-2">Dealer & Distributor Portal</p>
             <h2 className="font-serif text-2xl text-[#333333] mb-1">Trade Login</h2>
-            <p className="font-sans text-[#7A7672] text-sm mb-6 leading-relaxed">
+            <p className="font-sans text-[#333333]/55 text-sm mb-6 leading-relaxed">
               Sign in with your dealer credentials to access wholesale pricing.
             </p>
 
@@ -256,12 +256,12 @@ export default function WholesalePage() {
               <div>
                 <label htmlFor="email" className="block font-sans text-[0.68rem] tracking-[0.14em] uppercase font-medium text-[#333333]/60 mb-2">Business Email</label>
                 <input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required autoComplete="email" placeholder="you@company.com"
-                  className="w-full bg-[#F4F4F4] border border-[#D6D3CE] rounded-lg px-4 py-3 font-sans text-sm text-[#333333] placeholder:text-[#333333]/30 focus:outline-none focus:border-[#333333]/50 focus:bg-white transition-colors duration-200" />
+                  className="w-full bg-[#F4F4F4] border border-[#333333]/15 rounded-lg px-4 py-3 font-sans text-sm text-[#333333] placeholder:text-[#333333]/30 focus:outline-none focus:border-[#333333]/50 focus:bg-white transition-colors duration-200" />
               </div>
               <div>
                 <label htmlFor="password" className="block font-sans text-[0.68rem] tracking-[0.14em] uppercase font-medium text-[#333333]/60 mb-2">Password</label>
                 <input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required autoComplete="current-password" placeholder="••••••••"
-                  className="w-full bg-[#F4F4F4] border border-[#D6D3CE] rounded-lg px-4 py-3 font-sans text-sm text-[#333333] placeholder:text-[#333333]/30 focus:outline-none focus:border-[#333333]/50 focus:bg-white transition-colors duration-200" />
+                  className="w-full bg-[#F4F4F4] border border-[#333333]/15 rounded-lg px-4 py-3 font-sans text-sm text-[#333333] placeholder:text-[#333333]/30 focus:outline-none focus:border-[#333333]/50 focus:bg-white transition-colors duration-200" />
               </div>
               {error && <p className="font-sans text-red-500 text-sm">{error}</p>}
               <button type="submit" disabled={isSubmitting}

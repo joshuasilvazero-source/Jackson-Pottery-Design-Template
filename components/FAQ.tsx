@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useRef } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
@@ -43,7 +43,7 @@ export default function FAQ() {
               initial={{ opacity: 0, y: 14 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.18 }}
-              className="font-sans text-[#7A7672] text-sm leading-relaxed max-w-xs mb-8"
+              className="font-sans text-[#333333]/55 text-sm leading-relaxed max-w-xs mb-8"
             >
               Everything you need to know about materials, durability, and care.
             </motion.p>
@@ -63,7 +63,7 @@ export default function FAQ() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="divide-y divide-[#D6D3CE]/50"
+            className="divide-y divide-[#333333]/15/50"
           >
             {faqs.map((faq) => (
               <div key={faq.id}>
@@ -74,7 +74,7 @@ export default function FAQ() {
                   <span className={`font-serif text-base sm:text-[1.0625rem] leading-snug transition-colors duration-300 flex-1 min-w-0 ${openId === faq.id ? 'text-[#333333]' : 'text-[#333333] group-hover:text-[#333333]'}`}>
                     {faq.question}
                   </span>
-                  <span className={`flex-shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${openId === faq.id ? 'border-[#333333] bg-[#333333] text-white' : 'border-[#D6D3CE] text-[#7A7672] group-hover:border-[#333333] group-hover:text-[#333333]'}`}>
+                  <span className={`flex-shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${openId === faq.id ? 'border-[#333333] bg-[#333333] text-white' : 'border-[#333333]/15 text-[#333333]/55 group-hover:border-[#333333] group-hover:text-[#333333]'}`}>
                     {openId === faq.id ? <Minus size={13} strokeWidth={1.5} /> : <Plus size={13} strokeWidth={1.5} />}
                   </span>
                 </button>
@@ -87,7 +87,7 @@ export default function FAQ() {
                       transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
                       className="overflow-hidden"
                     >
-                      <p className="pb-6 pr-4 sm:pr-12 font-sans text-[#7A7672] text-sm leading-relaxed">
+                      <p className="pb-6 pr-4 sm:pr-12 font-sans text-[#333333]/55 text-sm leading-relaxed">
                         {faq.answer}
                       </p>
                     </motion.div>

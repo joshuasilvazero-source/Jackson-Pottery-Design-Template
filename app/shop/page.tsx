@@ -1,4 +1,4 @@
-import Navigation from '@/components/Navigation'
+﻿import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import { products } from '@/lib/data'
 import Image from 'next/image'
@@ -30,12 +30,12 @@ export default async function ShopPage({ searchParams }: Props) {
       <Navigation />
 
       {/* Header */}
-      <div className="max-w-[1440px] mx-auto px-4 lg:px-8 pt-24 lg:pt-36 pb-10 border-b border-[#D6D3CE]">
+      <div className="max-w-[1440px] mx-auto px-4 lg:px-8 pt-24 sm:pt-28 lg:pt-36 pb-8 lg:pb-10 border-b border-[#333333]/15">
         <p className="section-label mb-3">Collection</p>
         <h1 className="font-serif font-bold text-display-lg text-[#333333] leading-tight">
           {category && category !== 'All' ? category : 'All Planters'}
         </h1>
-        <p className="font-sans text-[#7A7672] text-sm mt-3">{filtered.length} pieces</p>
+        <p className="font-sans text-[#333333]/55 text-sm mt-3">{filtered.length} pieces</p>
       </div>
 
       {/* Category filter pills */}
@@ -49,7 +49,7 @@ export default async function ShopPage({ searchParams }: Props) {
               className={`px-4 py-2 rounded-full text-[0.72rem] tracking-[0.12em] uppercase font-sans transition-all duration-300 ${
                 isActive
                   ? 'bg-[#333333] text-white shadow-sm'
-                  : 'border border-[#D6D3CE] text-[#7A7672] hover:border-[#333333]/50 hover:text-[#333333] bg-white'
+                  : 'border border-[#333333]/15 text-[#333333]/55 hover:border-[#333333]/50 hover:text-[#333333] bg-white'
               }`}
             >
               {cat}
@@ -68,10 +68,10 @@ export default async function ShopPage({ searchParams }: Props) {
             </Link>
           </div>
         ) : (
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-10">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 lg:gap-8">
             {filtered.map((product) => (
               <Link key={product.id} href={`/products/${product.id}`} className="group block">
-                <div className="relative aspect-[3/4] overflow-hidden bg-[#EFEFEB] mb-4 image-zoom rounded-xl">
+                <div className="relative aspect-[3/4] overflow-hidden bg-[#F4F4F4] mb-4 image-zoom rounded-xl">
                   <Image
                     src={product.image}
                     alt={product.name}
@@ -89,10 +89,10 @@ export default async function ShopPage({ searchParams }: Props) {
                   </div>
                 </div>
                 <p className="section-label mb-1">{product.category}</p>
-                <h3 className="font-serif font-bold text-[#333333] text-xl group-hover:text-[#333333] transition-colors duration-300 mb-0.5">
+                <h3 className="font-serif font-bold text-[#333333] text-base sm:text-lg lg:text-xl group-hover:text-[#333333] transition-colors duration-300 mb-0.5 leading-snug">
                   {product.name}
                 </h3>
-                <p className="font-serif italic text-[#7A7672] text-sm mb-2">{product.subtitle}</p>
+                <p className="font-serif italic text-[#333333]/55 text-xs sm:text-sm mb-2">{product.subtitle}</p>
                 <PriceDisplay
                   price={product.price}
                   wholesalePrice={product.wholesalePrice}

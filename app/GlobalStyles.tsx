@@ -10,14 +10,14 @@ export default function GlobalStyles() {
         --bg-surface: #F4F4F4;
         --bg-card:    #FFFFFF;
         --charcoal:   #333333;
-        --graphite:   #1F1F1F;
+        --graphite:   #333333;
         --light-gray: #F4F4F4;
-        --warm-gray:  #D6D3CE;
-        --stone-gray: #B8B4AE;
-        --muted:      #7A7672;
-        --border:     #D6D3CE;
+        --warm-gray:  rgba(51,51,51,0.15);
+        --stone-gray: rgba(51,51,51,0.25);
+        --muted:      rgba(51,51,51,0.55);
+        --border:     rgba(51,51,51,0.15);
         --text:       #333333;
-        --text-muted: #7A7672;
+        --text-muted: rgba(51,51,51,0.55);
       }
 
 

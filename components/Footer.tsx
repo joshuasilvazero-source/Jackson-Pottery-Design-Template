@@ -12,7 +12,7 @@ function NavLink({ href, children }: { href: string; children: React.ReactNode }
   return (
     <Link
       href={href}
-      className="group flex items-center gap-1.5 font-sans text-white/65 text-sm hover:text-white transition-colors duration-200 py-1"
+      className="group flex items-center gap-1.5 font-sans text-white text-sm hover:text-white/70 transition-colors duration-200 py-1"
     >
       {children}
       <ArrowRight size={10} strokeWidth={1.5} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 flex-shrink-0" />
@@ -22,19 +22,19 @@ function NavLink({ href, children }: { href: string; children: React.ReactNode }
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1C1C1C] border-t border-white/10">
+    <footer className="bg-[#333333] border-t border-white/10">
 
       {/* ── Newsletter strip ── */}
       <div className="border-b border-white/10">
         <div className="max-w-[1440px] mx-auto px-4 lg:px-8 py-10 lg:py-12">
           <div className="max-w-2xl mx-auto">
-            <p className="font-sans text-[0.62rem] tracking-[0.32em] uppercase text-white/40 text-center mb-3">
+            <p className="font-sans text-[0.62rem] tracking-[0.32em] uppercase text-white text-center mb-3">
               Stay Connected
             </p>
             <h3 className="font-serif text-2xl lg:text-[1.9rem] text-white text-center mb-2">
               Stay in the world of Jackson Pottery
             </h3>
-            <p className="font-sans text-white/45 text-sm text-center mb-6">
+            <p className="font-sans text-white text-sm text-center mb-6">
               New arrivals, design inspiration, and exclusive offers.
             </p>
             <form
@@ -44,11 +44,11 @@ export default function Footer() {
               <input
                 type="email"
                 placeholder="Your email address"
-                className="flex-1 px-6 py-4 bg-transparent text-white text-sm font-sans placeholder:text-white/30 focus:outline-none min-w-0"
+                className="flex-1 px-6 py-4 bg-transparent text-white text-sm font-sans placeholder:text-white/40 focus:outline-none min-w-0"
               />
               <button
                 type="submit"
-                className="px-7 py-4 bg-white text-[#1C1C1C] text-[0.72rem] font-sans font-semibold tracking-[0.14em] uppercase hover:bg-white/90 transition-colors flex-shrink-0"
+                className="px-7 py-4 bg-white text-[#333333] text-[0.72rem] font-sans font-semibold tracking-[0.14em] uppercase hover:bg-white/90 transition-colors flex-shrink-0"
               >
                 Subscribe
               </button>
@@ -68,27 +68,28 @@ export default function Footer() {
             <div className="mb-7">
               <Link href="/" className="inline-flex items-center group">
                 <Image
-                  src="/jackson-pottery-logo.png"
+                  src="/jackson-pottery-logo-nav.jpg"
                   alt="Jackson Pottery"
                   width={1238}
                   height={240}
-                  className="h-12 w-auto opacity-70 group-hover:opacity-90 transition-opacity duration-300 invert"
+                  className="h-7 w-auto opacity-90 group-hover:opacity-100 transition-opacity duration-300 mix-blend-screen"
+                  style={{ filter: 'invert(1) brightness(1.5)' }}
                 />
               </Link>
             </div>
-            <p className="font-sans text-white/55 text-sm leading-relaxed max-w-[260px] mb-8">
+            <p className="font-sans text-white text-sm leading-relaxed max-w-[260px] mb-8">
               Premium handcrafted planters and outdoor décor that elevate every space they inhabit.
             </p>
             <div className="space-y-3">
-              <a href="tel:8775337687" className="flex items-center gap-2.5 text-white/60 hover:text-white transition-colors duration-200">
+              <a href="tel:8775337687" className="flex items-center gap-2.5 text-white hover:text-white/70 transition-colors duration-200">
                 <Phone size={13} strokeWidth={1.5} />
                 <span className="font-sans text-sm">(877) 533-7687</span>
               </a>
-              <a href="mailto:hello@jacksonpottery.com" className="flex items-center gap-2.5 text-white/60 hover:text-white transition-colors duration-200">
+              <a href="mailto:hello@jacksonpottery.com" className="flex items-center gap-2.5 text-white hover:text-white/70 transition-colors duration-200">
                 <Mail size={13} strokeWidth={1.5} />
                 <span className="font-sans text-sm">hello@jacksonpottery.com</span>
               </a>
-              <a href="https://instagram.com/jacksonpottery" className="flex items-center gap-2.5 text-white/60 hover:text-white transition-colors duration-200">
+              <a href="https://instagram.com/jacksonpottery" className="flex items-center gap-2.5 text-white hover:text-white/70 transition-colors duration-200">
                 <Instagram size={13} strokeWidth={1.5} />
                 <span className="font-sans text-sm">@JacksonPottery</span>
               </a>
@@ -97,7 +98,7 @@ export default function Footer() {
 
           {/* Collections */}
           <div>
-            <h4 className="font-sans text-[0.6rem] tracking-[0.38em] uppercase text-white/40 mb-6">Collections</h4>
+            <h4 className="font-sans text-[0.6rem] tracking-[0.38em] uppercase text-white mb-6">Collections</h4>
             <ul className="space-y-3.5">
               {collections.map((item) => (
                 <li key={item}><NavLink href="/shop">{item}</NavLink></li>
@@ -107,7 +108,7 @@ export default function Footer() {
 
           {/* Shop by Space */}
           <div>
-            <h4 className="font-sans text-[0.6rem] tracking-[0.38em] uppercase text-white/40 mb-6">By Space</h4>
+            <h4 className="font-sans text-[0.6rem] tracking-[0.38em] uppercase text-white mb-6">By Space</h4>
             <ul className="space-y-3.5">
               {spaces.map((item) => (
                 <li key={item}><NavLink href="/shop">{item}</NavLink></li>
@@ -117,7 +118,7 @@ export default function Footer() {
 
           {/* Support */}
           <div>
-            <h4 className="font-sans text-[0.6rem] tracking-[0.38em] uppercase text-white/40 mb-6">Support</h4>
+            <h4 className="font-sans text-[0.6rem] tracking-[0.38em] uppercase text-white mb-6">Support</h4>
             <ul className="space-y-3.5">
               {support.map((item) => (
                 <li key={item}><NavLink href="/shop">{item}</NavLink></li>
@@ -126,12 +127,12 @@ export default function Footer() {
             <div className="mt-6 pt-5 border-t border-white/10">
               <Link
                 href="/wholesale"
-                className="group flex items-center gap-1.5 font-sans text-white/65 text-sm hover:text-white transition-colors duration-200 py-1"
+                className="group flex items-center gap-1.5 font-sans text-white text-sm hover:text-white/70 transition-colors duration-200 py-1"
               >
                 Dealer Login
                 <ArrowRight size={10} strokeWidth={1.5} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 flex-shrink-0" />
               </Link>
-              <p className="font-sans text-white/40 text-xs mt-1.5 leading-relaxed">
+              <p className="font-sans text-white text-xs mt-1.5 leading-relaxed">
                 Verified dealer accounts.<br />Sign in for trade pricing.
               </p>
             </div>
@@ -144,37 +145,38 @@ export default function Footer() {
           {/* Logo */}
           <Link href="/" className="inline-flex items-center">
             <Image
-              src="/jackson-pottery-logo.png"
+              src="/jackson-pottery-logo-nav.jpg"
               alt="Jackson Pottery"
               width={1238}
               height={240}
-              className="h-10 w-auto opacity-70 invert"
+              className="h-7 w-auto opacity-90 mix-blend-screen"
+              style={{ filter: 'invert(1) brightness(1.5)' }}
             />
           </Link>
 
           {/* Tagline */}
-          <p className="font-sans text-white/55 text-sm leading-relaxed max-w-[280px]">
+          <p className="font-sans text-white text-sm leading-relaxed max-w-[280px]">
             Premium handcrafted planters and outdoor décor that elevate every space they inhabit.
           </p>
 
           {/* Contact icons */}
           <div className="flex items-center justify-center gap-5">
-            <a href="tel:8775337687" aria-label="Call us" className="w-11 h-11 rounded-full border border-white/20 flex items-center justify-center text-white/45 hover:text-white hover:border-white/50 transition-all duration-200">
+            <a href="tel:8775337687" aria-label="Call us" className="w-11 h-11 rounded-full border border-white/20 flex items-center justify-center text-white hover:text-white/70 hover:border-white/50 transition-all duration-200">
               <Phone size={15} strokeWidth={1.5} />
             </a>
-            <a href="mailto:hello@jacksonpottery.com" aria-label="Email us" className="w-11 h-11 rounded-full border border-white/20 flex items-center justify-center text-white/45 hover:text-white hover:border-white/50 transition-all duration-200">
+            <a href="mailto:hello@jacksonpottery.com" aria-label="Email us" className="w-11 h-11 rounded-full border border-white/20 flex items-center justify-center text-white hover:text-white/70 hover:border-white/50 transition-all duration-200">
               <Mail size={15} strokeWidth={1.5} />
             </a>
-            <a href="https://instagram.com/jacksonpottery" aria-label="Instagram" className="w-11 h-11 rounded-full border border-white/20 flex items-center justify-center text-white/45 hover:text-white hover:border-white/50 transition-all duration-200">
+            <a href="https://instagram.com/jacksonpottery" aria-label="Instagram" className="w-11 h-11 rounded-full border border-white/20 flex items-center justify-center text-white hover:text-white/70 hover:border-white/50 transition-all duration-200">
               <Instagram size={15} strokeWidth={1.5} />
             </a>
           </div>
 
           {/* Divider */}
           <div className="flex items-center gap-4 w-full max-w-xs">
-            <div className="h-px flex-1 bg-white/15" />
-            <span className="font-sans text-[0.55rem] tracking-[0.4em] uppercase text-white/30">Since 1983</span>
-            <div className="h-px flex-1 bg-white/15" />
+            <div className="h-px flex-1 bg-white/20" />
+            <span className="font-sans text-[0.55rem] tracking-[0.4em] uppercase text-white">Since 1983</span>
+            <div className="h-px flex-1 bg-white/20" />
           </div>
 
           {/* Compact link grid */}
@@ -189,14 +191,14 @@ export default function Footer() {
               <Link
                 key={item}
                 href="/shop"
-                className="font-sans text-white/65 text-sm hover:text-white transition-colors duration-200"
+                className="font-sans text-white text-sm hover:text-white/70 transition-colors duration-200"
               >
                 {item}
               </Link>
             ))}
             <Link
               href="/wholesale"
-              className="font-sans text-white/65 text-sm hover:text-white transition-colors duration-200"
+              className="font-sans text-white text-sm hover:text-white/70 transition-colors duration-200"
             >
               Dealer Login
             </Link>
@@ -207,12 +209,12 @@ export default function Footer() {
       {/* ── Bottom bar ── */}
       <div className="border-t border-white/10">
         <div className="max-w-[1440px] mx-auto px-4 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="font-sans text-white/35 text-xs tracking-wide">
+          <p className="font-sans text-white text-xs tracking-wide">
             © {new Date().getFullYear()} Jackson Pottery. All rights reserved.
           </p>
           <div className="flex items-center gap-5">
             {['Privacy Policy', 'Terms of Service', 'Accessibility'].map((item) => (
-              <a key={item} href="#" className="font-sans text-white/35 text-xs hover:text-white/70 transition-colors duration-200">
+              <a key={item} href="#" className="font-sans text-white text-xs hover:text-white/70 transition-colors duration-200">
                 {item}
               </a>
             ))}

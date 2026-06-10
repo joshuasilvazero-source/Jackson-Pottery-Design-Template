@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
@@ -42,7 +42,7 @@ export default function ShopByCollection() {
   const isInView = useInView(ref, { once: true, margin: '-6%' })
 
   return (
-    <section className="relative bg-[#2B2B2B] py-20 lg:py-24">
+    <section className="relative bg-[#333333] py-20 lg:py-24">
       <div className="max-w-[1440px] mx-auto px-4 lg:px-8">
 
         {/* Header */}
@@ -106,7 +106,7 @@ export default function ShopByCollection() {
                 <div className="absolute inset-x-0 bottom-0 p-3 sm:p-5">
                   <div className="flex items-end justify-between">
                     <div>
-                      <p className="font-sans text-[0.5rem] sm:text-[0.58rem] tracking-[0.2em] sm:tracking-[0.28em] uppercase text-white/55 mb-1 sm:mb-1.5 transition-colors duration-300 group-hover:text-white/70">
+                      <p className="font-sans text-[0.62rem] sm:text-[0.65rem] tracking-[0.18em] sm:tracking-[0.28em] uppercase text-white/65 mb-1 sm:mb-1.5 transition-colors duration-300 group-hover:text-white/80">
                         {col.sub}
                       </p>
                       <p className="font-serif font-semibold text-white text-sm sm:text-base lg:text-lg leading-tight">

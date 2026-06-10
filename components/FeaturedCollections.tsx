@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useRef } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
@@ -54,7 +54,7 @@ export default function FeaturedCollections() {
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ delay: 0.18, duration: 0.6 }}
             >
-              <Link href="/shop" className="hidden lg:inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase font-sans text-[#7A7672] hover:text-[#333333] transition-colors duration-300 group py-2 px-3 -mr-3 rounded-lg hover:bg-black/[0.03]">
+              <Link href="/shop" className="hidden lg:inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase font-sans text-[#333333]/55 hover:text-[#333333] transition-colors duration-300 group py-2 px-3 -mr-3 rounded-lg hover:bg-black/[0.03]">
                 View All
                 <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform duration-300" strokeWidth={1.5} />
               </Link>
@@ -73,10 +73,10 @@ export default function FeaturedCollections() {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 rounded-full text-[0.72rem] tracking-[0.12em] uppercase font-sans transition-all duration-300 ${
+              className={`px-4 py-2.5 sm:py-2 rounded-full text-xs sm:text-[0.72rem] tracking-[0.12em] uppercase font-sans transition-all duration-300 min-h-[44px] sm:min-h-0 ${
                 activeCategory === cat
                   ? 'bg-[#333333] text-white shadow-sm'
-                  : 'border border-[#D6D3CE] text-[#7A7672] hover:border-[#333333]/50 hover:text-[#333333] bg-white'
+                  : 'border border-[#333333]/15 text-[#333333]/55 hover:border-[#333333]/50 hover:text-[#333333] bg-white'
               }`}
             >
               {cat}
@@ -159,11 +159,11 @@ function ProductCard({
       transition={{ duration: 0.65, delay: index * 0.07, ease: [0.16, 1, 0.3, 1] }}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
-      className="group bg-white rounded-2xl overflow-hidden border border-[#D6D3CE]/60 shadow-[0_2px_14px_rgba(0,0,0,0.05)] hover:shadow-[0_14px_42px_rgba(0,0,0,0.11)] hover:-translate-y-1.5 transition-all duration-500"
+      className="group bg-white rounded-2xl overflow-hidden border border-[#333333]/15/60 shadow-[0_2px_14px_rgba(0,0,0,0.05)] hover:shadow-[0_14px_42px_rgba(0,0,0,0.11)] hover:-translate-y-1.5 transition-all duration-500"
     >
       <Link href={`/products/${product.id}`} className="block">
         {/* Image */}
-        <div className="relative overflow-hidden aspect-[3/4] bg-[#EFEFEB]">
+        <div className="relative overflow-hidden aspect-[3/4] bg-[#F4F4F4]">
           <Image
             src={product.image}
             alt={product.name}
@@ -196,7 +196,7 @@ function ProductCard({
               hovered ? 'opacity-100 scale-100' : 'opacity-100 scale-100 md:opacity-0 md:scale-90'
             }`}
           >
-            <Heart size={13} strokeWidth={1.5} className={isWishlisted ? 'fill-[#333333] text-[#333333]' : 'text-[#7A7672]'} />
+            <Heart size={13} strokeWidth={1.5} className={isWishlisted ? 'fill-[#333333] text-[#333333]' : 'text-[#333333]/55'} />
           </button>
 
           {/* Quick View — desktop only */}
@@ -233,11 +233,11 @@ function ProductCard({
 
         {/* Info */}
         <div className="px-4 pt-4 pb-5">
-          <p className="font-sans text-[0.62rem] text-[#7A7672] tracking-[0.3em] uppercase mb-1.5">{product.category}</p>
+          <p className="font-sans text-[0.62rem] text-[#333333]/55 tracking-[0.3em] uppercase mb-1.5">{product.category}</p>
           <h3 className="font-serif font-semibold text-[#333333] text-sm sm:text-base group-hover:text-[#333333] transition-colors duration-300 leading-snug mb-1.5 line-clamp-2">
             {product.name}
           </h3>
-          <p className="font-sans text-[#7A7672] text-xs mb-3 line-clamp-1">{product.subtitle}</p>
+          <p className="font-sans text-[#333333]/55 text-xs mb-3 line-clamp-1">{product.subtitle}</p>
           <div className="flex items-center justify-between">
             <PriceDisplay
               price={product.price}
@@ -252,7 +252,7 @@ function ProductCard({
             </div>
           </div>
           {urgencyTags[product.id] && (
-            <p className="mt-2.5 font-sans text-[0.65rem] tracking-[0.15em] text-[#7A7672]">
+            <p className="mt-2.5 font-sans text-[0.65rem] tracking-[0.15em] text-[#333333]/55">
               · {urgencyTags[product.id]}
             </p>
           )}
@@ -298,17 +298,17 @@ function QuickViewModal({ product, onClose }: { product: Product; onClose: () =>
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-[#F4F4F4] hover:bg-[#E5E2DC] flex items-center justify-center transition-colors duration-200"
+          className="absolute top-4 right-4 z-10 w-11 h-11 rounded-full bg-[#F4F4F4] hover:bg-[#333333]/10 flex items-center justify-center transition-colors duration-200"
         >
           <X size={15} strokeWidth={1.8} className="text-[#333333]" />
         </button>
 
         <div className="sm:hidden flex justify-center pt-3 pb-1">
-          <div className="w-10 h-1 rounded-full bg-[#D6D3CE]" />
+          <div className="w-10 h-1 rounded-full bg-[#333333]/15" />
         </div>
 
         <div className="flex flex-col sm:flex-row overflow-auto sm:overflow-hidden max-h-[88vh] sm:max-h-[90vh]">
-          <div className="relative flex-shrink-0 w-full sm:w-[42%] aspect-[4/3] sm:aspect-auto sm:h-auto bg-[#EFEFEB]">
+          <div className="relative flex-shrink-0 w-full sm:w-[42%] aspect-[4/3] sm:aspect-auto sm:h-auto bg-[#F4F4F4]">
             <Image
               src={product.image}
               alt={product.name}
@@ -328,9 +328,9 @@ function QuickViewModal({ product, onClose }: { product: Product; onClose: () =>
           </div>
 
           <div className="flex-1 overflow-y-auto px-6 py-6 sm:px-8 sm:py-8">
-            <p className="font-sans text-[0.62rem] text-[#7A7672] tracking-[0.3em] uppercase mb-2">{product.category}</p>
+            <p className="font-sans text-[0.62rem] text-[#333333]/55 tracking-[0.3em] uppercase mb-2">{product.category}</p>
             <h2 className="font-serif font-semibold text-[#333333] text-2xl leading-tight mb-1">{product.name}</h2>
-            <p className="font-sans text-[#7A7672] text-sm mb-4">{product.subtitle}</p>
+            <p className="font-sans text-[#333333]/55 text-sm mb-4">{product.subtitle}</p>
 
             <div className="flex items-center justify-between mb-5">
               <div className="flex items-center gap-1.5">
@@ -339,7 +339,7 @@ function QuickViewModal({ product, onClose }: { product: Product; onClose: () =>
                     <Star key={i} size={12} className="fill-[#333333]/50 text-[#333333]/50" strokeWidth={0} />
                   ))}
                 </div>
-                <span className="font-sans text-[#7A7672] text-xs">4.9 rating</span>
+                <span className="font-sans text-[#333333]/55 text-xs">4.9 rating</span>
               </div>
               <PriceDisplay
                 price={product.price}
@@ -349,14 +349,14 @@ function QuickViewModal({ product, onClose }: { product: Product; onClose: () =>
               />
             </div>
 
-            <p className="font-sans text-[#7A7672] text-sm leading-relaxed mb-6 border-b border-[#D6D3CE]/60 pb-6">
+            <p className="font-sans text-[#333333]/55 text-sm leading-relaxed mb-6 border-b border-[#333333]/15/60 pb-6">
               {product.description}
             </p>
 
-            <div className="grid grid-cols-2 gap-x-6 gap-y-3 mb-7">
+            <div className="grid grid-cols-2 gap-x-4 sm:gap-x-6 gap-y-3 mb-7">
               {specs.map(({ label, value }) => (
                 <div key={label}>
-                  <p className="font-sans text-[0.62rem] tracking-[0.22em] uppercase text-[#7A7672]/60 mb-0.5">{label}</p>
+                  <p className="font-sans text-[0.62rem] tracking-[0.22em] uppercase text-[#333333]/55/60 mb-0.5">{label}</p>
                   <p className="font-sans text-[#333333] text-sm">{value}</p>
                 </div>
               ))}
@@ -386,17 +386,17 @@ function QuickViewModal({ product, onClose }: { product: Product; onClose: () =>
                 className={`w-12 h-12 rounded-full border flex items-center justify-center transition-all duration-300 flex-shrink-0 ${
                   isWishlisted
                     ? 'border-[#333333] bg-[#333333]/5'
-                    : 'border-[#D6D3CE] hover:border-[#333333]'
+                    : 'border-[#333333]/15 hover:border-[#333333]'
                 }`}
               >
-                <Heart size={16} strokeWidth={1.5} className={isWishlisted ? 'fill-[#333333] text-[#333333]' : 'text-[#7A7672]'} />
+                <Heart size={16} strokeWidth={1.5} className={isWishlisted ? 'fill-[#333333] text-[#333333]' : 'text-[#333333]/55'} />
               </button>
             </div>
 
             <Link
               href={`/products/${product.id}`}
               onClick={onClose}
-              className="flex items-center justify-center gap-2 text-[0.68rem] tracking-[0.2em] uppercase font-sans text-[#7A7672] hover:text-[#333333] transition-colors duration-200 group"
+              className="flex items-center justify-center gap-2 text-[0.68rem] tracking-[0.2em] uppercase font-sans text-[#333333]/55 hover:text-[#333333] transition-colors duration-200 group"
             >
               View Full Details
               <ArrowRight size={11} className="group-hover:translate-x-1 transition-transform duration-200" strokeWidth={1.5} />

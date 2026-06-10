@@ -1,4 +1,4 @@
-import { Award, Truck, ShieldCheck, Headphones } from 'lucide-react'
+﻿import { Award, Truck, ShieldCheck, Headphones } from 'lucide-react'
 
 const points = [
   { icon: Award,       label: 'Premium Quality',   sub: 'Built to last a lifetime'    },
@@ -9,13 +9,13 @@ const points = [
 
 export default function SellingPoints() {
   return (
-    <div className="bg-[#F4F4F4] border-y border-[#D6D3CE]">
+    <div className="bg-[#F4F4F4] border-y border-[#333333]/15">
       <div className="max-w-[1440px] mx-auto">
         <div className="grid grid-cols-2 lg:grid-cols-4">
           {points.map((point, i) => (
             <div
               key={point.label}
-              className={`flex items-center gap-3 lg:gap-4 px-4 sm:px-6 lg:px-8 py-5 sm:py-6 border-[#D6D3CE] ${[
+              className={`flex items-center gap-3 lg:gap-4 px-4 sm:px-6 lg:px-8 py-5 sm:py-6 border-[#333333]/15 ${[
                 '',
                 'border-l',
                 'border-t lg:border-t-0 lg:border-l',
@@ -26,10 +26,10 @@ export default function SellingPoints() {
                 <point.icon size={16} className="text-[#333333]/70" strokeWidth={1.5} />
               </div>
               <div className="min-w-0">
-                <p className="font-sans text-[0.72rem] sm:text-[0.75rem] font-semibold text-[#333333] tracking-wide leading-snug">
+                <p className="font-sans text-xs sm:text-[0.75rem] font-semibold text-[#333333] tracking-wide leading-snug">
                   {point.label}
                 </p>
-                <p className="hidden sm:block font-sans text-xs text-[#7A7672] mt-0.5 leading-relaxed">
+                <p className="font-sans text-[0.65rem] sm:text-xs text-[#333333]/55 mt-0.5 leading-relaxed">
                   {point.sub}
                 </p>
               </div>

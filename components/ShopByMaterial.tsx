@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
@@ -42,7 +42,7 @@ export default function ShopByMaterial() {
             initial={{ opacity: 0, y: 14 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-sans text-[#7A7672] text-sm"
+            className="font-sans text-[#333333]/55 text-sm"
           >
             Explore our planters and accents by premium material.
           </motion.p>
@@ -56,9 +56,9 @@ export default function ShopByMaterial() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.1 + i * 0.07, ease: [0.16, 1, 0.3, 1] }}
-              className={i === materials.length - 1 ? 'col-span-2 mx-auto w-full max-w-[50%] sm:col-span-1 sm:max-w-none sm:mx-0' : ''}
+              className={i === materials.length - 1 ? 'col-span-2 sm:col-span-1 flex justify-center sm:block' : ''}
             >
-              <Link href={mat.href} className="group block">
+              <Link href={mat.href} className="group block w-full sm:w-auto">
                 <div className="relative aspect-[4/3] overflow-hidden rounded-xl mb-3 image-zoom">
                   <Image
                     src={mat.image}
@@ -73,7 +73,7 @@ export default function ShopByMaterial() {
                   <p className="font-serif font-semibold text-[#333333] text-base group-hover:text-[#333333] transition-colors duration-300 mb-0.5">
                     {mat.label}
                   </p>
-                  <p className="font-sans text-[#7A7672] text-xs leading-relaxed mb-2">{mat.sub}</p>
+                  <p className="font-sans text-[#333333]/55 text-xs leading-relaxed mb-2">{mat.sub}</p>
                   <span className="inline-flex items-center gap-1 text-[0.68rem] tracking-[0.2em] uppercase font-sans text-[#333333]/60 group-hover:gap-2 transition-all duration-300">
                     Shop Now
                     <ArrowRight size={10} strokeWidth={1.5} />
@@ -89,14 +89,14 @@ export default function ShopByMaterial() {
           initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.55 }}
-          className="mt-10 lg:mt-14 pt-8 border-t border-[#D6D3CE] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6"
+          className="mt-10 lg:mt-14 pt-8 border-t border-[#333333]/15 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6"
         >
           {featureBadges.map((badge) => (
             <div key={badge.label} className="flex items-start gap-3">
-              <badge.icon size={20} className="text-[#7A7672] flex-shrink-0 mt-0.5" strokeWidth={1.5} />
+              <badge.icon size={20} className="text-[#333333]/55 flex-shrink-0 mt-0.5" strokeWidth={1.5} />
               <div>
                 <p className="font-sans text-xs font-medium text-[#333333] tracking-wide uppercase">{badge.label}</p>
-                <p className="font-sans text-xs text-[#7A7672] mt-0.5">{badge.sub}</p>
+                <p className="font-sans text-xs text-[#333333]/55 mt-0.5">{badge.sub}</p>
               </div>
             </div>
           ))}
