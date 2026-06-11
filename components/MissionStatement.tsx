@@ -16,17 +16,16 @@ export default function MissionStatement() {
   })
 
   return (
-    <section className="bg-[#333333] py-20 lg:py-28">
-      <div className="max-w-[1440px] mx-auto px-4 lg:px-8">
+    <section className="bg-[#333333] py-14 lg:py-20">
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-16">
         <div ref={ref} className="flex flex-col items-center text-center">
-          <motion.h2 {...fade(0.08)} className="font-serif font-bold text-[2rem] lg:text-[2.5rem] text-white leading-tight mb-5">
-            Designed to<br />Define Space
+          <motion.h2 {...fade(0.08)} className="font-serif font-bold text-display-md text-white leading-tight mb-5">
+            Designed to Define Space
           </motion.h2>
-          <motion.div {...fade(0.14)} className="w-10 h-px bg-white/20 mb-6" />
-          <motion.p {...fade(0.18)} className="font-sans text-white/60 text-[0.9375rem] leading-relaxed max-w-lg mb-5">
+          <motion.p {...fade(0.18)} className="font-sans text-white text-[0.9375rem] leading-relaxed max-w-3xl mb-5">
             Timeless design. Premium materials. Purposeful craftsmanship. Planters that elevate every space they inhabit — from grand estate gardens to refined interior living rooms.
           </motion.p>
-          <motion.p {...fade(0.24)} className="font-sans text-white/60 text-[0.9375rem] leading-relaxed max-w-lg mb-8">
+          <motion.p {...fade(0.24)} className="font-sans text-white text-[0.9375rem] leading-relaxed max-w-3xl mb-8">
             For over forty years, Jackson Pottery has supplied landscape architects, interior designers, and discerning homeowners with the finest handcrafted vessels available.
           </motion.p>
           <motion.div {...fade(0.3)}>
@@ -34,8 +33,7 @@ export default function MissionStatement() {
               href="/shop"
               className="inline-flex items-center gap-2 text-[0.72rem] tracking-[0.2em] uppercase font-sans font-medium text-white hover:text-white/60 transition-colors duration-300 group"
             >
-              Shop Collection
-              <ArrowRight size={13} strokeWidth={1.5} className="group-hover:translate-x-1 transition-transform duration-300" />
+              Shop the Collection
             </Link>
           </motion.div>
         </div>
