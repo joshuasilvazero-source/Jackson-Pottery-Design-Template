@@ -63,22 +63,22 @@ export default function WholesalePage() {
               <span className="font-serif text-lg lg:text-xl text-white truncate">
                 Welcome back, {companyName}
               </span>
-              <span className="flex-shrink-0 flex items-center gap-1.5 bg-white/[0.07] text-white/55 text-[0.62rem] tracking-[0.18em] uppercase px-3 py-1.5 rounded-full border border-white/10">
-                <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
+              <span className="flex-shrink-0 flex items-center gap-1.5 bg-white/[0.12] text-white text-[0.62rem] tracking-[0.18em] uppercase px-3 py-1.5 rounded-full border border-white/20">
+                <span className="w-1.5 h-1.5 rounded-full bg-white" />
                 Wholesale Active
               </span>
             </div>
             <div className="flex items-center gap-3 flex-shrink-0">
               <Link
                 href="/shop"
-                className="hidden sm:inline-flex items-center gap-1.5 text-[0.68rem] tracking-[0.12em] uppercase font-sans font-medium text-white/35 hover:text-white transition-colors duration-200"
+                className="hidden sm:inline-flex items-center gap-1.5 text-[0.68rem] tracking-[0.12em] uppercase font-sans font-medium text-white/75 hover:text-white transition-colors duration-200"
               >
                 Full Catalog
                 <ArrowRight size={11} strokeWidth={1.5} />
               </Link>
               <button
                 onClick={() => signOut({ callbackUrl: '/wholesale' })}
-                className="text-[0.68rem] tracking-[0.12em] uppercase font-sans text-white/25 hover:text-white transition-colors duration-200"
+                className="text-[0.68rem] tracking-[0.12em] uppercase font-sans text-white/75 hover:text-white transition-colors duration-200"
               >
                 Sign Out
               </button>
@@ -90,11 +90,11 @@ export default function WholesalePage() {
         <div className="max-w-[1440px] mx-auto px-4 lg:px-8 py-12 lg:py-16">
 
           <div className="mb-10 pb-6 border-b border-white/[0.08]">
-            <p className="font-sans text-[0.6rem] tracking-[0.38em] uppercase text-white/30 mb-2">Wholesale Portal</p>
+            <p className="font-sans text-[0.6rem] tracking-[0.38em] uppercase text-white/70 mb-2">Wholesale Portal</p>
             <h1 className="font-serif font-bold text-display-md text-white leading-tight">
               Wholesale Pricing
             </h1>
-            <p className="font-sans text-white/40 text-sm mt-2">
+            <p className="font-sans text-white/80 text-sm mt-2">
               All prices shown are your verified wholesale rates — approx. 40% off retail.
             </p>
           </div>
@@ -103,7 +103,7 @@ export default function WholesalePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
             {products.map((product) => (
               <div key={product.id} className="bg-white border border-[#333333]/10 rounded-xl p-6 hover:border-[#333333]/25 hover:shadow-md transition-all duration-200">
-                <p className="font-sans text-[0.62rem] tracking-[0.28em] uppercase text-[#333333]/40 mb-2">
+                <p className="font-sans text-[0.62rem] tracking-[0.28em] uppercase text-[#333333] mb-2">
                   {product.category}
                 </p>
                 <h3 className="font-serif text-lg font-semibold text-[#333333] mb-4">
@@ -114,10 +114,10 @@ export default function WholesalePage() {
                   wholesalePrice={product.wholesalePrice}
                   priceClassName="font-sans font-bold text-xl text-[#333333]"
                 />
-                <div className="mt-5 pt-4 border-t border-[#333333]/10">
+                <div className="mt-5 pt-4 border-t border-[#333333]/15">
                   <Link
                     href={`/products/${product.id}`}
-                    className="inline-flex items-center gap-1.5 text-[0.68rem] tracking-[0.14em] uppercase font-sans font-medium text-[#333333]/35 hover:text-[#333333] transition-colors duration-200 group"
+                    className="inline-flex items-center gap-1.5 text-[0.68rem] tracking-[0.14em] uppercase font-sans font-medium text-[#333333] hover:text-[#333333]/60 transition-colors duration-200 group"
                   >
                     View Product
                     <ArrowRight size={10} strokeWidth={1.5} className="group-hover:translate-x-0.5 transition-transform duration-200" />
@@ -139,12 +139,12 @@ export default function WholesalePage() {
                 ].map(({ icon: Icon, label, action, href }) => (
                   <div key={label} className="flex items-center justify-between py-4">
                     <div className="flex items-center gap-3">
-                      <Icon size={16} className="text-[#333333]/40 flex-shrink-0" strokeWidth={1.5} />
+                      <Icon size={16} className="text-[#333333] flex-shrink-0" strokeWidth={1.5} />
                       <span className="font-sans text-sm font-medium text-[#333333]">{label}</span>
                     </div>
                     <a
                       href={href}
-                      className="font-sans text-[0.7rem] tracking-[0.1em] uppercase font-medium text-[#333333]/40 hover:text-[#333333] transition-colors duration-200"
+                      className="font-sans text-[0.7rem] tracking-[0.1em] uppercase font-medium text-[#333333] hover:text-[#333333]/60 transition-colors duration-200"
                     >
                       {action}
                     </a>
@@ -155,12 +155,12 @@ export default function WholesalePage() {
 
             <div className="bg-white border border-[#333333]/10 rounded-xl p-8">
               <h3 className="font-serif text-xl font-semibold text-[#333333] mb-3">Need Help?</h3>
-              <p className="font-sans text-[#333333]/55 text-sm leading-relaxed mb-6">
+              <p className="font-sans text-[#333333] text-sm leading-relaxed mb-6">
                 Your dedicated rep is available Monday–Friday, 8am–5pm PST.
               </p>
               <a
                 href="mailto:hello@jacksonpottery.com"
-                className="inline-flex items-center gap-2 text-[0.7rem] tracking-[0.14em] uppercase font-sans font-medium text-[#333333]/40 hover:text-[#333333] transition-colors duration-200 group"
+                className="inline-flex items-center gap-2 text-[0.7rem] tracking-[0.14em] uppercase font-sans font-medium text-[#333333] hover:text-[#333333]/60 transition-colors duration-200 group"
               >
                 Contact Rep
                 <ArrowRight size={11} strokeWidth={1.5} className="group-hover:translate-x-0.5 transition-transform duration-200" />
