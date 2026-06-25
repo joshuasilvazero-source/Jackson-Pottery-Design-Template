@@ -1,11 +1,11 @@
-﻿import Navigation from '@/components/Navigation'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/lib/auth'
+import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import { products } from '@/lib/data'
 import Image from 'next/image'
 import Link from 'next/link'
 import PriceDisplay from '@/components/PriceDisplay'
-
-const categories = ['All', 'Terracotta', 'Glazed', 'Cast Stone', 'Lightweight', 'Metal']
 
 interface Props {
   searchParams: Promise<{ category?: string }>
@@ -20,10 +20,19 @@ export async function generateMetadata({ searchParams }: Props) {
 
 export default async function ShopPage({ searchParams }: Props) {
   const { category } = await searchParams
+  const session = await getServerSession(authOptions)
+  const isWholesale = session?.user?.isWholesale === true
 
-  const filtered = category && category !== 'All'
-    ? products.filter((p) => p.category.toLowerCase() === category.toLowerCase())
-    : products
+  // Only show wholesaleOnly products to authenticated wholesale customers
+  const visible = isWholesale ? products : products.filter((p) => !p.wholesaleOnly)
+
+  // Derive category pills from only the products this visitor can see
+  const visibleCategories = ['All', ...Array.from(new Set(visible.map((p) => p.category))).sort()]
+
+  const filtered =
+    category && category !== 'All'
+      ? visible.filter((p) => p.category.toLowerCase() === category.toLowerCase())
+      : visible
 
   return (
     <main className="bg-white min-h-screen">
@@ -31,16 +40,34 @@ export default async function ShopPage({ searchParams }: Props) {
 
       {/* Header */}
       <div className="max-w-[1440px] mx-auto px-4 lg:px-8 pt-24 sm:pt-28 lg:pt-36 pb-8 lg:pb-10 border-b border-[#333333]/15">
+        {isWholesale && (
+          <div className="flex items-center gap-2 mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#333333]" />
+            <span className="font-sans text-[0.62rem] tracking-[0.2em] uppercase text-[#333333]/55">
+              Wholesale Pricing Active
+            </span>
+          </div>
+        )}
         <p className="section-label mb-3">Collection</p>
         <h1 className="font-serif font-bold text-display-lg text-[#333333] leading-tight">
           {category && category !== 'All' ? category : 'All Planters'}
         </h1>
-        <p className="font-sans text-[#333333]/55 text-sm mt-3">{filtered.length} pieces</p>
+        <div className="flex items-center gap-4 mt-3">
+          <p className="font-sans text-[#333333]/55 text-sm">{filtered.length} pieces</p>
+          {!isWholesale && (
+            <Link
+              href="/wholesale"
+              className="font-sans text-[0.68rem] tracking-[0.14em] uppercase text-[#333333]/40 hover:text-[#333333] transition-colors duration-200"
+            >
+              Sign in for the full catalog →
+            </Link>
+          )}
+        </div>
       </div>
 
       {/* Category filter pills */}
       <div className="max-w-[1440px] mx-auto px-4 lg:px-8 pt-8 flex flex-wrap gap-2">
-        {categories.map((cat) => {
+        {visibleCategories.map((cat) => {
           const isActive = cat === 'All' ? !category || category === 'All' : category === cat
           return (
             <Link
