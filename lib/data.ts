@@ -19,6 +19,7 @@ export interface Product {
   isNew: boolean
   isBestseller: boolean
   inStock: boolean
+  wholesaleOnly: boolean
 }
 
 export const products: Product[] = [
@@ -43,6 +44,7 @@ export const products: Product[] = [
     isNew: true,
     isBestseller: false,
     inStock: true,
+    wholesaleOnly: false,
   },
   {
     id: 'arcadia-glazed-planter',
@@ -66,6 +68,7 @@ export const products: Product[] = [
     isNew: false,
     isBestseller: true,
     inStock: true,
+    wholesaleOnly: false,
   },
   {
     id: 'villa-cast-stone-urn',
@@ -88,6 +91,7 @@ export const products: Product[] = [
     isNew: false,
     isBestseller: true,
     inStock: true,
+    wholesaleOnly: true,
   },
   {
     id: 'canyon-lightweight-planter',
@@ -110,6 +114,7 @@ export const products: Product[] = [
     isNew: true,
     isBestseller: false,
     inStock: true,
+    wholesaleOnly: false,
   },
   {
     id: 'meridian-metal-vessel',
@@ -132,6 +137,7 @@ export const products: Product[] = [
     isNew: false,
     isBestseller: false,
     inStock: true,
+    wholesaleOnly: true,
   },
   {
     id: 'solstice-glazed-bowl',
@@ -154,6 +160,7 @@ export const products: Product[] = [
     isNew: false,
     isBestseller: false,
     inStock: true,
+    wholesaleOnly: false,
   },
 ]
 
