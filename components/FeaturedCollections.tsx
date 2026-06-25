@@ -14,7 +14,6 @@ const categories = ['All', 'Terracotta', 'Glazed', 'Cast Stone', 'Lightweight', 
 const products = allProducts.filter((p) => !p.wholesaleOnly)
 
 const urgencyTags: Record<string, string> = {
-  'villa-cast-stone-urn':         'Only 3 left',
   'arcadia-glazed-planter':       'Only 2 left',
   'montserrat-terracotta-vessel': 'Ships in 3–5 days',
   'canyon-lightweight-planter':   'Ships in 3–5 days',
