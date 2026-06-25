@@ -129,9 +129,9 @@ export default function WholesalePage() {
 
           {/* Wholesale resources */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-            <div className="lg:col-span-2 bg-[#333333] border border-white/[0.07] rounded-xl p-6 lg:p-8">
-              <h3 className="font-serif text-xl font-semibold text-white mb-6">Wholesale Resources</h3>
-              <div className="divide-y divide-white/[0.06]">
+            <div className="lg:col-span-2 bg-white border border-[#333333]/10 rounded-xl p-6 lg:p-8">
+              <h3 className="font-serif text-xl font-semibold text-[#333333] mb-6">Wholesale Resources</h3>
+              <div className="divide-y divide-[#333333]/08">
                 {[
                   { icon: FileText,   label: 'Product Catalog 2026', action: 'Download PDF',  href: '/resources/catalog.pdf'         },
                   { icon: Tag,        label: 'Price List',            action: 'Download XLSX', href: '/resources/price-list.xlsx'      },
@@ -139,12 +139,12 @@ export default function WholesalePage() {
                 ].map(({ icon: Icon, label, action, href }) => (
                   <div key={label} className="flex items-center justify-between py-4">
                     <div className="flex items-center gap-3">
-                      <Icon size={16} className="text-white/25 flex-shrink-0" strokeWidth={1.5} />
-                      <span className="font-sans text-sm font-medium text-white/70">{label}</span>
+                      <Icon size={16} className="text-[#333333]/40 flex-shrink-0" strokeWidth={1.5} />
+                      <span className="font-sans text-sm font-medium text-[#333333]">{label}</span>
                     </div>
                     <a
                       href={href}
-                      className="font-sans text-[0.7rem] tracking-[0.1em] uppercase font-medium text-white/30 hover:text-white transition-colors duration-200"
+                      className="font-sans text-[0.7rem] tracking-[0.1em] uppercase font-medium text-[#333333]/40 hover:text-[#333333] transition-colors duration-200"
                     >
                       {action}
                     </a>
@@ -153,14 +153,14 @@ export default function WholesalePage() {
               </div>
             </div>
 
-            <div className="bg-white/[0.04] border border-white/[0.07] rounded-xl p-8">
-              <h3 className="font-serif text-xl font-semibold text-white mb-3">Need Help?</h3>
-              <p className="font-sans text-white/40 text-sm leading-relaxed mb-6">
+            <div className="bg-white border border-[#333333]/10 rounded-xl p-8">
+              <h3 className="font-serif text-xl font-semibold text-[#333333] mb-3">Need Help?</h3>
+              <p className="font-sans text-[#333333]/55 text-sm leading-relaxed mb-6">
                 Your dedicated rep is available Monday–Friday, 8am–5pm PST.
               </p>
               <a
                 href="mailto:hello@jacksonpottery.com"
-                className="inline-flex items-center gap-2 text-[0.7rem] tracking-[0.14em] uppercase font-sans font-medium text-white/40 hover:text-white transition-colors duration-200 group"
+                className="inline-flex items-center gap-2 text-[0.7rem] tracking-[0.14em] uppercase font-sans font-medium text-[#333333]/40 hover:text-[#333333] transition-colors duration-200 group"
               >
                 Contact Rep
                 <ArrowRight size={11} strokeWidth={1.5} className="group-hover:translate-x-0.5 transition-transform duration-200" />
