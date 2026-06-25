@@ -7,6 +7,7 @@ interface PriceDisplayProps {
   wholesalePrice: number
   originalPrice?: number
   priceClassName?: string
+  secondaryClassName?: string
 }
 
 export default function PriceDisplay({
@@ -14,6 +15,7 @@ export default function PriceDisplay({
   wholesalePrice,
   originalPrice,
   priceClassName = 'font-sans font-medium text-ink',
+  secondaryClassName = 'text-[#333333]',
 }: PriceDisplayProps) {
   const { data: session } = useSession()
   const isWholesale = session?.user?.isWholesale === true
@@ -37,19 +39,19 @@ export default function PriceDisplay({
   return (
     <div className="space-y-1">
       <div className="flex items-center gap-2">
-        <span className="w-1.5 h-1.5 rounded-full bg-[#333333] flex-shrink-0" />
-        <span className="font-sans text-[0.58rem] tracking-[0.2em] uppercase text-[#333333]/70">
+        <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 bg-current ${secondaryClassName}`} />
+        <span className={`font-sans text-[0.58rem] tracking-[0.2em] uppercase ${secondaryClassName}`}>
           Wholesale Pricing Active
         </span>
       </div>
       <div className="flex items-baseline gap-3">
         <span className={priceClassName}>${wholesalePrice.toLocaleString()}</span>
-        <span className="font-sans text-muted line-through text-sm">
+        <span className={`font-sans line-through text-sm opacity-50 ${secondaryClassName}`}>
           ${price.toLocaleString()}
         </span>
       </div>
-      <p className="font-sans text-[0.6rem] text-[#333333]/55 tracking-wide">
-        You save ${savings.toLocaleString()} · {discountPct}% trade discount
+      <p className={`font-sans text-[0.6rem] tracking-wide opacity-70 ${secondaryClassName}`}>
+        You save ${savings.toLocaleString()} · {discountPct}% wholesale discount
       </p>
     </div>
   )

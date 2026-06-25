@@ -122,6 +122,7 @@ export default async function ShopPage({ searchParams }: Props) {
                     wholesalePrice={product.wholesalePrice}
                     originalPrice={product.originalPrice}
                     priceClassName="font-sans font-medium text-white"
+                    secondaryClassName="text-white"
                   />
                 </Link>
               ))}

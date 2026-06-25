@@ -3,6 +3,7 @@
 import { useSession, signIn, signOut } from 'next-auth/react'
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Tag, Headphones, FileText, ArrowRight, Package, BookOpen } from 'lucide-react'
 import PriceDisplay from '@/components/PriceDisplay'
 import Navigation from '@/components/Navigation'
@@ -100,30 +101,52 @@ export default function WholesalePage() {
           </div>
 
           {/* Product grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-12">
             {products.map((product) => (
-              <div key={product.id} className="bg-white border border-[#333333]/10 rounded-xl p-6 hover:border-[#333333]/25 hover:shadow-md transition-all duration-200">
-                <p className="font-sans text-[0.62rem] tracking-[0.28em] uppercase text-[#333333] mb-2">
-                  {product.category}
-                </p>
-                <h3 className="font-serif text-lg font-semibold text-[#333333] mb-4">
-                  {product.name}
-                </h3>
-                <PriceDisplay
-                  price={product.price}
-                  wholesalePrice={product.wholesalePrice}
-                  priceClassName="font-sans font-bold text-xl text-[#333333]"
-                />
-                <div className="mt-5 pt-4 border-t border-[#333333]/15">
-                  <Link
-                    href={`/products/${product.id}`}
-                    className="inline-flex items-center gap-1.5 text-[0.68rem] tracking-[0.14em] uppercase font-sans font-medium text-[#333333] hover:text-[#333333]/60 transition-colors duration-200 group"
-                  >
-                    View Product
-                    <ArrowRight size={10} strokeWidth={1.5} className="group-hover:translate-x-0.5 transition-transform duration-200" />
-                  </Link>
+              <Link
+                key={product.id}
+                href={`/products/${product.id}`}
+                className="group bg-white border border-[#333333]/10 rounded-2xl overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              >
+                {/* Product image */}
+                <div className="relative aspect-[4/3] bg-[#F4F4F4] overflow-hidden">
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                  {product.wholesaleOnly && (
+                    <div className="absolute top-3 left-3">
+                      <span className="bg-[#333333] text-white text-[0.58rem] tracking-widest uppercase font-sans font-semibold px-3 py-1.5 rounded-full shadow-sm">
+                        B2B Exclusive
+                      </span>
+                    </div>
+                  )}
                 </div>
-              </div>
+
+                {/* Card info */}
+                <div className="p-5">
+                  <p className="font-sans text-[0.62rem] tracking-[0.28em] uppercase text-[#333333]/50 mb-1">
+                    {product.category}
+                  </p>
+                  <h3 className="font-serif text-lg font-semibold text-[#333333] mb-3 leading-snug">
+                    {product.name}
+                  </h3>
+                  <PriceDisplay
+                    price={product.price}
+                    wholesalePrice={product.wholesalePrice}
+                    priceClassName="font-sans font-semibold text-lg text-[#333333]"
+                  />
+                  <div className="mt-4 pt-4 border-t border-[#333333]/10 flex items-center justify-between">
+                    <span className="text-[0.68rem] tracking-[0.14em] uppercase font-sans font-medium text-[#333333]">
+                      View Product
+                    </span>
+                    <ArrowRight size={13} strokeWidth={1.5} className="text-[#333333] group-hover:translate-x-1 transition-transform duration-200" />
+                  </div>
+                </div>
+              </Link>
             ))}
           </div>
 
