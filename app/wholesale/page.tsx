@@ -102,22 +102,22 @@ export default function WholesalePage() {
           {/* Product grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
             {products.map((product) => (
-              <div key={product.id} className="bg-[#333333] border border-white/[0.07] rounded-xl p-6 hover:border-white/15 transition-colors duration-200">
-                <p className="font-sans text-[0.62rem] tracking-[0.28em] uppercase text-white/30 mb-2">
+              <div key={product.id} className="bg-white border border-[#333333]/10 rounded-xl p-6 hover:border-[#333333]/25 hover:shadow-md transition-all duration-200">
+                <p className="font-sans text-[0.62rem] tracking-[0.28em] uppercase text-[#333333]/40 mb-2">
                   {product.category}
                 </p>
-                <h3 className="font-serif text-lg font-semibold text-white mb-4">
+                <h3 className="font-serif text-lg font-semibold text-[#333333] mb-4">
                   {product.name}
                 </h3>
                 <PriceDisplay
                   price={product.price}
                   wholesalePrice={product.wholesalePrice}
-                  priceClassName="font-sans font-bold text-xl text-white"
+                  priceClassName="font-sans font-bold text-xl text-[#333333]"
                 />
-                <div className="mt-5 pt-4 border-t border-white/[0.07]">
+                <div className="mt-5 pt-4 border-t border-[#333333]/10">
                   <Link
                     href={`/products/${product.id}`}
-                    className="inline-flex items-center gap-1.5 text-[0.68rem] tracking-[0.14em] uppercase font-sans font-medium text-white/30 hover:text-white transition-colors duration-200 group"
+                    className="inline-flex items-center gap-1.5 text-[0.68rem] tracking-[0.14em] uppercase font-sans font-medium text-[#333333]/35 hover:text-[#333333] transition-colors duration-200 group"
                   >
                     View Product
                     <ArrowRight size={10} strokeWidth={1.5} className="group-hover:translate-x-0.5 transition-transform duration-200" />
