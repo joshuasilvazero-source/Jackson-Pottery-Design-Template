@@ -5,10 +5,13 @@ import { motion, useInView, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Heart, Plus, Star, ArrowRight, Check, Eye, X, ShoppingCart } from 'lucide-react'
-import { products, type Product } from '@/lib/data'
+import { products as allProducts, type Product } from '@/lib/data'
 import PriceDisplay from '@/components/PriceDisplay'
 
 const categories = ['All', 'Terracotta', 'Glazed', 'Cast Stone', 'Lightweight', 'Metal'] as const
+
+// Homepage is a static B2C surface — never show wholesale-only products here
+const products = allProducts.filter((p) => !p.wholesaleOnly)
 
 const urgencyTags: Record<string, string> = {
   'villa-cast-stone-urn':         'Only 3 left',
