@@ -23,10 +23,12 @@ export default async function ShopPage({ searchParams }: Props) {
   const session = await getServerSession(authOptions)
   const isWholesale = session?.user?.isWholesale === true
 
-  // Only show wholesaleOnly products to authenticated wholesale customers
-  const visible = isWholesale ? products : products.filter((p) => !p.wholesaleOnly)
+  const exclusiveProducts = products.filter((p) => p.wholesaleOnly)
+  const b2cProducts = products.filter((p) => !p.wholesaleOnly)
 
-  // Derive category pills from only the products this visitor can see
+  // Public visitors only see B2C products; wholesale sees all
+  const visible = isWholesale ? products : b2cProducts
+
   const visibleCategories = ['All', ...Array.from(new Set(visible.map((p) => p.category))).sort()]
 
   const filtered =
@@ -65,6 +67,69 @@ export default async function ShopPage({ searchParams }: Props) {
         </div>
       </div>
 
+      {/* ── Wholesale Exclusive Section (wholesale customers only) ── */}
+      {isWholesale && !category && (
+        <div className="bg-[#333333]">
+          <div className="max-w-[1440px] mx-auto px-4 lg:px-8 py-12 lg:py-16">
+            <div className="mb-8">
+              <p className="font-sans text-[0.6rem] tracking-[0.38em] uppercase text-white/40 mb-2">
+                B2B Catalog
+              </p>
+              <h2 className="font-serif font-bold text-display-md text-white leading-tight">
+                Wholesale Exclusive
+              </h2>
+              <p className="font-sans text-white/40 text-sm mt-2">
+                {exclusiveProducts.length} products available only to verified wholesale accounts
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 lg:gap-8">
+              {exclusiveProducts.map((product) => (
+                <Link key={product.id} href={`/products/${product.id}`} className="group block">
+                  <div className="relative aspect-[3/4] overflow-hidden bg-white/[0.06] mb-4 rounded-xl">
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]"
+                      sizes="(max-width: 768px) 50vw, 33vw"
+                    />
+                    {/* B2B Exclusive badge */}
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-white text-[#333333] text-[0.58rem] tracking-widest uppercase font-sans font-semibold px-3 py-1.5 rounded-full shadow-sm">
+                        B2B Exclusive
+                      </span>
+                    </div>
+                    {product.isBestseller && (
+                      <div className="absolute top-4 right-4">
+                        <span className="bg-white/10 border border-white/20 text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1.5 rounded-full">
+                          Bestseller
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                  <p className="font-sans text-[0.62rem] tracking-[0.28em] uppercase text-white/40 mb-1">
+                    {product.category}
+                  </p>
+                  <h3 className="font-serif font-bold text-white text-base sm:text-lg lg:text-xl mb-0.5 leading-snug group-hover:text-white/80 transition-colors duration-200">
+                    {product.name}
+                  </h3>
+                  <p className="font-serif italic text-white/40 text-xs sm:text-sm mb-3">
+                    {product.subtitle}
+                  </p>
+                  <PriceDisplay
+                    price={product.price}
+                    wholesalePrice={product.wholesalePrice}
+                    originalPrice={product.originalPrice}
+                    priceClassName="font-sans font-medium text-white"
+                  />
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Category filter pills */}
       <div className="max-w-[1440px] mx-auto px-4 lg:px-8 pt-8 flex flex-wrap gap-2">
         {visibleCategories.map((cat) => {
@@ -85,8 +150,16 @@ export default async function ShopPage({ searchParams }: Props) {
         })}
       </div>
 
-      {/* Product Grid */}
+      {/* Full Catalog Grid */}
       <div className="max-w-[1440px] mx-auto px-4 lg:px-8 py-10 lg:py-16">
+        {isWholesale && !category && (
+          <div className="mb-8">
+            <p className="section-label mb-2">Full Catalog</p>
+            <h2 className="font-serif font-bold text-display-md text-[#333333] leading-tight">
+              All Planters
+            </h2>
+          </div>
+        )}
         {filtered.length === 0 ? (
           <div className="text-center py-20">
             <p className="font-serif text-[#333333] text-xl mb-3">No products in this category yet.</p>
@@ -107,6 +180,9 @@ export default async function ShopPage({ searchParams }: Props) {
                     sizes="(max-width: 768px) 50vw, 33vw"
                   />
                   <div className="absolute top-4 left-4 flex flex-col gap-2">
+                    {product.wholesaleOnly && (
+                      <span className="bg-[#333333] text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1.5 rounded-full">B2B Exclusive</span>
+                    )}
                     {product.isNew && (
                       <span className="bg-[#333333] text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1.5 rounded-full">New</span>
                     )}
