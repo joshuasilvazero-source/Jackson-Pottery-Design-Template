@@ -23,7 +23,6 @@ export default async function ShopPage({ searchParams }: Props) {
   const session = await getServerSession(authOptions)
   const isWholesale = session?.user?.isWholesale === true
 
-  const exclusiveProducts = products.filter((p) => p.wholesaleOnly)
   const b2cProducts = products.filter((p) => !p.wholesaleOnly)
 
   // Public visitors only see B2C products; wholesale sees all
@@ -45,7 +44,7 @@ export default async function ShopPage({ searchParams }: Props) {
         {isWholesale && (
           <div className="flex items-center gap-2 mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-[#333333]" />
-            <span className="font-sans text-[0.62rem] tracking-[0.2em] uppercase text-[#333333]/55">
+            <span className="font-sans text-[0.62rem] tracking-[0.2em] uppercase text-[#333333]">
               Wholesale Pricing Active
             </span>
           </div>
@@ -55,81 +54,17 @@ export default async function ShopPage({ searchParams }: Props) {
           {category && category !== 'All' ? category : 'All Planters'}
         </h1>
         <div className="flex items-center gap-4 mt-3">
-          <p className="font-sans text-[#333333]/55 text-sm">{filtered.length} pieces</p>
+          <p className="font-sans text-[#333333] text-sm">{filtered.length} pieces</p>
           {!isWholesale && (
             <Link
               href="/wholesale"
-              className="font-sans text-[0.68rem] tracking-[0.14em] uppercase text-[#333333]/40 hover:text-[#333333] transition-colors duration-200"
+              className="font-sans text-[0.68rem] tracking-[0.14em] uppercase text-[#333333] hover:text-[#333333]/70 transition-colors duration-200"
             >
               Sign in for the full catalog →
             </Link>
           )}
         </div>
       </div>
-
-      {/* ── Wholesale Exclusive Section (wholesale customers only) ── */}
-      {isWholesale && !category && (
-        <div className="bg-[#333333]">
-          <div className="max-w-[1440px] mx-auto px-4 lg:px-8 py-12 lg:py-16">
-            <div className="mb-8">
-              <p className="font-sans text-[0.6rem] tracking-[0.38em] uppercase text-white/40 mb-2">
-                B2B Catalog
-              </p>
-              <h2 className="font-serif font-bold text-display-md text-white leading-tight">
-                Wholesale Exclusive
-              </h2>
-              <p className="font-sans text-white/40 text-sm mt-2">
-                {exclusiveProducts.length} products available only to verified wholesale accounts
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 lg:gap-8">
-              {exclusiveProducts.map((product) => (
-                <Link key={product.id} href={`/products/${product.id}`} className="group block">
-                  <div className="relative aspect-[3/4] overflow-hidden bg-white/[0.06] mb-4 rounded-xl">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      fill
-                      className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]"
-                      sizes="(max-width: 768px) 50vw, 33vw"
-                    />
-                    {/* B2B Exclusive badge */}
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-white text-[#333333] text-[0.58rem] tracking-widest uppercase font-sans font-semibold px-3 py-1.5 rounded-full shadow-sm">
-                        B2B Exclusive
-                      </span>
-                    </div>
-                    {product.isBestseller && (
-                      <div className="absolute top-4 right-4">
-                        <span className="bg-white/10 border border-white/20 text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1.5 rounded-full">
-                          Bestseller
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                  <p className="font-sans text-[0.62rem] tracking-[0.28em] uppercase text-white/40 mb-1">
-                    {product.category}
-                  </p>
-                  <h3 className="font-serif font-bold text-white text-base sm:text-lg lg:text-xl mb-0.5 leading-snug group-hover:text-white/80 transition-colors duration-200">
-                    {product.name}
-                  </h3>
-                  <p className="font-serif italic text-white/40 text-xs sm:text-sm mb-3">
-                    {product.subtitle}
-                  </p>
-                  <PriceDisplay
-                    price={product.price}
-                    wholesalePrice={product.wholesalePrice}
-                    originalPrice={product.originalPrice}
-                    priceClassName="font-sans font-medium text-white"
-                    secondaryClassName="text-white"
-                  />
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Category filter pills */}
       <div className="max-w-[1440px] mx-auto px-4 lg:px-8 pt-8 flex flex-wrap gap-2">
@@ -142,7 +77,7 @@ export default async function ShopPage({ searchParams }: Props) {
               className={`px-4 py-2 rounded-full text-[0.72rem] tracking-[0.12em] uppercase font-sans transition-all duration-300 ${
                 isActive
                   ? 'bg-[#333333] text-white shadow-sm'
-                  : 'border border-[#333333]/15 text-[#333333]/55 hover:border-[#333333]/50 hover:text-[#333333] bg-white'
+                  : 'border border-[#333333]/15 text-[#333333] hover:border-[#333333]/50 bg-white'
               }`}
             >
               {cat}
@@ -182,13 +117,10 @@ export default async function ShopPage({ searchParams }: Props) {
                   />
                   <div className="absolute top-4 left-4 flex flex-col gap-2">
                     {product.wholesaleOnly && (
-                      <span className="bg-[#333333] text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1.5 rounded-full">B2B Exclusive</span>
+                      <span className="bg-[#333333] text-white text-xs tracking-widest uppercase font-sans px-3.5 py-1.5 rounded-full">Exclusive</span>
                     )}
                     {product.isNew && (
-                      <span className="bg-[#333333] text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1.5 rounded-full">New</span>
-                    )}
-                    {product.isBestseller && (
-                      <span className="bg-[#333333] text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1.5 rounded-full">Bestseller</span>
+                      <span className="bg-[#333333] text-white text-xs tracking-widest uppercase font-sans px-3.5 py-1.5 rounded-full">New</span>
                     )}
                   </div>
                 </div>
@@ -196,7 +128,7 @@ export default async function ShopPage({ searchParams }: Props) {
                 <h3 className="font-serif font-bold text-[#333333] text-base sm:text-lg lg:text-xl group-hover:text-[#333333] transition-colors duration-300 mb-0.5 leading-snug">
                   {product.name}
                 </h3>
-                <p className="font-serif italic text-[#333333]/55 text-xs sm:text-sm mb-2">{product.subtitle}</p>
+                <p className="font-serif italic text-[#333333] text-xs sm:text-sm mb-2">{product.subtitle}</p>
                 <PriceDisplay
                   price={product.price}
                   wholesalePrice={product.wholesalePrice}

@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import { Search, ShoppingCart, User, Phone, X, Menu, ArrowUpRight, ChevronDown } from 'lucide-react'
+import { Search, ShoppingCart, Phone, X, Menu, ArrowUpRight, ChevronDown } from 'lucide-react'
 import Link from 'next/link'
 import { useSession, signOut } from 'next-auth/react'
 
@@ -123,6 +123,17 @@ export default function Navigation() {
 
             {/* Center — category nav */}
             <nav className="flex items-center">
+              {isDealer && (
+                <>
+                  <Link
+                    href="/wholesale/catalog"
+                    className="flex items-center gap-1.5 mr-3 px-4 py-1.5 text-[0.72rem] tracking-[0.14em] uppercase font-sans font-semibold bg-[#333333] text-white rounded-full hover:bg-[#1F1F1F] transition-all duration-200 hover:-translate-y-px"
+                  >
+                    Wholesale Catalog
+                  </Link>
+                  <div className="h-5 w-px bg-[#333333]/20 mr-3" />
+                </>
+              )}
               {categories.map((cat, idx) => (
                 <div
                   key={cat.label}
@@ -245,7 +256,7 @@ export default function Navigation() {
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-sans text-[0.72rem] tracking-[0.14em] uppercase font-semibold bg-[#333333] text-white hover:bg-[#1F1F1F] transition-all duration-300 hover:-translate-y-px"
                 >
                   <span className="text-[0.6rem]">✓</span>
-                  Dealer
+                  Wholesale
                   <span className="text-[0.6rem] opacity-50">· Sign Out</span>
                 </button>
               ) : (
@@ -253,7 +264,7 @@ export default function Navigation() {
                   href="/wholesale"
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-sans text-[0.72rem] tracking-[0.14em] uppercase font-semibold bg-[#333333] text-white hover:bg-[#1F1F1F] hover:shadow-[0_6px_20px_rgba(0,0,0,0.2)] transition-all duration-300 hover:-translate-y-px"
                 >
-                  Dealer Login
+                  Wholesale Login
                 </Link>
               )}
 
@@ -295,13 +306,6 @@ export default function Navigation() {
                   )}
                 </AnimatePresence>
               </div>
-
-              <button
-                className="w-9 h-9 flex items-center justify-center rounded-full text-[#333333]/45 hover:text-[#333333] transition-colors duration-200"
-                aria-label="Account"
-              >
-                <User size={16} strokeWidth={1.5} />
-              </button>
 
               <Link
                 href="#"
@@ -389,6 +393,32 @@ export default function Navigation() {
                   </motion.div>
                 ))}
 
+                {/* Wholesale Catalog link (wholesale only) */}
+                {isDealer && (
+                  <motion.div
+                    initial={{ opacity: 0, x: 28 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                    className="border-b border-[#333333]/15 bg-[#333333]"
+                  >
+                    <Link
+                      href="/wholesale/catalog"
+                      onClick={() => setMobileOpen(false)}
+                      className="group flex items-center justify-between px-6 py-5"
+                    >
+                      <div>
+                        <span className="font-sans text-[0.72rem] tracking-[0.14em] uppercase font-semibold text-white block">
+                          Wholesale Catalog
+                        </span>
+                        <span className="font-sans text-xs text-white/60 mt-1 block">
+                          Wholesale pricing &amp; exclusive products
+                        </span>
+                      </div>
+                      <ArrowUpRight size={14} strokeWidth={1.5} className="text-white flex-shrink-0 ml-4" />
+                    </Link>
+                  </motion.div>
+                )}
+
                 {/* Dealer & Distributor */}
                 <motion.div
                   initial={{ opacity: 0, x: 28 }}
@@ -406,7 +436,7 @@ export default function Navigation() {
                           <span className="text-[#333333] text-xs">✓</span>
                         </div>
                         <div>
-                          <p className="font-sans text-[0.72rem] tracking-[0.14em] uppercase font-medium text-[#333333] leading-tight">Dealer Active</p>
+                          <p className="font-sans text-[0.72rem] tracking-[0.14em] uppercase font-medium text-[#333333] leading-tight">Wholesale Active</p>
                           <p className="font-sans text-xs text-[#333333]/55 mt-0.5">Wholesale pricing enabled</p>
                         </div>
                       </div>
@@ -423,7 +453,7 @@ export default function Navigation() {
                           <span className="text-[#333333]/70 text-xs">↗</span>
                         </div>
                         <div>
-                          <p className="font-sans text-[0.72rem] tracking-[0.14em] uppercase font-semibold text-[#333333] leading-tight">Dealer & Distributor</p>
+                          <p className="font-sans text-[0.72rem] tracking-[0.14em] uppercase font-semibold text-[#333333] leading-tight">Wholesale Login</p>
                           <p className="font-sans text-xs text-[#333333]/55 mt-0.5">Wholesale pricing access</p>
                         </div>
                       </div>
@@ -458,7 +488,7 @@ export default function Navigation() {
                     onClick={() => setMobileOpen(false)}
                     className="flex items-center justify-center w-full px-6 py-3.5 rounded-full bg-[#333333] text-white text-[0.72rem] tracking-[0.14em] uppercase font-sans font-medium hover:bg-[#1F1F1F] transition-colors duration-200"
                   >
-                    Dealer Login
+                    Wholesale Login
                   </Link>
                 </motion.div>
               </nav>

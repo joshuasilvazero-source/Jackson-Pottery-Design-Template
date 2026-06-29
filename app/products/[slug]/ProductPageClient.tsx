@@ -11,8 +11,8 @@ import PriceDisplay from '@/components/PriceDisplay'
 const detailImages = (product: Product) => [
   product.image,
   product.hoverImage,
-  'https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?w=900&q=85&fit=crop',
-  'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=900&q=85&fit=crop',
+  '/products/gallery-lifestyle-1.png',
+  '/products/gallery-lifestyle-2.png',
 ]
 
 export default function ProductPageClient({
@@ -84,10 +84,7 @@ export default function ProductPageClient({
 
               <div className="absolute top-4 left-4 flex flex-col gap-2">
                 {product.isNew && (
-                  <span className="bg-[#333333] text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1.5">New</span>
-                )}
-                {product.isBestseller && (
-                  <span className="bg-[#333333] text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1.5">Bestseller</span>
+                  <span className="bg-[#333333] text-white text-xs tracking-widest uppercase font-sans px-3.5 py-1.5">New</span>
                 )}
               </div>
 

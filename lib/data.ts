@@ -56,7 +56,7 @@ export const products: Product[] = [
     category: 'Glazed',
     tags: ['glazed', 'ceramic', 'modern', 'indoor'],
     image: '/products/arcadia-featured.png',
-    hoverImage: '/design-consultation.png',
+    hoverImage: '/products/arcadia-hover.png',
     description:
       'Rich drip-glaze over high-fire stoneware — each piece unique where the glaze breaks and pools. The Arcadia embodies restrained elegance, equally at home in a modern interior or a sun-drenched garden.',
     dimensions: '14″H × 12″Ø',
@@ -102,7 +102,7 @@ export const products: Product[] = [
     category: 'Lightweight',
     tags: ['lightweight', 'modern', 'balcony', 'rooftop'],
     image: '/products/canyon-featured.png',
-    hoverImage: '/products/balcony-planter.png',
+    hoverImage: '/products/canyon-hover.png',
     description:
       'Engineered fiberglass with a hand-applied concrete finish. The Canyon brings sculptural warmth to balconies and rooftops where weight constraints demand a smarter solution.',
     dimensions: '18″H × 16″Ø',
@@ -125,7 +125,7 @@ export const products: Product[] = [
     category: 'Metal',
     tags: ['metal', 'contemporary', 'indoor', 'designer'],
     image: '/products/meridian-featured.png',
-    hoverImage: '/products/meridian-hover.png',
+    hoverImage: '/products/outdoor-planter-patio.png',
     description:
       'Dark hammered and etched metalwork with a hand-finished antique patina. The Meridian commands attention — an heirloom vessel for design-forward interiors and collector spaces.',
     dimensions: '24″H × 18″Ø',
@@ -148,7 +148,7 @@ export const products: Product[] = [
     category: 'Glazed',
     tags: ['glazed', 'bowl', 'indoor', 'tabletop'],
     image: '/products/solstice-featured.png',
-    hoverImage: '/products/lawn-fountain.png',
+    hoverImage: '/products/living-room-terracotta.png',
     description:
       'A wide, low-profile bowl finished in a rich crimson glaze. Perfect for trailing plants, herbs, or a sculptural display — it brings warmth and colour to any surface it rests on.',
     dimensions: '7″H × 18″Ø',
@@ -170,8 +170,8 @@ export const products: Product[] = [
     wholesalePrice: 891,
     category: 'Lightweight',
     tags: ['commercial', 'trough', 'outdoor', 'large'],
-    image: '/products/canyon-featured.png',
-    hoverImage: '/products/balcony-planter.png',
+    image: '/products/ravine-featured.png',
+    hoverImage: '/products/ravine-hover.png',
     description:
       'A long-form rectangular trough engineered for commercial lobbies, streetscapes, and hospitality installations. Fiberglass shell with a cast concrete finish — the scale of stone at a fraction of the weight.',
     dimensions: '36″H × 48″L × 18″W',
@@ -193,8 +193,8 @@ export const products: Product[] = [
     wholesalePrice: 1134,
     category: 'Cast Stone',
     tags: ['cast stone', 'estate', 'outdoor', 'grand'],
-    image: '/products/villa-urn-featured.png',
-    hoverImage: '/products/outdoor-planter-patio.png',
+    image: '/products/palazzo-featured.png',
+    hoverImage: '/products/villa-urn-featured.png',
     description:
       'Our largest estate urn — a monumental presence for grand entrances, formal gardens, and commercial courtyards. Cast in reinforced composite stone with hand-carved relief detailing on the pedestal.',
     dimensions: '42″H × 32″Ø',
@@ -216,8 +216,8 @@ export const products: Product[] = [
     wholesalePrice: 588,
     category: 'Cast Stone',
     tags: ['cast stone', 'basin', 'outdoor', 'low profile'],
-    image: '/products/montserrat-featured.png',
-    hoverImage: '/products/living-room-terracotta.png',
+    image: '/products/cortado-featured.png',
+    hoverImage: '/products/outdoor-planter-patio.png',
     description:
       'A wide, shallow basin in cast composite stone — designed for mass plantings, water features, and dramatic low-profile installations. Its clean horizontal line anchors any architectural composition.',
     dimensions: '12″H × 36″Ø',
@@ -239,8 +239,8 @@ export const products: Product[] = [
     wholesalePrice: 672,
     category: 'Cast Stone',
     tags: ['cast stone', 'column', 'outdoor', 'architectural'],
-    image: '/products/arcadia-featured.png',
-    hoverImage: '/products/outdoor-planter-patio.png',
+    image: '/products/herald-featured.png',
+    hoverImage: '/products/balcony-planter.png',
     description:
       'A slender column planter with a fluted shaft and integrated planting capital — designed to frame doorways, align drives, and create vertical rhythm in formal outdoor settings. A favourite among landscape architects.',
     dimensions: '54″H × 14″Ø',

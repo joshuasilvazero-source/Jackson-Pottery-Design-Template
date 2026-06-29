@@ -1,0 +1,272 @@
+/*
+ * jp.css — Jackson Pottery design system
+ * Prefix: jp-
+ * Palette: Charcoal #333333 · White #FFFFFF · Light Grey #F4F4F4
+ */
+
+/* ── Colour tokens ──────────────────────────────────────────────────── */
+:root {
+  --jp-charcoal:    #333333;
+  --jp-white:       #FFFFFF;
+  --jp-grey:        #F4F4F4;
+
+  /* Opacity scale derived from charcoal */
+  --jp-charcoal-60: rgba(51, 51, 51, 0.60);
+  --jp-charcoal-40: rgba(51, 51, 51, 0.40);
+  --jp-charcoal-20: rgba(51, 51, 51, 0.20);
+  --jp-charcoal-10: rgba(51, 51, 51, 0.10);
+
+  /* Typography */
+  --jp-font-serif:  'Playfair Display', Georgia, serif;
+  --jp-font-sans:   'Manrope', system-ui, sans-serif;
+}
+
+/* ── Layout ─────────────────────────────────────────────────────────── */
+.jp-container {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+@media (min-width: 1024px) {
+  .jp-container { padding-inline: 2rem; }
+}
+
+.jp-section        { padding-block: 5rem; }
+.jp-section-sm     { padding-block: 3rem; }
+.jp-section-lg     { padding-block: 7rem; }
+.jp-section-dark   { background-color: var(--jp-charcoal); }
+.jp-section-light  { background-color: var(--jp-white); }
+.jp-section-grey   { background-color: var(--jp-grey); }
+
+/* ── Typography ─────────────────────────────────────────────────────── */
+.jp-eyebrow {
+  font-family: var(--jp-font-sans);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--jp-charcoal-40);
+}
+
+.jp-heading-xl {
+  font-family: var(--jp-font-serif);
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--jp-charcoal);
+}
+
+.jp-heading-lg {
+  font-family: var(--jp-font-serif);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--jp-charcoal);
+}
+
+.jp-heading-md {
+  font-family: var(--jp-font-serif);
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--jp-charcoal);
+}
+
+.jp-body {
+  font-family: var(--jp-font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--jp-charcoal-60);
+}
+
+.jp-body-sm {
+  font-family: var(--jp-font-sans);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--jp-charcoal-60);
+}
+
+.jp-quote {
+  font-family: var(--jp-font-serif);
+  font-style: italic;
+  font-size: 1.125rem;
+  line-height: 1.65;
+  color: var(--jp-charcoal);
+}
+
+/* On dark backgrounds — swap text colors */
+.jp-section-dark .jp-eyebrow    { color: rgba(255,255,255,0.40); }
+.jp-section-dark .jp-heading-xl,
+.jp-section-dark .jp-heading-lg,
+.jp-section-dark .jp-heading-md { color: var(--jp-white); }
+.jp-section-dark .jp-body,
+.jp-section-dark .jp-body-sm    { color: rgba(255,255,255,0.60); }
+.jp-section-dark .jp-quote      { color: rgba(255,255,255,0.85); }
+
+/* ── Divider ─────────────────────────────────────────────────────────── */
+.jp-divider       { width: 100%; height: 1px; background-color: var(--jp-charcoal-20); }
+.jp-divider-short { width: 2.5rem; height: 1px; background-color: var(--jp-charcoal-20); }
+
+/* ── Buttons ─────────────────────────────────────────────────────────── */
+.jp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--jp-font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.jp-btn-primary {
+  padding: 0.625rem 1.5rem;
+  background-color: var(--jp-charcoal);
+  color: var(--jp-white);
+}
+.jp-btn-primary:hover {
+  background-color: #1F1F1F;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+.jp-btn-outline {
+  padding: 0.625rem 1.5rem;
+  background-color: transparent;
+  color: var(--jp-charcoal);
+  border: 1px solid var(--jp-charcoal);
+}
+.jp-btn-outline:hover {
+  background-color: var(--jp-charcoal);
+  color: var(--jp-white);
+  transform: translateY(-1px);
+}
+
+.jp-btn-ghost {
+  padding: 0;
+  background: none;
+  color: var(--jp-charcoal);
+  letter-spacing: 0.2em;
+}
+.jp-btn-ghost:hover { color: var(--jp-charcoal-60); }
+
+/* White variants (for dark backgrounds) */
+.jp-btn-white {
+  padding: 0.625rem 1.5rem;
+  background-color: var(--jp-white);
+  color: var(--jp-charcoal);
+}
+.jp-btn-white:hover {
+  background-color: rgba(255,255,255,0.9);
+  transform: translateY(-1px);
+}
+
+.jp-btn-white-outline {
+  padding: 0.625rem 1.5rem;
+  background: transparent;
+  color: var(--jp-white);
+  border: 1px solid rgba(255,255,255,0.5);
+}
+.jp-btn-white-outline:hover {
+  background-color: rgba(255,255,255,0.1);
+  border-color: var(--jp-white);
+}
+
+/* ── Cards ───────────────────────────────────────────────────────────── */
+.jp-card {
+  background-color: var(--jp-white);
+  border: 1px solid var(--jp-charcoal-10);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.jp-card-dark {
+  background-color: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.jp-stat-card {
+  text-align: center;
+  background-color: var(--jp-white);
+  border: 1px solid var(--jp-charcoal-10);
+  border-radius: 0.75rem;
+  padding: 1rem;
+}
+
+/* ── Form elements ───────────────────────────────────────────────────── */
+.jp-input {
+  width: 100%;
+  font-family: var(--jp-font-sans);
+  font-size: 0.875rem;
+  color: var(--jp-charcoal);
+  background-color: var(--jp-grey);
+  border: 1px solid var(--jp-charcoal-20);
+  border-radius: 9999px;
+  padding: 0.75rem 1.25rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.jp-input:focus { border-color: var(--jp-charcoal-40); }
+.jp-input::placeholder { color: var(--jp-charcoal-40); }
+
+.jp-label {
+  font-family: var(--jp-font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--jp-charcoal);
+  display: block;
+  margin-bottom: 0.375rem;
+}
+
+/* ── Badge ───────────────────────────────────────────────────────────── */
+.jp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-family: var(--jp-font-sans);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.375rem 0.75rem;
+  border-radius: 9999px;
+  background-color: var(--jp-charcoal-10);
+  color: var(--jp-charcoal);
+}
+
+.jp-badge-dark {
+  background-color: rgba(255,255,255,0.07);
+  color: rgba(255,255,255,0.55);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+/* ── Image zoom ──────────────────────────────────────────────────────── */
+.jp-img-zoom { overflow: hidden; }
+.jp-img-zoom img {
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.jp-img-zoom:hover img { transform: scale(1.04); }
+
+/* ── Nav link ────────────────────────────────────────────────────────── */
+.jp-nav-link {
+  font-family: var(--jp-font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--jp-charcoal);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.jp-nav-link:hover { color: var(--jp-charcoal-60); }

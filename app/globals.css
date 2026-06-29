@@ -32,6 +32,13 @@
     @apply font-serif text-display-lg text-black leading-tight;
   }
 
+  /* Hide scrollbar while keeping scroll functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+
   /* Navigation link */
   .nav-item {
     @apply text-[0.72rem] tracking-[0.14em] uppercase font-sans text-black;

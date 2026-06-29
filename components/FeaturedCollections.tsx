@@ -184,10 +184,7 @@ function ProductCard({
           {/* Badges */}
           <div className="absolute top-3 left-3 flex flex-col gap-1.5">
             {product.isNew && (
-              <span className="bg-[#333333] text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1 rounded-full shadow-sm">New</span>
-            )}
-            {product.isBestseller && (
-              <span className="bg-[#333333] text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1 rounded-full shadow-sm">Bestseller</span>
+              <span className="bg-[#333333] text-white text-xs tracking-widest uppercase font-sans px-3.5 py-1.5 rounded-full shadow-sm">New</span>
             )}
           </div>
 
@@ -321,10 +318,7 @@ function QuickViewModal({ product, onClose }: { product: Product; onClose: () =>
             />
             <div className="absolute top-4 left-4 flex flex-col gap-1.5">
               {product.isNew && (
-                <span className="bg-[#333333] text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1 rounded-full shadow-sm">New</span>
-              )}
-              {product.isBestseller && (
-                <span className="bg-[#333333] text-white text-[0.58rem] tracking-widest uppercase font-sans px-3 py-1 rounded-full shadow-sm">Bestseller</span>
+                <span className="bg-[#333333] text-white text-xs tracking-widest uppercase font-sans px-3.5 py-1.5 rounded-full shadow-sm">New</span>
               )}
             </div>
           </div>

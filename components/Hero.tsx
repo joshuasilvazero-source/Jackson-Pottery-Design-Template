@@ -56,7 +56,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="font-sans text-[0.58rem] tracking-[0.38em] uppercase text-white font-medium mb-5 [text-shadow:0_1px_12px_rgba(0,0,0,0.6)]"
+          className="font-sans text-[0.75rem] tracking-[0.38em] uppercase text-white font-bold mb-5 [text-shadow:0_0_20px_rgba(0,0,0,1),0_2px_8px_rgba(0,0,0,0.9)]"
         >
           Handcrafted Since 1983
         </motion.p>
@@ -86,7 +86,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.62, ease: [0.16, 1, 0.3, 1] }}
-          className="font-serif italic text-white text-lg md:text-xl max-w-lg leading-relaxed mb-10 [text-shadow:0_1px_12px_rgba(0,0,0,0.6)]"
+          className="font-serif italic text-white text-lg md:text-xl max-w-lg leading-relaxed mb-10 [text-shadow:0_0_20px_rgba(0,0,0,1),0_2px_8px_rgba(0,0,0,0.8)]"
         >
           Timeless designs. Premium materials. Spaces transformed.
         </motion.p>
@@ -108,7 +108,7 @@ export default function Hero() {
             href="/wholesale"
             className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-8 sm:px-9 py-4 rounded-full bg-[#333333] text-white text-xs sm:text-[11px] tracking-[0.18em] uppercase font-sans font-semibold border border-white/15 hover:bg-[#1F1F1F] hover:shadow-[0_8px_28px_rgba(0,0,0,0.4)] hover:-translate-y-px transition-all duration-300"
           >
-            Dealer &amp; Distributor Login
+            Wholesale Login
           </Link>
         </motion.div>
       </motion.div>

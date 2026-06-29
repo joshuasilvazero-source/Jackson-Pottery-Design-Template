@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Playfair_Display, Manrope } from 'next/font/google'
+import { Playfair_Display, Manrope, Cormorant_Garamond } from 'next/font/google'
 import './globals.css'
 import GlobalStyles from './GlobalStyles'
 import SessionProvider from '@/components/SessionProvider'
@@ -9,6 +9,14 @@ const playfair = Playfair_Display({
   weight: ['400', '500', '600', '700', '800'],
   style: ['normal', 'italic'],
   variable: '--font-playfair',
+  display: 'swap',
+})
+
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-cormorant',
   display: 'swap',
 })
 
@@ -34,7 +42,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${manrope.variable}`}>
+    <html lang="en" className={`${playfair.variable} ${manrope.variable} ${cormorant.variable}`}>
       <head>
         <GlobalStyles />
       </head>

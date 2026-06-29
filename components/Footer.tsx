@@ -129,11 +129,11 @@ export default function Footer() {
                 href="/wholesale"
                 className="group flex items-center gap-1.5 font-sans text-white text-sm hover:text-white/70 transition-colors duration-200 py-1"
               >
-                Dealer Login
+                Wholesale Login
                 <ArrowRight size={10} strokeWidth={1.5} className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 flex-shrink-0" />
               </Link>
               <p className="font-sans text-white text-xs mt-1.5 leading-relaxed">
-                Verified dealer accounts.<br />Sign in for trade pricing.
+                Verified wholesale accounts.<br />Sign in for wholesale pricing.
               </p>
             </div>
           </div>
@@ -200,7 +200,7 @@ export default function Footer() {
               href="/wholesale"
               className="font-sans text-white text-sm hover:text-white/70 transition-colors duration-200"
             >
-              Dealer Login
+              Wholesale Login
             </Link>
           </div>
         </div>
