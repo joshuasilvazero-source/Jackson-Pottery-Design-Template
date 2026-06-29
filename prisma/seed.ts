@@ -1,18 +1,8 @@
 import { PrismaClient } from '@prisma/client'
-import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3'
 import bcrypt from 'bcryptjs'
 import * as readline from 'readline'
-import path from 'path'
 
-function createClient() {
-  const dbUrl = process.env.DATABASE_URL ?? 'file:./prisma/dev.db'
-  const dbPath = dbUrl.startsWith('file:') ? dbUrl.slice(5) : dbUrl
-  const resolvedPath = path.isAbsolute(dbPath) ? dbPath : path.join(process.cwd(), dbPath)
-  const adapter = new PrismaBetterSqlite3({ url: resolvedPath })
-  return new PrismaClient({ adapter })
-}
-
-const prisma = createClient()
+const prisma = new PrismaClient()
 
 async function ask(prompt: string): Promise<string> {
   const rl = readline.createInterface({ input: process.stdin, output: process.stdout })
@@ -27,9 +17,9 @@ async function ask(prompt: string): Promise<string> {
 async function main() {
   console.log('\n── Jackson Pottery · Wholesale Account Manager ──\n')
 
-  const email = await ask('Email address: ')
+  const email       = await ask('Email address: ')
   const companyName = await ask('Company name: ')
-  const password = await ask('Password: ')
+  const password    = await ask('Password: ')
 
   if (!email || !companyName || !password) {
     console.error('All fields are required.')
@@ -39,7 +29,7 @@ async function main() {
   const hashedPassword = await bcrypt.hash(password, 12)
 
   const user = await prisma.user.upsert({
-    where: { email: email.toLowerCase() },
+    where:  { email: email.toLowerCase() },
     update: { hashedPassword, companyName },
     create: {
       email: email.toLowerCase(),
@@ -53,8 +43,5 @@ async function main() {
 }
 
 main()
-  .catch((e) => {
-    console.error(e)
-    process.exit(1)
-  })
+  .catch((e) => { console.error(e); process.exit(1) })
   .finally(() => prisma.$disconnect())
