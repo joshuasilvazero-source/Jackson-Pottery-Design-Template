@@ -14,6 +14,19 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null
 
+        // Demo wholesale account — no database required
+        if (
+          credentials.email.toLowerCase().trim() === 'demo@jacksonpottery.com' &&
+          credentials.password === 'wholesale2024'
+        ) {
+          return {
+            id: 'demo',
+            email: 'demo@jacksonpottery.com',
+            isWholesale: true,
+            companyName: 'Demo Wholesale Account',
+          }
+        }
+
         const user = await prisma.user.findUnique({
           where: { email: credentials.email.toLowerCase().trim() },
         })
