@@ -39,17 +39,6 @@ export default function WholesalePage() {
   const [password, setPassword]         = useState('')
   const [error, setError]               = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isDemoLoading, setIsDemoLoading] = useState(false)
-
-  async function handleDemoLogin() {
-    setIsDemoLoading(true)
-    await signIn('credentials', {
-      email: 'demo@jacksonpottery.com',
-      password: 'wholesale2024',
-      redirect: false,
-    })
-    setIsDemoLoading(false)
-  }
 
   // ── Loading ──────────────────────────────────────────────────────────────────
   if (status === 'loading') {
@@ -337,16 +326,6 @@ export default function WholesalePage() {
             </button>
           </form>
 
-          <div className="mt-4">
-            <button
-              onClick={handleDemoLogin}
-              disabled={isDemoLoading}
-              className="w-full border border-[#333333]/20 text-[#333333] rounded-lg py-3.5 font-sans text-[0.72rem] tracking-[0.14em] uppercase font-semibold hover:bg-[#333333]/[0.05] transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isDemoLoading ? 'Signing in…' : '⚡ View as Wholesale Customer'}
-            </button>
-          </div>
-
           <div className="mt-5 pt-5 border-t border-[#333333]/[0.07] text-center">
             <a href="mailto:hello@jacksonpottery.com"
               className="font-sans text-[0.68rem] tracking-[0.14em] uppercase font-medium text-[#333333] hover:text-[#333333]/70 transition-colors duration-200">
@@ -417,16 +396,6 @@ export default function WholesalePage() {
                   {isSubmitting ? 'Signing in…' : 'Sign In to Portal →'}
                 </button>
               </form>
-
-              <div className="mt-4">
-                <button
-                  onClick={handleDemoLogin}
-                  disabled={isDemoLoading}
-                  className="w-full border border-[#333333]/20 text-[#333333] rounded-lg py-3.5 font-sans text-[0.72rem] tracking-[0.14em] uppercase font-semibold hover:bg-[#333333]/[0.05] transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {isDemoLoading ? 'Signing in…' : '⚡ View as Wholesale Customer'}
-                </button>
-              </div>
 
               <div className="mt-5 pt-5 border-t border-[#333333]/[0.07] text-center">
                 <a href="mailto:hello@jacksonpottery.com"
